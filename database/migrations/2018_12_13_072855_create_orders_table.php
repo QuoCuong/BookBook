@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->timestamp('date')->useCurrent();
             $table->integer('address_id')->unsigned();
             $table->integer('user_id')->unsigned();
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
             $table->softDeletes();

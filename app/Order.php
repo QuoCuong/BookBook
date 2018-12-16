@@ -11,12 +11,17 @@ class Order extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'total', 'date', 'address_id', 'user_id',
+        'total', 'date', 'user_id', 'address_id',
     ];
 
     public function user()
     {
         return $this->belongsTo('Book\User');
+    }
+
+    public function address()
+    {
+        return $this->belongsTo('Book\Address');
     }
 
     public function orderDetails()
