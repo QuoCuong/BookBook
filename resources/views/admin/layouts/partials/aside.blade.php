@@ -3,7 +3,7 @@
     <div class="app-layout-drawer-scroll">
         <!-- Drawer logo -->
         <div id="logo" class="drawer-header">
-            <a href="{{ route('admin.dashboard') }}"><img class="img-responsive" src="img/logo/logo-backend.png" title="AppUI" alt="AppUI" /></a>
+            <a href="{{ route('admin.dashboard') }}"><img class="img-responsive" src="{{ asset('admin/img/logo/logo-backend.png') }}" title="AppUI" alt="AppUI" /></a>
         </div>
 
         <!-- Drawer navigation -->
@@ -25,7 +25,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.orders.index') }}"><i class="ion-ios-paper-outline"></i> @lang('admin.aside.order_management')</a>
+                    <a href=""><i class="ion-ios-paper-outline"></i> @lang('admin.aside.order_management')</a>
                 </li>
 
                 <li class="nav-item">
