@@ -28,4 +28,9 @@ class Address extends Model
     {
         return $this->belongsTo('Book\District');
     }
+
+    public function order()
+    {
+        return $this->hasOne('Book\Order');
+    }
 }
