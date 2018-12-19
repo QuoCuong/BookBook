@@ -11,7 +11,7 @@ class Comment extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'rating_quality', 'rating_price', 'rating_value', 'nickname', 'summary', 'review', 'product_id', 'user_id',
+        'rating_quality', 'rating_price', 'rating_value', 'nickname', 'title', 'content', 'product_id', 'user_id',
     ];
 
     public function averageRating()

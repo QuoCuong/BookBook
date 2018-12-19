@@ -3,7 +3,6 @@
 namespace Book\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Book\Category;
 use Book\Product;
 
 class HomeController extends Controller
@@ -25,8 +24,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $new_products = Product::orderBy('created_at', 'desc')->limit(12)->get();
+        $new_products = Product::orderBy('created_at', 'desc')->get();
 
-        return view('home', compact('new_products'));
+        return view('home', ['new_products' => $new_products]);
     }
 }

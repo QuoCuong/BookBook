@@ -13,8 +13,8 @@ $factory->define(Book\Comment::class, function (Faker $faker) {
         'rating_price'   => $faker->numberBetween(1, 5),
         'rating_value'   => $faker->numberBetween(1, 5),
         'nickname'       => $faker->firstName,
-        'summary'        => $faker->text,
-        'review'         => $faker->paragraph(6),
+        'title'          => $faker->text,
+        'content'        => $faker->paragraph(6),
         'product_id'     => $faker->randomElement($productIds),
         'user_id'        => $faker->randomElement($userIds),
     ];
