@@ -1,59 +1,51 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+@section('oth-page')
+oth-page
+@endsection
 
-                <div class="card-body">
+@section('content')
+
+<!-- Start Bradcaump area -->
+@include('layouts.partials.breadcrumbs')
+<!-- End Bradcaump area -->
+
+<!-- Start My Account Area -->
+<section class="my_account_area pt--80 pb--55 bg--white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="my__account__wrapper">
+                    <h3 class="account__title text-center">@lang('labels.account.reset_password')</h3>
                     <form method="POST" action="{{ route('password.update') }}">
                         @csrf
-
-                        <input type="hidden" name="token" value="{{ $token }}">
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ $email ?? old('email') }}" required autofocus>
-
+                        <div class="account__form">
+                            <input type="hidden" name="token" value="{{ $token }}">
+                            <input type="hidden" name="email" value="{{ $email }}">
+                            <div class="input__box">
+                                <label>@lang('labels.account.email_address') <span>*</span></label>
+                                <input type="text" value="{{ $email }}" disabled="">
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <div class="has-error">
+                                    <i>{{ $errors->first('email') }}</i>
+                                </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="input__box">
+                                <label>@lang('labels.account.password') <span>*</span></label>
+                                <input type="password" name="password">
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <div class="has-error">
+                                    <i>{{ $errors->first('password') }}</i>
+                                </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="input__box">
+                                <label>@lang('labels.account.password_confirm')<span>*</span></label>
+                                <input type="password" name="password_confirmation">
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Reset Password') }}
-                                </button>
+                            <div class="form__btn">
+                                <button>@lang('labels.account.change_password')</button>
                             </div>
                         </div>
                     </form>
@@ -61,5 +53,7 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- End My Account Area -->
+
 @endsection

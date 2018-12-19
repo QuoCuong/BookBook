@@ -12,13 +12,13 @@
 				<nav class="mainmenu__nav">
 					<ul class="meninmenu d-flex justify-content-start">
 						<li class="drop with--one--item">
-							<a href="{{ route('home') }}">@lang('labels.home')</a>
+							<a href="{{ route('home') }}">@lang('labels.home.home')</a>
 						</li>
 						@foreach ($categories as $category)
 							<li class="drop">
 								<a href="#">{{ $category->name }}</a>
 								<div class="megamenu mega03">
-									@foreach ($category->child as $subcategory)
+									@foreach ($category->subcategories as $subcategory)
 										<ul class="item item02">
 											<li class="title"><a href="">{{ $subcategory->name }}</a></li>
 											@foreach ($subcategory->child as $subsubcategory)
@@ -116,7 +116,22 @@
 					</li>
 					@guest
 						<li class="setting__bar__icon">
-							<a class="setting__active__guest" href="{{ route('login') }}"></a>
+							<a class="setting__active" href="#"></a>
+							<div class="searchbar__content setting__block">
+								<div class="content-inner">
+									<div class="switcher-currency">
+										<div class="switcher-options">
+											<div class="switcher-currency-trigger">
+												<div class="setting__menu">
+													<span><a href="{{ route('login') }}">@lang('labels.home.login')</a></span>
+													<span><a href="{{ route('register') }}">@lang('labels.home.register')</a></span>
+													<span><a href="{{ route('password.request') }}">@lang('labels.home.forgot_password')</a></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</li>
 					@else
 						<li class="setting__bar__icon">
@@ -130,11 +145,11 @@
 													@if (Auth::user()->role_id == 1)
 														<span><a href="{{ route('admin.dashboard') }}">Quản trị viên</a></span>
 													@endif
-													<span><a href="{{ route('home') }}">@lang('labels.my_account')</a></span>
+													<span><a href="{{ route('home') }}">@lang('labels.home.my_account')</a></span>
 													<span>
 														<form method="POST" action="{{ route('logout') }}">
 															@csrf
-															<button class="btn-logout">@lang('labels.logout')</button>
+															<button class="btn-logout">@lang('labels.home.logout')</button>
 														</form>
 													</span>
 												</div>
@@ -153,11 +168,11 @@
 			<div class="col-lg-12 d-none">
 				<nav class="mobilemenu__nav">
 					<ul class="meninmenu">
-						<li><a href="{{ route('home') }}">@lang('labels.home')</a></li>
+						<li><a href="{{ route('home') }}">@lang('labels.home.home')</a></li>
 						@foreach ($categories as $category)
 							<li><a href="#">{{ $category->name }}</a>
 								<ul>
-									@foreach ($category->child as $subcategory)
+									@foreach ($category->subcategories as $subcategory)
 										<li>
 											<a href="about.html">{{ $subcategory->name }}</a>
 											<ul>

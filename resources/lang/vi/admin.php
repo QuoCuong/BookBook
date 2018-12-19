@@ -28,4 +28,9 @@ return [
         'logout' => 'Đăng xuất',
     ],
 
+    //order
+    'order'     => [
+
+    ],
+
 ];

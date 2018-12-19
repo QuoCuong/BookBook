@@ -19,8 +19,8 @@ class CreateCommentsTable extends Migration
             $table->integer('rating_price')->unsigned();
             $table->integer('rating_value')->unsigned();
             $table->string('nickname');
-            $table->string('summary');
-            $table->text('review');
+            $table->string('title');
+            $table->text('content');
             $table->integer('product_id')->unsigned();
             $table->integer('user_id')->unsigned();
             $table->foreign('product_id')->references('id')->on('products');

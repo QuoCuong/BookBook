@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->date('birthday');
+            $table->timestamp('birthday');
             $table->enum('sex', ['male', 'female']);
             $table->integer('role_id')->unsigned();
             $table->foreign('role_id')->references('id')->on('roles');

@@ -3,7 +3,10 @@
 namespace Book\Http\Controllers\Auth;
 
 use Book\Http\Controllers\Controller;
+use Book\Mail\MailForgotPassword;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Support\Facades\DB;
+use Mail;
 
 class ForgotPasswordController extends Controller
 {
@@ -16,7 +19,7 @@ class ForgotPasswordController extends Controller
     | includes a trait which assists in sending these notifications from
     | your application to your users. Feel free to explore this trait.
     |
-    */
+     */
 
     use SendsPasswordResetEmails;
 

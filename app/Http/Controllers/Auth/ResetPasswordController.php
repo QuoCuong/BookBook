@@ -3,7 +3,14 @@
 namespace Book\Http\Controllers\Auth;
 
 use Book\Http\Controllers\Controller;
+use Book\Http\Requests\ResetPasswordRequest;
+use Book\User;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ResetPasswordController extends Controller
 {
@@ -16,7 +23,7 @@ class ResetPasswordController extends Controller
     | and uses a simple trait to include this behavior. You're free to
     | explore this trait and override any methods you wish to tweak.
     |
-    */
+     */
 
     use ResetsPasswords;
 
@@ -25,7 +32,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -35,5 +42,40 @@ class ResetPasswordController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+    }
+
+    /**
+     * Display the password reset view for the given token.
+     *
+     * If no token is present, display the link request form.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string|null  $token
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showResetForm(Request $request, $token = null)
+    {
+        $email = DB::table('password_resets')->where('token', $token)->first()->email;
+
+        return view('auth.passwords.reset')->with(
+            ['token' => $token, 'email' => $email]
+        );
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    public function reset(ResetPasswordRequest $request)
+    {
+        $user = User::where('email', $request->email)->first();
+
+        $user->password = Hash::make($request->password);
+        $user->setRememberToken(Str::random(60));
+        $user->save();
+
+        Auth::guard()->login($user);
     }
 }
