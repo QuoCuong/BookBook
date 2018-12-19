@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $new_products = Product::orderBy('created_at', 'desc')->get();
+        $new_products = Product::orderBy('created_at', 'desc')->limit(12)->get();
 
         return view('home', ['new_products' => $new_products]);
     }
