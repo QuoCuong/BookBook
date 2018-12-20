@@ -25,7 +25,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=""><i class="ion-ios-paper-outline"></i> @lang('admin.aside.order_management')</a>
+                    <a href="{{ route('admin.orders.index') }}"><i class="ion-ios-paper-outline"></i> @lang('admin.aside.order_management')</a>
                 </li>
 
                 <li class="nav-item">
