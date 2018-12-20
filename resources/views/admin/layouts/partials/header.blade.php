@@ -14,7 +14,9 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-                <span class="navbar-page-title">@lang('admin.dashboard')</span>
+                <span class="navbar-page-title">
+                    @yield('breadcrumb')
+                </span>
             </div>
 
             <div class="collapse navbar-collapse" id="header-navbar-collapse">
@@ -32,24 +34,6 @@
                 <!-- .navbar-left -->
 
                 <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">
-                    <li class="dropdown">
-                        <a href="javascript:void(0)" data-toggle="dropdown"><i class="ion-ios-bell"></i> <span class="badge">3</span></a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li class="dropdown-header">@lang('admin.aside.profile')</li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">3</span> News </a>
-                            </li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)"><span class="badge pull-right">1</span> Messages </a>
-                            </li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">More</li>
-                            <li>
-                                <a tabindex="-1" href="javascript:void(0)">Edit Profile..</a>
-                            </li>
-                        </ul>
-                    </li>
-
                     <li class="dropdown dropdown-profile">
                         <a href="javascript:void(0)" data-toggle="dropdown">
                             <span class="m-r-sm">{{ Auth::user()->first_name }} <span class="caret"></span></span>

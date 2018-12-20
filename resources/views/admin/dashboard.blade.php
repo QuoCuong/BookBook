@@ -1,5 +1,9 @@
 @extends('admin.layouts.master')
 
+@section('breadcrumb')
+@lang('admin.dashboard')
+@endsection
+
 @section('content')
 <main class="app-layout-content">
     <!-- Page Content -->
