@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=""><i class="ion-ios-book-outline"></i> @lang('admin.aside.book_management')</a>
+                    <a href="{{ route('admin.products.index') }}"><i class="ion-ios-book-outline"></i> @lang('admin.aside.book_management')</a>
                 </li>
 
                 <li class="nav-item">
