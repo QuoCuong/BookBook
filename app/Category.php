@@ -11,7 +11,7 @@ class Category extends Model
     use SoftDeletes;
 
     protected $fillable = [
-    	'name',
+    	'name', 'parent_id'
     ];
 
     public function products()
@@ -19,8 +19,13 @@ class Category extends Model
     	return $this->hasMany('Book\Product');
     }
 
-    public function subcategories()
+    public function parent()
     {
-    	return $this->hasMany('Book\Subcategory');
+        return $this->hasOne('Book\Category', 'id');
+    }
+
+    public function child()
+    {
+        return $this->hasMany('Book\Category', 'parent_id');
     }
 }

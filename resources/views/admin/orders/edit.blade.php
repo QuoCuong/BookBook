@@ -5,7 +5,7 @@
 @endsection
 
 @section('breadcrumb')
-	Quản lý đơn hàng / Cập nhật
+	Đơn hàng / Cập nhật
 @endsection
 
 @section('content')

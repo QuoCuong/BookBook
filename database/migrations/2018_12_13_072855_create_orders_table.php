@@ -15,12 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->decimal('total', 10, 0)->default(0);
             $table->timestamp('date')->useCurrent();
-            $table->integer('address_id')->unsigned();
+            $table->decimal('total', 10, 0)->default(0);
+            $table->enum('status', ['pending', 'approved', 'complete', 'cancelled'])->default('pending');
             $table->integer('user_id')->unsigned();
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->integer('address_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('address_id')->references('id')->on('addresses');
             $table->timestamps();
             $table->softDeletes();
         });

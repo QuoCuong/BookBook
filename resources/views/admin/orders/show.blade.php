@@ -17,7 +17,7 @@
 @endsection
 
 @section('breadcrumb')
-	Quản lý đơn hàng / Xem chi tiết
+	Đơn hàng / Xem chi tiết
 @endsection
 
 @section('content')
@@ -217,12 +217,6 @@
                                     <div class="form-material">
                                         <input class="form-control" type="text" id="material-disabled" name="material-disabled" disabled value="{{ number_format($order->total) }}đ">
                                         <label for="material-disabled">Thành tiền</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-2 col-xs-12">
-                                    <div>
-                                        <a href="{{ route('admin.order_details.edit', $orderDetail->id) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Chỉnh sửa"><i class="ion-edit"></i></a>
-                                        <a href="{{ route('admin.order_details.delete', $orderDetail->id) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></a>
                                     </div>
                                 </div>
                             </div>

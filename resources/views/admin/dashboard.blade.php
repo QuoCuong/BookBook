@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('breadcrumb')
-@lang('admin.dashboard')
+    Bảng điều khiển
 @endsection
 
 @section('content')

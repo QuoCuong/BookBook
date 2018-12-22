@@ -22,44 +22,43 @@ Route::group([
     'middleware' => ['auth', 'is.admin'],
     'prefix'     => 'admin',
     'namespace'  => 'Admin',
-    'as'         => '',
+    'as'         => 'admin.',
 ], function () {
-	Route::get('dashboard', 'HomeController@index')->name('admin.dashboard');
+	Route::get('dashboard', 'HomeController@index')->name('dashboard');
 
 	//Manager Product 
-	Route::get('products', 'ProductController@index')->name('admin.products.index');
-	Route::get('products/create','ProductController@create')->name('admin.product.create');
-	Route::post('products','ProductController@store')->name('admin.product.store');
-	Route::delete('products/{id}','ProductController@destroy')->name('admin.product.destroy');	
-	Route::get('products/edit/{id}','ProductController@edit')->name('admin.product.edit');
-	Route::post('products/update/{id}','ProductController@update')->name('admin.product.update');
+	Route::get('products', 'ProductController@index')->name('products.index');
+	Route::get('products/create','ProductController@create')->name('product.create');
+	Route::post('products','ProductController@store')->name('product.store');
+	Route::delete('products/{id}','ProductController@destroy')->name('product.destroy');	
+	Route::get('products/edit/{id}','ProductController@edit')->name('product.edit');
+	Route::post('products/update/{id}','ProductController@update')->name('product.update');
 
 	//Manger Image 
-	Route::get('images','ImageController@index')->name('admin.image.index');
-	Route::get('images/create','ImageController@create')->name('admin.image.create');
-	Route::post('images/create/image','ImageController@store')->name('admin.image.store');
-	Route::get('images/delete/{product}','ImageController@destroy')->name('admin.image.destroy');
-	Route::get('image/edit/{id}', 'ImageController@edit')->name('admin.image.edit');
-	Route::post('image/update/{id}','ImageController@update')->name('admin.image.update');
+	Route::get('images','ImageController@index')->name('image.index');
+	Route::get('images/create','ImageController@create')->name('image.create');
+	Route::post('images/create/image','ImageController@store')->name('image.store');
+	Route::get('images/delete/{product}','ImageController@destroy')->name('image.destroy');
+	Route::get('image/edit/{id}', 'ImageController@edit')->name('image.edit');
+	Route::post('image/update/{id}','ImageController@update')->name('image.update');
 
 	//Manage ProductDetail
-	Route::get('productdetails','ProductDetailController@index')->name('admin.productdetail.index');
-	Route::get('productdetails/edit/{id}', 'ProductDetailController@edit')->name('admin.productdetail.edit');
-	Route::post('productdetails/update/{id}','ProductDetailController@update')->name('admin.productdetail.update');
-	Route::delete('productdetails/{id}','ProductDetailController@destroy')->name('admin.productdetail.destroy');
+	Route::get('productdetails','ProductDetailController@index')->name('productdetail.index');
+	Route::get('productdetails/edit/{id}', 'ProductDetailController@edit')->name('productdetail.edit');
+	Route::post('productdetails/update/{id}','ProductDetailController@update')->name('productdetail.update');
+	Route::delete('productdetails/{id}','ProductDetailController@destroy')->name('productdetail.destroy');
+
+	//Category
+    Route::get('categories', 'CategoryController@index')->name('categories');
+    Route::get('categories/create', 'CategoryController@create')->name('categories.create');
+    Route::delete('categories/{category}', 'CategoryController@destroy')->name('categories.delete');
 
 	//Order
-	Route::get('orders', 'OrderController@index')->name('admin.orders.index');
-	Route::get('orders/{order}', 'OrderController@show')->name('admin.orders.show');
-	Route::get('orders/{order}/edit', 'OrderController@edit')->name('admin.orders.edit');
-	Route::put('orders/{order}', 'OrderController@update')->name('admin.orders.update');
-	Route::delete('orders/{order}', 'OrderController@destroy')->name('admin.orders.delete');
-
-	//Order Details
-	// Route::get('order_details', 'OrderController@index')->name('admin.orders.index');
-	Route::get('order_details/{orderDetail}/edit', 'OrderDetailController@edit')->name('admin.order_details.edit');
-	// Route::put('orders/{order}', 'OrderController@update')->name('admin.orders.update');
-	Route::delete('order_details/{orderDetail}', 'OrderDetailController@destroy')->name('admin.order_details.delete');
+    Route::get('orders', 'OrderController@index')->name('orders.index');
+    Route::get('orders/{order}', 'OrderController@show')->name('orders.show');
+    Route::get('orders/{order}/edit', 'OrderController@edit')->name('orders.edit');
+    Route::put('orders/{order}', 'OrderController@update')->name('orders.update');
+    Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
 });
 
 Auth::routes();

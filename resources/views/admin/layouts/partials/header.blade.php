@@ -24,7 +24,7 @@
                 <form class="navbar-form navbar-left app-search-form" role="search">
                     <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control" type="search" id="search-input" placeholder="@lang('admin.header.search')..." />
+                            <input class="form-control" type="search" id="search-input" placeholder="Tìm kiếm..." />
                             <span class="input-group-btn">
 				<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
 			</span>
@@ -48,7 +48,7 @@
                                 <form method="POST" action="{{ route('logout') }}" name="logout">
                                     @csrf
                                 </form>
-                                <a href="#" class="logout">@lang('admin.header.logout')</a>
+                                <a href="#" class="logout">Đăng xuất</a>
                             </li>
                         </ul>
                     </li>

@@ -17,7 +17,7 @@
 @endsection
 
 @section('breadcrumb')
-	Quản lý đơn hàng
+	Đơn hàng
 @endsection
 
 @section('content')
@@ -28,7 +28,7 @@
     <div class="container-fluid p-y-md">
     	<div class="card">
     		<div class="card-header">
-                <h4>Quản lý đơn hàng</h4>
+                <h4>Đơn hàng</h4>
             </div>
             <div class="card-block">
             	<div class="table-responsive">
