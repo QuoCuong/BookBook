@@ -16,7 +16,6 @@ class OrdersTableSeeder extends Seeder
         factory(Order::class, 50)->create()->each(function ($order) {
             $order->orderDetails()->save(factory(OrderDetail::class)->make());
             $order->orderDetails()->save(factory(OrderDetail::class)->make());
-            $order->orderDetails()->save(factory(OrderDetail::class)->make());
         });
     }
 }

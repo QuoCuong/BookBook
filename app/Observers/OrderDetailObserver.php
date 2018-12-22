@@ -26,12 +26,6 @@ class OrderDetailObserver
             'total' => $current_total + $total_of_order_detail,
         ];
         $order->update($data);
-
-        //update quantity of product
-        $data = [
-            'quantity' => $product->quantity - $orderDetail->quantity,
-        ];
-        $product->update($data);
     }
 
     /**

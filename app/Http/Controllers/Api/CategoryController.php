@@ -1,11 +1,12 @@
 <?php
 
-namespace Book\Http\Controllers;
+namespace Book\Http\Controllers\API;
 
-use Book\Subcategoy;
+use Book\Category;
+use Book\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class SubcategoryController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,6 +16,13 @@ class SubcategoryController extends Controller
     public function index()
     {
         //
+    }
+
+    public function child(Category $category)
+    {
+        $child = $category->child;
+
+        return response()->json($child);
     }
 
     /**
@@ -41,10 +49,10 @@ class SubcategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Book\Subcategoy  $subcategoy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Subcategoy $subcategoy)
+    public function show($id)
     {
         //
     }
@@ -52,10 +60,10 @@ class SubcategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Book\Subcategoy  $subcategoy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Subcategoy $subcategoy)
+    public function edit($id)
     {
         //
     }
@@ -64,21 +72,23 @@ class SubcategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Book\Subcategoy  $subcategoy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Subcategoy $subcategoy)
+    public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+        return response('Updated', 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Book\Subcategoy  $subcategoy
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Subcategoy $subcategoy)
+    public function destroy($id)
     {
         //
     }

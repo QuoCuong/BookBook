@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->integer('quantity')->unsigned();
             $table->decimal('price', 8, 0);
-            $table->integer('subcategory_id')->unsigned();
-            $table->foreign('subcategory_id')->references('id')->on('subcategories');
+            $table->integer('category_id')->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
             $table->softDeletes();
         });

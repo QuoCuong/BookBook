@@ -18,7 +18,7 @@
 							<li class="drop">
 								<a href="#">{{ $category->name }}</a>
 								<div class="megamenu mega03">
-									@foreach ($category->subcategories as $subcategory)
+									@foreach ($category->child as $subcategory)
 										<ul class="item item02">
 											<li class="title"><a href="">{{ $subcategory->name }}</a></li>
 											@foreach ($subcategory->child as $subsubcategory)
@@ -172,7 +172,7 @@
 						@foreach ($categories as $category)
 							<li><a href="#">{{ $category->name }}</a>
 								<ul>
-									@foreach ($category->subcategories as $subcategory)
+									@foreach ($category->child as $subcategory)
 										<li>
 											<a href="about.html">{{ $subcategory->name }}</a>
 											<ul>
