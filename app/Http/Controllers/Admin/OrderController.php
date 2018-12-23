@@ -15,9 +15,47 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('created_at', 'desc')->paginate(8);
+        $numberOfOrders          = Order::count();
+        $numberOfPendingOrders   = Order::where('status', 'pending')->count();
+        $numberOfApprovedOrders  = Order::where('status', 'approved')->count();
+        $numberOfCompleteOrders  = Order::where('status', 'complete')->count();
+        $numberOfCancelledOrders = Order::where('status', 'cancelled')->count();
 
-        return view('admin.orders.index', ['orders' => $orders]);
+        return view('admin.orders.index', [
+            'numberOfOrders'          => $numberOfOrders,
+            'numberOfPendingOrders'   => $numberOfPendingOrders,
+            'numberOfApprovedOrders'  => $numberOfApprovedOrders,
+            'numberOfCompleteOrders'  => $numberOfCompleteOrders,
+            'numberOfCancelledOrders' => $numberOfCancelledOrders,
+        ]);
+    }
+
+    public function listPending()
+    {
+        $orders = Order::where('status', 'pending')->orderBy('created_at')->paginate(8);
+
+        return view('admin.orders.pending', ['orders' => $orders]);
+    }
+
+    public function listApproved()
+    {
+        $orders = Order::where('status', 'approved')->orderBy('created_at')->paginate(8);
+
+        return view('admin.orders.approved', ['orders' => $orders]);
+    }
+
+    public function listComplete()
+    {
+        $orders = Order::where('status', 'complete')->orderBy('created_at')->paginate(8);
+
+        return view('admin.orders.complete', ['orders' => $orders]);
+    }
+
+    public function listCancelled()
+    {
+        $orders = Order::where('status', 'cancelled')->orderBy('created_at')->paginate(8);
+
+        return view('admin.orders.cancelled', ['orders' => $orders]);
     }
 
     /**
@@ -53,7 +91,7 @@ class OrderController extends Controller
         $address      = $order->address;
         $orderDetails = $order->orderDetails;
 
-        return view('admin.orders.show', ['order' => $order, 'user' => $user, 'address' => $address, 'orderDetail' => $orderDetails]);
+        return view('admin.orders.show', ['order' => $order, 'user' => $user, 'address' => $address, 'orderDetails' => $orderDetails]);
     }
 
     /**
@@ -77,6 +115,14 @@ class OrderController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+    public function updateStatus(Order $order, $status)
+    {
+        $order->status = $status;
+        $order->save();
+
+        return redirect()->back();
     }
 
     /**
