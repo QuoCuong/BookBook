@@ -26,17 +26,22 @@
 
 	    <!-- Page Content -->
 	    <div class="container-fluid p-y-md">
-	    	<div style="margin-bottom: 20px;">
-	    		<a href="{{ url()->previous() }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Quay lại</a>
+	    	<div class="row" style="margin-bottom: 20px;">
+	    		<div class="col-md-12">
+	    			<div class="pull-left">
+			    		<a href="{{ route('admin.dashboard') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Bảng điều khiển</a>
+			    	</div>
+			    	<div class="pull-right">
+			    		<a href="{{ route('admin.categories.create') }}" class="btn btn-pill btn-app-green">Thêm danh mục</a>
+			    	</div>
+	    		</div>
 	    	</div>
+	    	<div class="clearfix"></div>
 	    	<div class="row">
 	    		<div class="col-md-4">
 	    			<div class="card">
 			    		<div class="card-header bg-cyan bg-inverse">
 			                <!-- <h4>Danh mục</h4> -->
-			                <ul class="card-actions">
-	                            <a href="{{ route('admin.categories.create') }}" class="btn btn-app-green btn-block" type="button">Thêm</a>
-	                        </ul>
 			            </div>
 			            <div class="card-block">
 			            	<div class="table-responsive">
@@ -45,7 +50,7 @@
 	                                    <tr>
 	                                        <th class="text-center" style="width: 50px;">ID</th>
 	                                        <th>Tên</th>
-	                                        <th class="text-center">Hành động</th>
+	                                        <th class="text-center">Thêm</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody>
@@ -58,11 +63,12 @@
 		                                        <td class="text-center">
 	                                                <div class="btn-group">
 	                                                    <button class="btn btn-xs btn-default hide" id="btn-category-update" data-toggle="tooltip" title="" data-original-title="Cập nhật" disabled><i class="ion-edit"></i></button>
-			                                            <form method="POST" action="" style="display: inline;">
+			                                            <form method="POST" action="{{ route('admin.categories.delete', $category->id) }}" id="category-form-delete" style="display: inline;">
 			                                            	@method('DELETE')
 			                                            	@csrf
-			                                            	<button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></button>
+			                                            	
 			                                            </form>
+			                                            <button class="btn btn-xs btn-default" id="btn-category-delete" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></button>
 	                                                </div>
 	                                            </td>
 		                                    </tr>
@@ -77,9 +83,6 @@
 	    			<div class="card">
 			    		<div class="card-header bg-cyan bg-inverse">
 			                <!-- <h4>Danh mục phụ</h4> -->
-			                <ul class="card-actions">
-	                            <button class="btn btn-app-green btn-block" type="button">Thêm</button>
-	                        </ul>
 			            </div>
 			            <div class="card-block">
 			            	<div class="table-responsive">
@@ -88,7 +91,7 @@
 	                                    <tr>
 	                                        <th class="text-center" style="width: 50px;">ID</th>
 	                                        <th>Tên</th>
-	                                        <th class="text-center">Hành động</th>
+	                                        <th class="text-center">Thêm</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody id="subcategory_content">
@@ -101,7 +104,7 @@
 		                                        <td class="text-center">
 	                                                <div class="btn-group">
 	                                                    <button class="btn btn-xs btn-default hide" id="btn-category-update" data-toggle="tooltip" title="" data-original-title="Cập nhật" disabled><i class="ion-edit"></i></button>
-			                                            <form method="POST" action="" style="display: inline;">
+			                                            <form method="POST" action="{{ route('admin.categories.delete') }}" style="display: inline;">
 			                                            	@method('DELETE')
 			                                            	@csrf
 			                                            	<button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></button>
@@ -120,9 +123,6 @@
 	    			<div class="card">
 			    		<div class="card-header bg-cyan bg-inverse">
 			                <!-- <h4>Danh mục con</h4> -->
-			                <ul class="card-actions">
-	                            <button class="btn btn-app-green btn-block" type="button">Thêm</button>
-	                        </ul>
 			            </div>
 			            <div class="card-block">
 			            	<div class="table-responsive">
@@ -131,7 +131,7 @@
 	                                    <tr>
 	                                        <th class="text-center" style="width: 50px;">ID</th>
 	                                        <th>Tên</th>
-	                                        <th class="text-center">Hành động</th>
+	                                        <th class="text-center">Thêm</th>
 	                                    </tr>
 	                                </thead>
 	                                <tbody id="child_content">
@@ -144,11 +144,12 @@
 		                                        <td class="text-center">
 	                                                <div class="btn-group">
 	                                                    <button class="btn btn-xs btn-default hide" id="btn-category-update" data-toggle="tooltip" title="" data-original-title="Cập nhật" disabled><i class="ion-edit"></i></button>
-			                                            <form method="POST" action="" style="display: inline;">
+			                                            <form method="POST" action="{{ route('admin.categories.delete') }}" style="display: inline;">
 			                                            	@method('DELETE')
 			                                            	@csrf
-			                                            	<button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></button>
+			                                            	
 			                                            </form>
+			                                            <button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Xóa"><i class="ion-close"></i></button>
 	                                                </div>
 	                                            </td>
 		                                    </tr>
@@ -163,6 +164,10 @@
 	    	<!-- End row -->
 	    </div>
 	    <!-- End Page Content -->
+
+	    @if (session('type'))
+			<div id="message" type="{{ session('type') }}" message="{{ session('message') }}"></div>
+		@endif
 
 	</main>
 
@@ -188,6 +193,22 @@
 	    $(document).ready(function () {
 	    	csrf_token = $('meta[name="csrf-token"]').attr('content');
 
+	    	if ($('#message').length) {
+				type = $('#message').attr('type');
+				message = $('#message').attr('message');
+
+				console.log(type);
+				console.log(message);
+
+				$.notify({
+					title: '<strong>' + message + '</strong>',
+					message: ''
+				}, {
+					element: 'body',
+					type: type
+    			});
+			}
+
 	    	$(document).on('click', '.category', function () {
 	    		id = $(this).children('td:first-child').text();
 
@@ -206,11 +227,11 @@
 			                    	"<td class='text-center'>" +
 			                    		"<div class='btn-group'>" +
 				                    		"<button class='btn btn-xs btn-default hide' id='btn-category-update' data-toggle='tooltip' title='' data-original-title='Chỉnh sửa' disabled><i class='ion-edit'></i></button>" +
-		                                    "<form method='POST' action='' style='display: inline;''>" +
+		                                    "<form method='POST' action='http://bookbook.com/admin/categories/" + value['id'] + "' id='category-form-delete' style='display: inline;'>" +
 		                                    	"<input type='hidden' name='_method' value='DELETE'>" +
 		                                    	"<input type='hidden' name='_token' value='" + csrf_token + "'>" +
-		                                    	"<button class='btn btn-xs btn-default' data-toggle='tooltip' title='' data-original-title='Xóa'><i class='ion-close'></i></button>" +
 		                                    "</form>" +
+		                                    "<button class='btn btn-xs btn-default' id='btn-category-delete' data-toggle='tooltip' title='' data-original-title='Xóa'><i class='ion-close'></i></button>" +
 		                                "</div>" +
 	                                "</td>" +
 			                    "</tr>";
@@ -240,11 +261,11 @@
 			                    	"<td class='text-center'>" +
 			                    		"<div class='btn-group'>" +
 				                    		"<button class='btn btn-xs btn-default hide' id='btn-category-update' data-toggle='tooltip' title='' data-original-title='Chỉnh sửa' disabled><i class='ion-edit'></i></button>" +
-		                                    "<form method='POST' action='' style='display: inline;''>" +
+		                                    "<form method='POST' action='http://bookbook.com/admin/categories/" + value['id'] + "' id='category-form-delete' style='display: inline;'>" +
 		                                    	"<input type='hidden' name='_method' value='DELETE'>" +
 		                                    	"<input type='hidden' name='_token' value='" + csrf_token + "'>" +
-		                                    	"<button class='btn btn-xs btn-default' data-toggle='tooltip' title='' data-original-title='Xóa'><i class='ion-close'></i></button>" +
 		                                    "</form>" +
+		                                    "<button class='btn btn-xs btn-default' id='btn-category-delete' data-toggle='tooltip' title='' data-original-title='Xóa'><i class='ion-close'></i></button>" +
 		                                "</div>" +
 	                                "</td>" +
 			                    "</tr>";
@@ -310,10 +331,17 @@
 	    		});
 	    	});
 
-	    	$('table button[data-original-title="Xóa"]').on('click', function () {
-	    		$(document).unbind('click');
+	    	// confirm after delete
+	    	$(document).on('click', '#btn-category-delete', function(event) {
+	    		event.preventDefault();
+	    		$(this).parent().children('#category-form-delete').submit();
+
+	    		// if (confirm("Nếu bạn xóa DANH MỤC này, tất cả dữ liệu liên quan đến SẢN PHẨM của danh mục này cũng bị xóa.\n\nBạn vẫn muốn xóa?")) {
+	    		// 	$(this).parent().children('#category-form-delete').submit();
+	    		// }
 	    	});
 	    });
+
 	</script>
 
 @endsection

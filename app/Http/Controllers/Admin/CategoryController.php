@@ -4,6 +4,7 @@ namespace Book\Http\Controllers\Admin;
 
 use Book\Category;
 use Book\Http\Controllers\Controller;
+use Book\Http\Requests\StoreCategoryRequest;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -27,7 +28,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.categories.create');
+        // $categories = Category::with('child.child')->get();
+        $categories = Category::where('parent_id', null)->with('child')->get();
+
+        return view('admin.categories.create', ['categories' => $categories]);
     }
 
     /**
@@ -36,9 +40,24 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        //
+        if ($request->parent_id == 0) {
+            $data = [
+                'name' => $request->name,
+            ];
+        } else {
+            $data = [
+                'name'      => $request->name,
+                'parent_id' => $request->parent_id,
+            ];
+        }
+        Category::create($data);
+
+        return redirect()->back()->with([
+            'type'    => 'success',
+            'message' => 'Đã thêm',
+        ]);
     }
 
     /**
@@ -85,6 +104,9 @@ class CategoryController extends Controller
     {
         $category->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with([
+            'type'    => 'success',
+            'message' => 'Đã xóa',
+        ]);;
     }
 }

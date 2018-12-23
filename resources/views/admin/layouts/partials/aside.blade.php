@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.categories') }}"><i class="ion-ios-people-outline"></i> Danh mục</a>
+                    <a href="{{ route('admin.categories.index') }}"><i class="ion-ios-people-outline"></i> Danh mục</a>
                 </li>
 
                 <li class="nav-item">
