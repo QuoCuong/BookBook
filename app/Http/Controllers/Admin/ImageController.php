@@ -44,11 +44,11 @@ class ImageController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
-            $file->move(public_path() . '/public/storage\\', $name);
+            $file->move(public_path() . '/public/storage/', $name);
             
 
             $image->name       = $request->name;
-            $image->path       = 'public/storage\\' . $name;
+            $image->path       = 'public/storage/' . $name;
             $image->product_id = $request->product_id;
 
             $image->save();
@@ -103,11 +103,11 @@ class ImageController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
-            $file->move(public_path() . '/public/storage\\', $name);
+            $file->move(public_path() . '/public/storage/', $name);
             
 
             $image->name       = $request->name;
-            $image->path       = 'public/storage\\' . $name;
+            $image->path       = 'public/storage/' . $name;
             $image->product_id = $request->product_id;
 
             $image->save();

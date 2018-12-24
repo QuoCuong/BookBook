@@ -77,5 +77,7 @@ class ResetPasswordController extends Controller
         $user->save();
 
         Auth::guard()->login($user);
+
+        return redirect()->route('home');
     }
 }

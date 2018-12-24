@@ -4,7 +4,9 @@ namespace Book\Providers;
 
 use Book\Category;
 use Book\Observers\OrderDetailObserver;
+use Book\Observers\OrderObserver;
 use Book\Observers\ProductObserver;
+use Book\Order;
 use Book\OrderDetail;
 use Book\Product;
 use Illuminate\Support\Facades\Schema;
@@ -28,8 +30,7 @@ class AppServiceProvider extends ServiceProvider
 
         OrderDetail::observe(OrderDetailObserver::class);
         Product::observe(ProductObserver::class);
-        
-
+        Order::observe(OrderObserver::class);
     }
 
     /**
