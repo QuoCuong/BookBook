@@ -117,9 +117,6 @@
 				type = $('#message').attr('type');
 				message = $('#message').attr('message');
 
-				console.log(type);
-				console.log(message);
-
 				$.notify({
 					title: '<strong>' + message + '</strong>',
 					message: ''

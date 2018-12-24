@@ -77,11 +77,11 @@
                         <address>
                             {{ $user->last_name . ' ' . $user->firt_name }}<br>
                             <i class="ion-email"></i> {{ $user->email }}<br>
-                            <i class="ion-calendar"></i> {{ convert_to_my_date_format($user->birthday) }}<br>
+                            <i class="fa fa-birthday-cake"></i> {{ convert_to_my_date_format($user->birthday) }}<br>
                             @if ($user->sex == 'male')
-                                <i class="ion-transgender"></i> Nam
+                                <i class="fa fa-transgender"></i> Nam
                             @else
-                                <i class="ion-transgender"></i> Nữ
+                                <i class="fa fa-transgender"></i> Nữ
                             @endif
                         </address>
                     </div>

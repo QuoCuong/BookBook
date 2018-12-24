@@ -64,6 +64,12 @@ Route::group([
     Route::get('orders/{order}/edit', 'OrderController@edit')->name('orders.edit');
     Route::post('orders/{order}/{status}', 'OrderController@updateStatus')->name('orders.update.status');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
+
+    //Comment
+    Route::get('comments', 'CommentController@index')->name('comments.index');
+    Route::get('comments/{comment}', 'CommentController@show')->name('comments.show');
+    Route::put('comments/{comment}', 'CommentController@update')->name('comments.update');
+    Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.delete');
 });
 
 Auth::routes();

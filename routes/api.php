@@ -20,10 +20,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::group([
     'namespace' => 'Api',
     'prefix'    => 'v1',
+    'as'        => 'api.',
 ], function () {
 
-    Route::get('categories/{category}/child', 'CategoryController@child')->name('api.categories.child');
-    Route::get('categories/{category}/child_child', 'CategoryController@childChild')->name('api.categories.child.child');
-    Route::put('categories/{category}', 'CategoryController@update')->name('api.categories.update');
+	//Category
+    Route::get('categories/{category}/child', 'CategoryController@child')->name('categories.child');
+    Route::get('categories/{category}/child_child', 'CategoryController@childChild')->name('categories.child.child');
+    Route::put('categories/{category}', 'CategoryController@update')->name('categories.update');
 
 });
