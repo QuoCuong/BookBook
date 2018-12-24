@@ -97,5 +97,14 @@
         <div class="app-ui-mask-modal"></div>
 
         @yield('javascript')
+        <script>
+            $(document).ready(function ($) {
+                $('.logout').on('click', function () {
+                    event.preventDefault();
+                    $('form[name=logout]').submit();
+                    console.log('working');
+                });
+            });
+        </script>
     </body>
 </html>
