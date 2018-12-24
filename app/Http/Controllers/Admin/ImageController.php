@@ -7,6 +7,7 @@ use Book\Image;
 use Book\Product;
 use Illuminate\Http\Request;
 use Book\Http\Requests\ProductRequest;
+use Book\Http\Requests\ImageFormRequest;
 
 class ImageController extends Controller
 {
@@ -37,24 +38,29 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(ImageFormRequest $request)
     {
-        /*dd($request->all());*/
+        $image = new Image ;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file->move(public_path() . '/public/storage\\', $name);
+            
 
-        $image = new Image;
+            $image->name       = $request->name;
+            $image->path       = 'public/storage\\' . $name;
+            $image->product_id = $request->product_id;
 
-        $path_image          = $request->path;
-        $path_image_new_name = time() . $path_image->getClientOriginalName();
-        $path_image->move('storage/', $path_image_new_name);
+            $image->save();
 
-        $image->name       = $request->name;
-        $image->path       = 'storage/' . $path_image_new_name;
-        $image->product_id = $request->product_id;
+        }
+            
 
-        $image->save();
+  
 
         return redirect()->route('admin.image.index');
-    }
+
+}
 
     /**
      * Display the specified resource.
@@ -94,15 +100,19 @@ class ImageController extends Controller
 
         $image = Image::find($id);
 
-        $path_image          = $request->path;
-        $path_image_new_name = time() . $path_image->getClientOriginalName();
-        $path_image->move('public/storage\\', $path_image_new_name);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file->move(public_path() . '/public/storage\\', $name);
+            
 
-        $image->name       = $request->name;
-        $image->path       = 'public/storage\\' . $path_image_new_name;
-        $image->product_id = $request->product_id;
+            $image->name       = $request->name;
+            $image->path       = 'public/storage\\' . $name;
+            $image->product_id = $request->product_id;
 
-        $image->save();
+            $image->save();
+
+        }
 
         return redirect()->route('admin.image.index');
     }

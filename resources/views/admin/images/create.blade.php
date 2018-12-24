@@ -4,15 +4,15 @@
 
 <li class="nav-item nav-item-has-subnav">
 
-  <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Products</a>
-  <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Image</a>
+  <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Tất cả sách</a>
+  <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Hình ảnh sách</a>
 </li>
 @endsection
 @section('content')
 <main class="app-layout-content">
 	<div  class="container-fluid p-y-md">
 		<ul style="list-style: none;" class="navbar-nav mr-auto">
-      <li><a href="{{ route('admin.image.index')}}"> Image </a></li> 
+      <li><a href="{{ route('admin.image.index')}}"> Hình ảnh sách </a></li> 
                  
     </ul>
 
@@ -24,7 +24,7 @@
     <div class="container">
 
       <div class="card">
-        <div class="card-header">New Image</div>
+        <div class="card-header">tạo mới hình sách</div>
         <div class="card-body">
           <form action="{{route('admin.image.store')}}" method="post" enctype="multipart/form-data">
             @csrf
@@ -36,8 +36,8 @@
               </fieldset>
               <fieldset class="form-group">
                 <label for="image">Image</label>
-                <input type="file" name="path" class="form-control">
-                <p class="meserr">{{ $errors->first('path')}}</p>
+                <input type="file" name="image" class="form-control" multiple>
+                <p class="meserr">{{ $errors->first('image')}}</p>
               </fieldset>
               <fieldset class="form-group">
                 <label for="formGroupExampleInput">Product_id</label>

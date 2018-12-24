@@ -4,16 +4,16 @@
 
 <li class="nav-item nav-item-has-subnav">
 
-    <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Products</a>
-    <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Image</a>
-    <a href="{{route('admin.productdetail.index')}}"><i class="ion-ios-calculator-outline"></i>ProductDetail</a>
+    <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Sách</a>
+    <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Hình ảnh sách</a>
+    <a href="{{route('admin.productdetail.index')}}"><i class="ion-ios-calculator-outline"></i>Chi tiết sách</a>
 </li>
 @endsection
 @section('content')
 <main class="app-layout-content">
     <div  class="container-fluid p-y-md">
         <ul style="list-style: none;" class="navbar-nav mr-auto">
-            <li><a href="{{ route('admin.products.index')}}"> Products</a></li>
+            <li><a href="{{ route('admin.products.index')}}"> Tất cả sách</a></li>
 
         </ul>
 
@@ -25,7 +25,7 @@
         <div class="container">
 
             <div class="card">
-                <div class="card-header">New Product</div>
+                <div class="card-header">Tạo mới sách</div>
                 <div class="card-body">
                     <form action="{{route('admin.productdetail.update', ['id' => $productdetails->id ])}}" method="post" >
                         @csrf

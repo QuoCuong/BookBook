@@ -11,7 +11,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'description', 'quantity', 'price', 'subcategory_id',
+        'name', 'description', 'quantity', 'price', 'category_id',
     ];
 
     public function productDetail()
@@ -29,9 +29,9 @@ class Product extends Model
         return $this->hasMany('Book\Comment');
     }
 
-    public function subcategory()
+    public function category()
     {
-        return $this->belongsTo('Book\Subcategory');
+        return $this->belongsTo('Book\Category');
     }
 
     public function images()

@@ -4,18 +4,27 @@
 <li class="nav-item nav-drawer-header">Chức năng</li>
 
 <li class="nav-item nav-item-has-subnav">
-  <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Products</a>
-  <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Image</a>
-  <a href="{{route('admin.productdetail.index')}}"><i class="ion-ios-calculator-outline"></i>ProductDetail</a>
+  <a href="{{ route('admin.products.index') }}"><i class="ion-ios-calculator-outline"></i>Sách</a>
+  <a href="{{route('admin.image.index')}}"><i class="ion-ios-calculator-outline"></i>Hình ảnh sách</a>
+  <a href="{{route('admin.productdetail.index')}}"><i class="ion-ios-calculator-outline"></i>Chi tiết sách</a>
 </li>
 @endsection
 
 @section('content')
 <main class="app-layout-content">
   <div  class="container-fluid p-y-md">
-
-    <div class="card">
-      <div class="card-header">ProductDetails </div>
+    <h2 class="section-title">Quản lý chi tiết sách</h2>
+        <div class="row">
+          <div class="col-md-12">
+          <!-- Card Tabs Default Style -->
+            <div class="card">
+              <ul class="nav nav-tabs" data-toggle="tabs">
+                <li class="active">
+                <a href="#btabs-static-home">Chi tiết sách</a>
+                </li>
+              </ul>
+              <div class="card-block tab-content">
+              <div class="tab-pane active" id="btabs-static-home">
       <div class="card-body">
         <table class="table table-header-bg">
           <thead>
@@ -62,13 +71,13 @@
             <td style="text-align: center;">{{ $productdetail->cover }}</td>
             <td style="text-align: center;">{{ $productdetail->product_id }}</td>
             <td>
-              <a href="{{ route('admin.productdetail.edit', ['id' => $productdetail->id ]) }}" class="btn btn-xs btn-success">Edit
+              <a href="{{ route('admin.productdetail.edit', ['id' => $productdetail->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
               </a>
            
               <form method="POST" action="{{ route('admin.productdetail.destroy', ['id' => $productdetail->id ])}}" style="display: inline;" >
                 @csrf
                 @method('DELETE')
-                <button class="btn btn-xs btn-danger">Delete</button>
+                <button class="btn btn-xs btn-default"><i class="ion-close"></i></button>
               </form>
             </td>
           </tr>
