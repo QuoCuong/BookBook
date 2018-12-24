@@ -21,7 +21,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('admin.categories.index') }}"><i class="ion-ios-people-outline"></i> Danh mục</a>
+                    <a href="{{ route('admin.categories.index') }}"><i class="ion-ios-list-outline"></i> Danh mục</a>
                 </li>
 
                 <li class="nav-item">
@@ -33,7 +33,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=""><i class="ion-ios-chatboxes-outline"></i> Bình luận</a>
+                    <a href="{{ route('admin.comments.index') }}"><i class="ion-ios-chatboxes-outline"></i> Bình luận</a>
                 </li>
 
                 @yield('function')

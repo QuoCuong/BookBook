@@ -42,7 +42,7 @@
 			        			<th>Ngày</th>
 			        			<th>Khách hàng</th>
 			        			<th>Địa chỉ</th>
-			        			<th>Tổng tiền</th>
+			        			<th class="text-right">Tổng tiền</th>
 			        			<th></th>
 			        		</tr>
 			        	</thead>
@@ -50,18 +50,18 @@
 				        	@foreach ($orders as $order)
 				        		<tr class="pointer order" href="{{ route('admin.orders.show', $order->id) }}">
 				        			<td class="text-center">{{ $order->id }}</td>
-				        			<td class="text-center">{{ date_format($order->created_at, 'd/m/Y H:i:s') }}</td>
+				        			<td>{{ date_format($order->created_at, 'd/m/Y H:i:s') }}</td>
 				        			<td>{{ $order->user->last_name . ' ' . $order->user->first_name }}</td>
 				        			<td>{{ $order->address->address }}</td>
 				        			<td class="text-right">{{ number_format($order->total) }}đ</td>
 				        			<td class="text-center">
-                                        <div class="btn-group">
+                                        <!-- <div class="btn-group">
                                             <form method="POST" action="{{ route('admin.orders.delete', $order->id) }}" style="display: inline;">
                                             	@method('DELETE')
                                             	@csrf
                                             	<button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
                                             </form>
-                                        </div>
+                                        </div> -->
                                     </td>
 				        		</tr>
 				        	@endforeach
@@ -82,37 +82,33 @@
 
 @section('javascript')
 
-<!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
-<script src="{{ asset('admin/js/core/jquery.min.js') }}"></script>
-<script src="{{ asset('admin/js/core/bootstrap.min.js') }}"></script>
-<script src="{{ asset('admin/js/core/jquery.slimscroll.min.js') }}"></script>
-<script src="{{ asset('admin/js/core/jquery.scrollLock.min.js') }}"></script>
-<script src="{{ asset('admin/js/core/jquery.placeholder.min.js') }}"></script>
-<script src="{{ asset('admin/js/app.js') }}"></script>
-<script src="{{ asset('admin/js/app-custom.js') }}"></script>
+    <!-- AppUI Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js -->
+    <script src="{{ asset('admin/js/core/jquery.min.js') }}"></script>
+    <script src="{{ asset('admin/js/core/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('admin/js/core/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('admin/js/core/jquery.scrollLock.min.js') }}"></script>
+    <script src="{{ asset('admin/js/core/jquery.placeholder.min.js') }}"></script>
+    <script src="{{ asset('admin/js/app.js') }}"></script>
+    <script src="{{ asset('admin/js/app-custom.js') }}"></script>
 
-<!-- Page JS Code -->
-<script>
-    $(function()
-    {
-        // Init page helpers (Table Tools helper)
-        App.initHelpers('table-tools');
-    });
+    <!-- Page JS Code -->
+    <script>
 
-    $(document).ready(function () {
+        $(document).ready(function () {
 
-    	//view order details when click a tr
-    	$(document).on('click', 'tr.order', function(event) {
-    		event.preventDefault();
-    		
-    		href = $(this).attr('href');
-    		window.location.replace(href);
-    	});
-    	
-    	$("table a, table button").on("click", function () {
-    		$("table tr").unbind("click");
-    	});
-    });
-</script>
+        	//view order details when click a tr
+        	$(document).on('click', 'tr.order', function(event) {
+        		event.preventDefault();
+        		
+        		href = $(this).attr('href');
+        		window.location.replace(href);
+        	});
+        	
+        	$("table a, table button").on("click", function () {
+        		$("table tr").unbind("click");
+        	});
+        });
+        
+    </script>
 
 @endsection

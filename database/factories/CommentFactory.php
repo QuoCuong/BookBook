@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Book\Comment::class, function (Faker $faker) {
     $productIds = Product::pluck('id');
-    $userIds    = User::pluck('id');
+    $userIds    = User::where('role_id', 2)->pluck('id');
 
     return [
         'rating_quality' => $faker->numberBetween(1, 5),
