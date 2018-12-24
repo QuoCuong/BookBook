@@ -2,12 +2,12 @@
 
 namespace Book\Http\Controllers\Admin;
 
+use Book\Category;
 use Book\Http\Controllers\Controller;
 use Book\Http\Requests\ProductRequest;
-use Book\Image;
 use Book\Product;
 use Book\ProductDetail;
-use Book\Subcategory;
+use Book\Image;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -19,9 +19,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('admin.products.index', ['products' => Product::paginate(10)]);
-
+        $products = Product::paginate(10);
+        return view('admin.products.index', ['products' => $products]);
     }
+
+   /* public function listDetailById(Product $product)
+    {
+        $productDetails = $product->productDetails;
+        dd($productDetails);
+
+        return view('admin.products.show', compact('productDetails'));
+    }*/
+
 
     /**
      * Show the form for creating a new resource.
@@ -31,8 +40,8 @@ class ProductController extends Controller
     public function create()
     {
 
-        $subcategories = Subcategory::where('parent_id', '!=', null)->pluck('name', 'id');
-        return view('admin.products.create', compact('subcategories'));
+        $categories = Category::where('parent_id', '!=', null)->pluck('name', 'id');
+        return view('admin.products.create', compact('categories'));
     }
 
     /**
@@ -44,6 +53,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
+        /*dd($request->all());*/
         // dd($request->all());
         /*$product = new Product;
 
@@ -54,12 +64,13 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory_id;*/
 
         $data_product = [
-            'name'           => $request->name_product,
-            'description'    => $request->description,
-            'quantity'       => $request->quantity,
-            'price'          => $request->price,
-            'subcategory_id' => $request->subcategory_id,
+            'name'        => $request->name_product,
+            'description' => $request->description,
+            'quantity'    => $request->quantity,
+            'price'       => $request->price,
+            'category_id' => $request->category_id,
         ];
+        /*dd($data_product);*/
         $product_id = Product::create($data_product)->id;
 
         $data_product_detail = [
@@ -75,19 +86,38 @@ class ProductController extends Controller
 
         ProductDetail::create($data_product_detail);
 
-        $path_image          = $request->path;
-        $path_image_new_name = time() . $path_image->getClientOriginalName();
-        $path_image->move('public/storage\\', $path_image_new_name);
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $name = $file->getClientOriginalName();
+            $file->move(public_path() . '/public/storage\\', $name);
+
+            $data_product_image = [
+            'name'       => $request->name_image,
+            'path'      => 'public/storage\\' . $name,
+            'product_id' => $product_id,
+            ];
+          }  
+          Image::create($data_product_image);
+
+           /* $image->name       = $request->name;
+            $image->path       = 'public/storage\\' . $name;
+            $image->product_id = $request->product_id;
+
+            $image->save();*/
+
+        /*$product_image = $request->images;
+
+        $product_image_new_name = time() . $product_image->getClientOriginalName();
+        $product_image->move('public/storage\\', $product_image_new_name);
 
         $data_product_image = [
-            'name'       => $request->name_image,
-            'path'       => 'public/storage\\' . $path_image_new_name,
-            'product_id' => $product_id,
+        'name'       => $request->name_image,
+        'image'      => 'public/storage\\' . $path_image_new_name,
+        'product_id' => $product_id,
         ];
-        
 
         Image::create($data_product_image);
-      
+         */
 
         return redirect()->route('admin.products.index');
     }
@@ -100,7 +130,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+
+       //
+        
     }
 
     /**
@@ -111,16 +143,15 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $subcategories = Subcategory::where('parent_id', '!=', null)->pluck('name', 'id');
-        $product = Product::find($id);
+        $categories = Category::where('parent_id', '!=', null)->pluck('name', 'id');
+        $product    = Product::find($id);
         /*$images = $product->images;
         $productDetail = $product->productDetail;*/
         /*$productdetail = ProductDetail::find($id);*/
         /*dd($productDetail);*/
 
-        return view('admin.products.edit', compact('subcategories','product','images', 'productDetail'));
-        
-        
+        return view('admin.products.edit', compact('categories', 'product'));
+
     }
 
     /**
@@ -130,15 +161,15 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-  public function update(Request $request, $id)
+    public function update(Request $request, $id)
     {
         $product = Product::find($id);
 
-        $product->name = $request->name;
+        $product->name        = $request->name;
         $product->description = $request->description;
-        $product->quantity = $request->quantity;
-        $product->price = $request->price;
-        $product->subcategory_id = $request->subcategory_id;
+        $product->quantity    = $request->quantity;
+        $product->price       = $request->price;
+        $product->category_id = $request->category_id;
         $product->save();
 
         return redirect()->route('admin.products.index');
@@ -149,7 +180,7 @@ class ProductController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response**/
-     
+
     public function destroy($id)
     {
         $product = Product::find($id);

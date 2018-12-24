@@ -17,7 +17,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href=""><i class="ion-ios-people-outline"></i> Tài khoản</a>
+                    <a href="{{route('admin.user.index')}}"><i class="ion-ios-people-outline"></i> Tài khoản</a>
                 </li>
 
                 <li class="nav-item">

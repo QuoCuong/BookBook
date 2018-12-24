@@ -28,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
 
         OrderDetail::observe(OrderDetailObserver::class);
         Product::observe(ProductObserver::class);
+        
+
     }
 
     /**

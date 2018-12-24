@@ -11,61 +11,70 @@
 @endsection
 
 @section('content')
-
 <main class="app-layout-content">
-  
-  <div class="container-fluid p-y-md">
-    <!-- Card Tabs -->
-    <h2 class="section-title">Quản lý sách || <a href="{{ route('admin.product.create')}}"> Tạo mới sách </a></h2>
-    <div class="row">
-      <div class="col-md-12">
-      <!-- Card Tabs Default Style -->
-        <div class="card">
-          <ul class="nav nav-tabs" data-toggle="tabs">
-            <li class="active">
-              <a href="#btabs-static-home">Tất cả sách</a>
-            </li>
-          </ul>
-            <div class="card-block tab-content">
+  <div  class="container-fluid p-y-md">
+    <h2 class="section-title">Quản lý chi tiết sách</h2>
+        <div class="row">
+          <div class="col-md-12">
+          <!-- Card Tabs Default Style -->
+            <div class="card">
+              <ul class="nav nav-tabs" data-toggle="tabs">
+                <li class="active">
+                <a href="#btabs-static-home">Chi tiết sách</a>
+                </li>
+              </ul>
+              <div class="card-block tab-content">
               <div class="tab-pane active" id="btabs-static-home">
-               <div class="card-body">
+      <div class="card-body">
         <table class="table table-header-bg">
           <thead>
             <th>
-              Name
+              Author
             </th>
 
             <th>
-              Description
+              Publisher
             </th>
             <th>
-              Quantity
+              Publish_Year
             </th>
             <th>
-              Price
+              Weight
             </th>
             <th>
-              Category_ID
+              Size
             </th>
-            <th style="width: 100px;">
+            <th>
+              Number_Of_Page
+            </th>
+            <th>
+              Cover
+            </th>
+            <th>
+              Product_id
+            </th>
+            <th style="width: 130px;">
              Action
            </th>
 
 
          </thead>
-         <tbody> 
-          @foreach($products as $product)
+         <tbody>
+          @foreach($productDetails as $productDetail)
           <tr>
-            <td style="text-align: center;">{{ $product->name }}</td>
-            <td style="text-align:justify">{{ $product->description }}</td>
-            <td style="text-align: center;">{{ $product->quantity }}</td>
-            <td style="text-align: center;">{{ $product->price }}</td>
-            <td style="text-align: center;">{{ $product->category_id }}</td>
+            <td style="text-align: center;">{{ $productDetail->author }}</td>
+            <td style="text-align:justify">{{ $productDetail->publisher }}</td>
+            <td style="text-align: center;">{{ $productDetail->publish_year }}</td>
+            <td style="text-align: center;">{{ $productDetail->weight }}</td>
+            <td style="text-align: center;">{{ $productDetail->size }}</td>
+            <td style="text-align: center;">{{ $productDetail->number_of_page }}</td>
+            <td style="text-align: center;">{{ $productDetail->cover }}</td>
+            <td style="text-align: center;">{{ $productDetail->product_id }}</td>
             <td>
-              <a href="{{ route('admin.product.edit', ['id' => $product->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
+              <a href="{{ route('admin.productdetail.edit', ['id' => $productdetail->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
               </a>
            
-              <form method="POST" action="{{ route('admin.product.destroy', ['id' => $product->id ])}}" style="display: inline;" >
+              <form method="POST" action="{{ route('admin.productdetail.destroy', ['id' => $productdetail->id ])}}" style="display: inline;" >
                 @csrf
                 @method('DELETE')
                 <button class="btn btn-xs btn-default"><i class="ion-close"></i></button>
@@ -76,16 +85,23 @@
         </tbody>
       </table>
     </div>
-    <div  class="container-fluid p-y-md">
-              <div style="padding-left: 400px;" class="col-lg-12">
-                  {{$products->links()}}
-              </div>
-    </div>
-    </div>
+
+
+
+
 
   </div>
-</div>  
+  <div  class="container-fluid p-y-md">
+    <div style="padding-left: 400px;" class="col-lg-12">
+      {{$productdetails->links()}}
+    </div>
+  </div>
+</div>
+
 </main>
+
+
+
 
 @endsection
 

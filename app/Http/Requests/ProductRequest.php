@@ -25,12 +25,12 @@ class ProductRequest extends FormRequest
     {
         return [
             'name_product'   => 'required',
-            'name_image'     => 'required',
+            /*'name_image'     => 'required',*/
             'description'    => 'required',
             'quantity'       => 'required',
             'price'          => 'required',
-            'subcategory_id' => 'required',
-            'path'           => 'required|image',
+            'category_id'    => 'required',
+            /*'image'           => 'required|image',*/
             'author'         => 'required',
             'publisher'      => 'required',
             'publish_year'   => 'required',
@@ -50,9 +50,9 @@ class ProductRequest extends FormRequest
             'description.required'    => ':Attribute không được để trống!',
             'quantity.required'       => ':Attribute không được để trống!',
             'price.required'          => ':Attribute không được để trống!',
-            'subcategory_id.required' => ':Attribute không được để trống!',
-            'path.required'           => ':Attribute không được để trống!',
-            'path.image'              => ':Attribute không phải là hình ảnh!',
+            'category_id.required'    => ':Attribute không được để trống!',
+            'image.required'           => ':Attribute không được để trống!',
+            'image.image'              => ':Attribute không phải là hình ảnh!',
             'author.required'         => ':Attribute không được để trống!',
             'publisher.required'      => ':Attribute không được để trống!',
             'publish_year.required'   => ':Attribute không được để trống!',
