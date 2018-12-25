@@ -70,19 +70,4 @@
 <script src="{{ asset('admin/js/app.js') }}"></script>
 <script src="{{ asset('admin/js/app-custom.js') }}"></script>
 
-<!-- Page JS Code -->
-<script>
-    $(function()
-    {
-        // Init page helpers (Table Tools helper)
-        App.initHelpers('table-tools');
-    });
-
-    $(document).ready(function () {
-    	$("table a, table button").on("click", function () {
-    		$("table tr").unbind("click");
-    	});
-    });
-</script>
-
 @endsection
