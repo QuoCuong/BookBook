@@ -334,11 +334,10 @@
 	    	// confirm after delete
 	    	$(document).on('click', '#btn-category-delete', function(event) {
 	    		event.preventDefault();
-	    		$(this).parent().children('#category-form-delete').submit();
 
-	    		// if (confirm("Nếu bạn xóa DANH MỤC này, tất cả dữ liệu liên quan đến SẢN PHẨM của danh mục này cũng bị xóa.\n\nBạn vẫn muốn xóa?")) {
-	    		// 	$(this).parent().children('#category-form-delete').submit();
-	    		// }
+	    		if (confirm("Nếu bạn xóa DANH MỤC này, tất cả DANH MỤC CON(nếu có) và dữ liệu liên quan đến SẢN PHẨM của danh mục này cũng bị xóa.\n\nBạn vẫn muốn xóa?")) {
+	    			$(this).parent().children('#category-form-delete').submit();
+	    		}
 	    	});
 	    });
 
