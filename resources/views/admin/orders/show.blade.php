@@ -29,16 +29,16 @@
     	<div style="margin-bottom: 20px;">
             @if ($order->status == 'pending')
                 <a href="{{ route('admin.orders.pending') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đang chờ xử lý</a>
-                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" style="display: inline;">
+                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
-                    <button class="btn btn-app-red pull-right">Hủy đơn</button>
                 </form>
+                <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'approved')
                 <a href="{{ route('admin.orders.approved') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã duyệt</a>
-                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" style="display: inline;">
+                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
-                    <button class="btn btn-app-red pull-right">Hủy đơn</button>
                 </form>
+                <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'complete')
                 <a href="{{ route('admin.orders.complete') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Hoàn tất</a>
             @else
@@ -167,5 +167,20 @@
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script src="{{ asset('admin/js/app-custom.js') }}"></script>
     <script src="{{ asset('admin/js/pages/base_ui_progress.js') }}"></script>
+
+    <!-- Page JS Code -->
+    <script>
+
+        $(document).ready(function () {
+            $('button#btn-delete').on('click', function(event) {
+                event.preventDefault();
+                
+                if (confirm('Bạn muốn hủy đơn hàng này?')) {
+                    $(this).parent().children('form#order-cancelled-form').submit();
+                }
+            });
+        });
+        
+    </script>
 
 @endsection

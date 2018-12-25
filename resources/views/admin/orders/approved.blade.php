@@ -56,10 +56,10 @@
 				        			<td class="text-right">{{ number_format($order->total) }}đ</td>
 				        			<td class="text-center">
                                         <div class="btn-group">
-                                            <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" style="display: inline;">
+                                            <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
                                                 @csrf
-                                                <button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
                                             </form>
+                                            <button class="btn btn-xs btn-default" id="btn-delete" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
                                         </div>
                                     </td>
 				        		</tr>
@@ -104,8 +104,16 @@
         	});
         	
         	$("table a, table button").on("click", function () {
-        		$("table tr").unbind("click");
+        		$(document).unbind("click");
         	});
+
+            $('button#btn-delete').on('click', function(event) {
+                event.preventDefault();
+                
+                if (confirm('Bạn muốn hủy đơn hàng này?')) {
+                    $(this).parent().children('form#order-cancelled-form').submit();
+                }
+            });
         });
         
     </script>
