@@ -37,6 +37,18 @@ class OrderObserver
                 Mail::to($order->user->email)->send(new CompleteOrderMail($order));
                 break;
             case 'cancelled':
+                //increase quantity of product
+                if (!empty($order->orderDetails)) {
+                    foreach ($order->orderDetails as $orderDetail) {
+                        $order_detail_quantity    = $orderDetail->quantity;
+                        $current_product_quantity = $orderDetail->product->quantity;
+
+                        $orderDetail->product->quantity = $current_product_quantity + $order_detail_quantity;
+                        $orderDetail->product->save();
+                    }
+                }
+
+                //Send order tracking mail to customer
                 Mail::to($order->user->email)->send(new CancelledOrderMail($order));
                 break;
             default:

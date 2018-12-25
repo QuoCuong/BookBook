@@ -116,7 +116,7 @@
                         <tbody>
                             @foreach ($orderDetails as $orderDetail)
                                 <tr>
-                                    <td class="text-center">{{ $orderDetail->id }}</td>
+                                    <td class="text-center">{{ $orderDetail->product->id }}</td>
                                     <td>{{ $orderDetail->product->name }}</td>
                                     <td class="text-center">{{ $orderDetail->quantity }}</td>
                                     <td class="text-right">{{ number_format($orderDetail->product->price) }}đ</td>
