@@ -4,15 +4,7 @@
 <li class="nav-item nav-drawer-header">Chức năng</li>
 
 <li class="nav-item nav-item-has-subnav">
-    <!-- <a href=""><i class="ion-ios-search"></i>Tìm kiếm</a> -->
-    <!-- <ul class="nav nav-subnav">
-        <li>
-            <a href="base_ui_buttons.html">Buttons</a>
-        </li>
-        <li>
-            <a href="base_ui_cards.html">Cards</a>
-        </li>
-    </ul> -->
+    <a href="{{ route('admin.search.orders') }}"><i class="ion-ios-search"></i>Tìm kiếm</a>
 </li>
 @endsection
 

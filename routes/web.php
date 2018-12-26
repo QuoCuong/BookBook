@@ -62,7 +62,6 @@ Route::group([
     Route::get('orders/complete', 'OrderController@listComplete')->name('orders.complete');
     Route::get('orders/cancelled', 'OrderController@listCancelled')->name('orders.cancelled');
     Route::get('orders/{order}', 'OrderController@show')->name('orders.show');
-    Route::get('orders/{order}/edit', 'OrderController@edit')->name('orders.edit');
     Route::post('orders/{order}/{status}', 'OrderController@updateStatus')->name('orders.update.status');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
 
@@ -81,6 +80,10 @@ Route::group([
     Route::post('users/{id}','UserController@update')->name('user.update');
     Route::delete('users/{id}', 'UserController@destroy')->name('user.delete');
     Route::get('users/{user}/list_oder', 'UserController@listOrderById')->name('user.list_order');
+
+    //Search
+    Route::get('search/orders', 'SearchController@searchOrder')->name('search.orders');
+    
 });
 
 Auth::routes();
