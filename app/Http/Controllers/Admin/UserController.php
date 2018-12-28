@@ -55,17 +55,10 @@ class UserController extends Controller
      */
     public function store(UserFormRequest $request)
     {
-        $user = new User;
-
-        $user->email      = $request->email;
-        $user->password   = bcrypt($request->password);
-        $user->first_name = $request->first_name;
-        $user->last_name  = $request->last_name;
-        $user->birthday   = $request->birthday;
-        $user->sex        = $request->sex;
-        $user->role_id    = $request->role_id;
-
-        $user->save();
+        $data= $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $user= User::create($data);
+        //$user = new User;
         Session::flash('success','Tạo mới thành công!');
         return redirect()->route('admin.user.indexuser');
     }
@@ -102,19 +95,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::find($id);
-
-        $user->email      = $request->email;
-        $user->password   = bcrypt($request->password);
-        $user->first_name = $request->first_name;
-        $user->last_name  = $request->last_name;
-        $user->birthday   = $request->birthday;
-        $user->sex        = $request->sex;
-        $user->role_id    = $request->role_id;
-        $user->save();
-
+        $data= $request->all();
+        $data['password'] = bcrypt($data['password']);
+        $user->update($data);
         Session::flash('success','Cập nhật thành công!');
 
         return redirect()->route('admin.user.index');
