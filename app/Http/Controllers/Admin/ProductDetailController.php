@@ -5,7 +5,7 @@ namespace Book\Http\Controllers\Admin;
 use Book\Http\Controllers\Controller;
 use Book\ProductDetail;
 use Illuminate\Http\Request;
-
+use Session;
 class ProductDetailController extends Controller
 {
     /**
@@ -85,6 +85,7 @@ class ProductDetailController extends Controller
         $productdetails->product_id = $request->product_id;
         $productdetails->save();
 
+        Session::flash('success','Cập nhật thành công!');
         return redirect()->route('admin.productdetail.index');
     }
 
@@ -100,7 +101,7 @@ class ProductDetailController extends Controller
 
         
         $productdetails->delete();
-       
+        Session::flash('success','Xóa  thành công!');
         return redirect()->back();
     }
 }

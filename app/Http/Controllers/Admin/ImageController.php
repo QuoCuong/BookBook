@@ -8,6 +8,7 @@ use Book\Product;
 use Illuminate\Http\Request;
 use Book\Http\Requests\ProductRequest;
 use Book\Http\Requests\ImageFormRequest;
+use Session;
 
 class ImageController extends Controller
 {
@@ -17,8 +18,10 @@ class ImageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
+
     {
-        return view('admin.images.index', ['images' => Image::paginate(10)]);
+        $images = Image::orderBy('created_at','desc')->paginate(10);
+        return view('admin.images.index', ['images' => $images]);
     }
 
     /**
@@ -53,9 +56,11 @@ class ImageController extends Controller
 
             $image->save();
 
+           
+
         }
             
-
+        Session::flash('success','Tạo mới thành công!');
   
 
         return redirect()->route('admin.image.index');
@@ -113,6 +118,7 @@ class ImageController extends Controller
             $image->save();
 
         }
+        Session::flash('success','cập nhật thành công thành công!');
 
         return redirect()->route('admin.image.index');
     }
@@ -131,6 +137,7 @@ class ImageController extends Controller
             unlink($image->path);
         }
         $image->delete();
+        Session::flash('success','Xóa thành công!');
         return redirect()->back();
     }
 }

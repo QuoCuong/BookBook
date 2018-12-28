@@ -63,7 +63,7 @@
                       </div>    
                       <div class="col-xs-4">
                         <label for="formGroupExampleInput">Role_name</label>
-                              <select class="form-control" name="role_id">
+                              <select class="form-control" name="role_id" >
                               @foreach ($roles as $key => $value)
                               @if ($user->role_id == $key) 
                               <option value="{{$key}}" selected>{{$value}}</option>

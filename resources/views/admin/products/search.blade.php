@@ -13,29 +13,16 @@
 @section('content')
 
 <main class="app-layout-content">
-  <!-- Header search form -->
-  <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="{{route('admin.product.search')}}">
-      <div class="form-group">
-          <div class="input-group">
-              <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
-              <span class="input-group-btn">
-<button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-</span>
-          </div>
-      </div>
-  </form>
+
   <div class="container-fluid p-y-md">
-<br>
-<br>
     <!-- Card Tabs -->
-    <h2 class="section-title">Quản lý sách || <a href="{{ route('admin.product.create')}}"> Tạo mới sách </a></h2>
     <div class="row">
       <div class="col-md-12">
       <!-- Card Tabs Default Style -->
         <div class="card">
           <ul class="nav nav-tabs" data-toggle="tabs">
             <li class="active">
-              <a href="#btabs-static-home">Tất cả sách</a>
+              <a href="#btabs-static-home">Sách tìm kiếm được</a>
             </li>
           </ul>
             <div class="card-block tab-content">
@@ -59,44 +46,26 @@
             <th>
               Category_ID
             </th>
-            <th style="width: 100px;">
-             Action
-           </th>
 
 
          </thead>
-         <tbody> 
-          @foreach($products as $product)
+         <tbody>
+          @foreach($product as $new)
           <tr>
-            <td style="text-align: center;"><a href="{{ route('admin.product.detail', $product['id']) }}">{{ $product->name }}</a></td>
-            <td style="text-align:justify">{{ $product->description }}</td>
-            <td style="text-align: center;">{{ $product->quantity }}</td>
-            <td style="text-align: center;">{{ $product->price }}</td>
-            <td style="text-align: center;">{{ $product->category_id }}</td>
-            <td>
-              <a href="{{ route('admin.product.edit', ['id' => $product->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
-              </a>
-           
-              <form method="POST" action="{{ route('admin.product.destroy', ['id' => $product->id ])}}" style="display: inline;" >
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-xs btn-default"><i class="ion-close"></i></button>
-              </form>
-            </td>
+            <td style="text-align: center;">{{ $new->name }}</td>
+            <td style="text-align:justify">{{ $new->description }}</td>
+            <td style="text-align: center;">{{ $new->quantity }}</td>
+            <td style="text-align: center;">{{ $new->price }}</td>
+            <td style="text-align: center;">{{ $new->category_id }}</td>
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
-    <div  class="container-fluid p-y-md">
-              <div style="padding-left: 400px;" class="col-lg-12">
-                  {{$products->links()}}
-              </div>
-    </div>
     </div>
 
   </div>
-</div>  
+</div>
 </main>
 
 @endsection

@@ -12,21 +12,8 @@
 @section('content')
 
 <main class="app-layout-content">
-  <!-- Header search form -->
-  <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="{{route('admin.user.search')}}">
-      <div class="form-group">
-          <div class="input-group">
-              <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
-              <span class="input-group-btn">
-<button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
-</span>
-          </div>
-      </div>
-  </form>
   
   <div class="container-fluid p-y-md">
-    <br>
-    <br>
     <!-- Card Tabs -->
     <h2 class="section-title">Quản lý người dùng</h2>
     <div class="row">
@@ -35,7 +22,7 @@
         <div class="card">
           <ul class="nav nav-tabs" data-toggle="tabs">
             <li class="active">
-              <a href="#btabs-static-home">Người dùng</a>
+              <a href="#btabs-static-home">Người dùng tìm kiếm được</a>
             </li>
           </ul>
             <div class="card-block tab-content">
@@ -51,35 +38,23 @@
                                                 <th>Birthday</th>
                                                 <th>Sex</th>
                                                 <th>Role_ID</th>
-                                                <th class="text-center" style="width: 150px;">Actions</th>
+                                                
                                             </tr>
                                         </thead>
                                         <tbody>
-                                          @foreach($users as $user)
+                                          @foreach($user as $new)
                                               <tr>
-                                                <td class="text-center">{{$user->id}}</td>
-                                                <td class="text-left">{{$user->email}}</td>
-                                                <td class="text-center">{{$user->first_name}}</td>
-                                                <td class="text-center">{{$user->last_name}}</td>
-                                                <td class="text-center">{{$user->birthday}}</td>
-                                                <td class="text-center">{{$user->sex}}</td>
+                                                <td class="text-center">{{$new->id}}</td>
+                                                <td class="text-left">{{$new->email}}</td>
+                                                <td class="text-center">{{$new->first_name}}</td>
+                                                <td class="text-center">{{$new->last_name}}</td>
+                                                <td class="text-center">{{$new->birthday}}</td>
+                                                <td class="text-center">{{$new->sex}}</td>
                                                 <td class="text-center">
-                                                    <span class="label label-success">{{$user->role->name}}</span>
+                                                    <span class="label label-success">{{$new->role->name}}</span>
                                                 </td>
 
-                                                 <td class="text-center">
-                                                    <div class="btn-group">
-                                                        <a href="{{ route('admin.user.list_order', $user['id']) }}" class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Chi tiết"><i class="ion-eye"></i></a>
-
-                                                        <a class="btn btn-xs btn-default" href="{{ route('admin.user.edit', ['id' => $user->id ]) }}" type="button" data-toggle="tooltip" title="Chỉnh sửa"><i class="ion-edit"></i></a>
-                                                        
-                                                        <form method="POST"  class="frdelete" action="{{ route('admin.user.delete', ['id' => $user->id ])}}"" style="display: inline;">
-                                                          @csrf
-                                                          @method('DELETE')
-                                                          <button type="button" class="btn btn-xs btn-default btdelete"><i class="ion-close"></i></button>
-                                                        </form>
-                                                    </div>
-                                                </td>
+                                               
                                               </tr>
                                            @endforeach 
                                            
@@ -87,11 +62,7 @@
                                     </table>
 
     </div>
-      <div  class="container-fluid p-y-md">
-              <div style="padding-left: 400px;" class="col-lg-12">
-                  {{$users->links()}}
-              </div>
-    </div>
+    
     </div>
 
   </div>
@@ -119,7 +90,8 @@
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.stack.min.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.resize.min.js') }}"></script>
 
-<<<<<<< HEAD
+<!-- Page JS Code -->
+<script src="{{ asset('admin/js/pages/index.js') }}"></script>
 <script>
   $(function () {
         // Init page helpers (Slick Slider plugin)
@@ -132,17 +104,7 @@
       $('form[name=logout]').submit();
       console.log('working');
     });
-
-    $('.btdelete').on('click', function(){
-
-      if(confirm('Ban co chac muon xoa')){
-        $(this).parent().submit();
-      }
-    });
   });
-
 </script>
 
-=======
->>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
 @endsection

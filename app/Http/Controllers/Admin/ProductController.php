@@ -9,6 +9,7 @@ use Book\Product;
 use Book\ProductDetail;
 use Book\Image;
 use Illuminate\Http\Request;
+use Session;
 
 class ProductController extends Controller
 {
@@ -19,9 +20,20 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = Product::orderBy('created_at','desc')->paginate(10);
         return view('admin.products.index', ['products' => $products]);
     }
+
+    public function detailProductId(Product $product)
+    {
+        $productDetail = $product->productDetail;
+        $images = $product->images;
+        return view('admin.products.detail',compact('productDetail','images','product'));
+   
+    }
+    
+
+
 
    /* public function listDetailById(Product $product)
     {
@@ -89,11 +101,11 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $name = $file->getClientOriginalName();
-            $file->move(public_path() . '/public/storage\\', $name);
+            $file->move(public_path() . '/public/storage/', $name);
 
             $data_product_image = [
             'name'       => $request->name_image,
-            'path'      => 'public/storage\\' . $name,
+            'path'      => 'public/storage/' . $name,
             'product_id' => $product_id,
             ];
           }  
@@ -118,7 +130,7 @@ class ProductController extends Controller
 
         Image::create($data_product_image);
          */
-
+        Session::flash('success','Tạo mới thành công!');
         return redirect()->route('admin.products.index');
     }
 
@@ -172,6 +184,8 @@ class ProductController extends Controller
         $product->category_id = $request->category_id;
         $product->save();
 
+        Session::flash('success','Cập nhật thành công!');
+
         return redirect()->route('admin.products.index');
     }
 
@@ -185,8 +199,20 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->delete();
-
+        
+        Session::flash('success','Xóa thành công!');
         return redirect()->back();
 
+        
+
+    }
+
+    public function getSearch(Request $req)
+    {
+        $product = Product::where('name', 'like', '%'.$req->key.'%')
+                            ->orWhere('price', $req->key)
+                            ->get();
+                            
+        return view('admin.products.search',compact('product'));
     }
 }

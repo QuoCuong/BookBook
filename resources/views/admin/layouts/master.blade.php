@@ -25,7 +25,8 @@
 
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick-theme.min.cs') }}s" />
+        <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick-theme.min.cs') }}" />
+        <link rel="stylesheet"  href="{{ asset('admin/css/toastr.min.css') }}" />
 
         <!-- AppUI CSS stylesheets -->
         <link rel="stylesheet" id="css-font-awesome" href="{{ asset('admin/css/font-awesome.css') }}" />
@@ -33,6 +34,8 @@
         <link rel="stylesheet" id="css-bootstrap" href="{{ asset('admin/css/bootstrap.css') }}" />
         <link rel="stylesheet" id="css-app" href="{{ asset('admin/css/app.css') }}" />
         <link rel="stylesheet" id="css-app-custom" href="{{ asset('admin/css/app-custom.css') }}" />
+        
+
         <!-- End Stylesheets -->
     </head>
 
@@ -105,6 +108,13 @@
                     console.log('working');
                 });
             });
+        </script>
+        <script src="{{asset('admin/js/toastr.min.js')}}"></script>
+        <script> 
+            @if(Session::has('success'))
+            toastr.success("{{Session::get('success')}}")
+
+            @endif
         </script>
     </body>
 </html>
