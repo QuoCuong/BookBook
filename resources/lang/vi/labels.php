@@ -10,17 +10,14 @@ return [
     |
      */
 
-    'home'    => [
-        'home'            => 'Trang chủ',
-        'my_account'      => 'Tài khoản',
-        'login'           => 'Đăng nhập',
-        'register'        => 'Đăng ký',
-        'forgot_password' => 'Quên mật khẩu',
-        'logout'          => 'Đăng xuất',
-        'new'             => 'Mới',
-        'products'        => 'Sản phẩm',
-    ],
-    'account' => [
+    'home'            => 'Trang chủ',
+    'my_account'      => 'Tài khoản',
+    'login'           => 'Đăng nhập',
+    'register'        => 'Đăng ký',
+    'forgot_password' => 'Quên mật khẩu',
+    'logout'          => 'Đăng xuất',
+    'add_to_cart'     => 'Thêm vào giỏ',
+    'account'         => [
         'login'                     => 'Đăng nhập',
         'register'                  => 'Đăng ký',
         'email_address'             => 'Địa chỉ email',

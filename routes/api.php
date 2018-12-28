@@ -25,7 +25,6 @@ Route::group([
 
 	//Category
     Route::get('categories/{category}/child', 'CategoryController@child')->name('categories.child');
-    Route::get('categories/{category}/child_child', 'CategoryController@childChild')->name('categories.child.child');
     Route::put('categories/{category}', 'CategoryController@update')->name('categories.update');
 
 });

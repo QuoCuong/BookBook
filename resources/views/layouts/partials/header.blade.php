@@ -12,7 +12,7 @@
 				<nav class="mainmenu__nav">
 					<ul class="meninmenu d-flex justify-content-start">
 						<li class="drop with--one--item">
-							<a href="{{ route('home') }}">@lang('labels.home.home')</a>
+							<a href="{{ route('home') }}">@lang('labels.home')</a>
 						</li>
 						@foreach ($categories as $category)
 							<li class="drop">
@@ -123,9 +123,9 @@
 										<div class="switcher-options">
 											<div class="switcher-currency-trigger">
 												<div class="setting__menu">
-													<span><a href="{{ route('login') }}">@lang('labels.home.login')</a></span>
-													<span><a href="{{ route('register') }}">@lang('labels.home.register')</a></span>
-													<span><a href="{{ route('password.request') }}">@lang('labels.home.forgot_password')</a></span>
+													<span><a href="{{ route('login') }}">@lang('labels.login')</a></span>
+													<span><a href="{{ route('register') }}">@lang('labels.register')</a></span>
+													<span><a href="{{ route('password.request') }}">@lang('labels.forgot_password')</a></span>
 												</div>
 											</div>
 										</div>
@@ -145,11 +145,11 @@
 													@if (Auth::user()->role_id == 1)
 														<span><a href="{{ route('admin.dashboard') }}">Quản trị viên</a></span>
 													@endif
-													<span><a href="{{ route('home') }}">@lang('labels.home.my_account')</a></span>
+													<span><a href="{{ route('home') }}">@lang('labels.my_account')</a></span>
 													<span>
 														<form method="POST" action="{{ route('logout') }}">
 															@csrf
-															<button class="btn-logout">@lang('labels.home.logout')</button>
+															<button class="btn-logout">@lang('labels.logout')</button>
 														</form>
 													</span>
 												</div>
@@ -168,7 +168,7 @@
 			<div class="col-lg-12 d-none">
 				<nav class="mobilemenu__nav">
 					<ul class="meninmenu">
-						<li><a href="{{ route('home') }}">@lang('labels.home.home')</a></li>
+						<li><a href="{{ route('home') }}">@lang('labels.home')</a></li>
 						@foreach ($categories as $category)
 							<li><a href="#">{{ $category->name }}</a>
 								<ul>

@@ -32,20 +32,7 @@ class SearchController extends Controller
         $search_by = $request->search_by;
         $keyword   = $request->q;
 
-        switch ($search_by) {
-            case 'id':
-                $orders = Order::where('id', $keyword)->get();
-                break;
-            case 'date':
-                $orders = Order::where('date', 'like', '%' . $keyword . '%')->get();
-                break;
-            case 'user_id':
-                $orders = Order::where('user_id', $keyword)->get();
-                break;
-            default:
-                # code...
-                break;
-        }
+        $orders = Order::where($search_by, $keyword)->get();
 
         return view('admin.orders.search', [
             'orders'    => $orders,
