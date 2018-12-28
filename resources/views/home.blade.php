@@ -22,10 +22,10 @@
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="product__thumb">
 								<a class="first__img" href="single-product.html">
-									<img src="{{ substr($product->images[0]->path, 7) }}" alt="product image">
+									<img src="{{ $product->images[0]->path }}" alt="product image">
 								</a>
 								<a class="second__img animation1" href="single-product.html">
-									<img src="{{ substr($product->images[1]->path, 7) }}" alt="product image">
+									<img src="{{ $product->images[1]->path }}" alt="product image">
 								</a>
 								<!-- <div class="hot__box">
 									<span class="hot-label">BEST SALLER</span>
@@ -111,8 +111,8 @@
 									<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 										<div class="product product__style--3">
 											<div class="product__thumb">
-												<a class="first__img" href="#"><img src="{{ substr($product->images[0]->path, 7) }}" alt="product image"></a>
-												<a class="second__img animation1" href="#"><img src="{{ substr($product->images[1]->path, 7) }}" alt="product image"></a>
+												<a class="first__img" href="#"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
+												<a class="second__img animation1" href="#"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
 												<!-- <div class="hot__box">
 													<span class="hot-label">BEST SALER</span>
 												</div> -->
@@ -174,7 +174,7 @@
 				<!-- Single product start -->
 				<div class="product product__style--3">
 					<div class="product__thumb">
-						<a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ substr($product->images[0]->path, 7) }}" alt="product image"></a>
+						<a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
 					</div>
 					<div class="product__content content--center">
 						<div class="action">
@@ -222,7 +222,7 @@
 	                            <!-- Start product images -->
 	                            <div class="product-images">
 	                                <div class="main-image images">
-	                                    <img alt="big images" src="{{ substr($product->images[0]->path, 7) }}" style="width: 420px; height: 614px;">
+	                                    <img alt="big images" src="{{ $product->images[0]->path }}" style="width: 420px; height: 614px;">
 	                                </div>
 	                            </div>
 	                            <!-- end product images -->
@@ -276,7 +276,7 @@
 	                            <!-- Start product images -->
 	                            <div class="product-images">
 	                                <div class="main-image images">
-	                                    <img alt="big images" src="{{ substr($product->images[0]->path, 7) }}" style="width: 420px; height: 614px;">
+	                                    <img alt="big images" src="{{ $product->images[0]->path }}" style="width: 420px; height: 614px;">
 	                                </div>
 	                            </div>
 	                            <!-- end product images -->
@@ -330,7 +330,7 @@
 	                            <!-- Start product images -->
 	                            <div class="product-images">
 	                                <div class="main-image images">
-	                                    <img alt="big images" src="{{ substr($product->images[0]->path, 7) }}" style="width: 420px; height: 614px;">
+	                                    <img alt="big images" src="{{ $product->images[0]->path }}" style="width: 420px; height: 614px;">
 	                                </div>
 	                            </div>
 	                            <!-- end product images -->

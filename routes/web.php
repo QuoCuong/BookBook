@@ -87,4 +87,7 @@ Route::group([
 
 });
 
+//Product
+Route::get('products/{product}', 'ProductController@show')->name('products.show');
+
 Auth::routes();
