@@ -4,15 +4,7 @@
 <li class="nav-item nav-drawer-header">Chức năng</li>
 
 <li class="nav-item nav-item-has-subnav">
-    <!-- <a href=""><i class="ion-ios-search"></i>Tìm kiếm</a> -->
-    <!-- <ul class="nav nav-subnav">
-        <li>
-            <a href="base_ui_buttons.html">Buttons</a>
-        </li>
-        <li>
-            <a href="base_ui_cards.html">Cards</a>
-        </li>
-    </ul> -->
+    <a href="{{ route('admin.search.orders') }}"><i class="ion-ios-search"></i>Tìm kiếm</a>
 </li>
 @endsection
 
@@ -43,7 +35,6 @@
 			        			<th>Khách hàng</th>
 			        			<th>Địa chỉ</th>
 			        			<th class="text-right">Tổng tiền</th>
-			        			<th></th>
 			        		</tr>
 			        	</thead>
 				        <tbody>
@@ -54,14 +45,6 @@
 				        			<td>{{ $order->user->last_name . ' ' . $order->user->first_name }}</td>
 				        			<td>{{ $order->address->address }}</td>
 				        			<td class="text-right">{{ number_format($order->total) }}đ</td>
-				        			<td class="text-center">
-                                        <div class="btn-group">
-                                            <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" style="display: inline;">
-                                                @csrf
-                                                <button class="btn btn-xs btn-default" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
-                                            </form>
-                                        </div>
-                                    </td>
 				        		</tr>
 				        	@endforeach
 				        </tbody>

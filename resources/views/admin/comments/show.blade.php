@@ -144,11 +144,11 @@
                             <h4>Chi tiết bình luận</h4>
                             <ul class="card-actions">
                                 <button class="btn btn-app-green hide" id="btn-update">Cập nhật</button>
-                                <form method="POST" action="{{ route('admin.comments.delete', $comment->id) }}" style="display: inline;">
+                                <form method="POST" action="{{ route('admin.comments.delete', $comment->id) }}" id="comment-delete-form" style="display: inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button class="btn btn-app-red">Xóa</button>
                                 </form>
+                                <button class="btn btn-app-red" id="btn-delete">Xóa</button>
                             </ul>
                         </div>
                         <div class="card-block">
@@ -273,6 +273,14 @@
                 event.preventDefault();
                 
                 $('form#comment-update-form').submit();
+            });
+
+            $('button#btn-delete').on('click', function(event) {
+                event.preventDefault();
+                
+                if (confirm('Bạn muốn xóa bình luận này?')) {
+                    $('form#comment-delete-form').submit();
+                }
             });
 
         });

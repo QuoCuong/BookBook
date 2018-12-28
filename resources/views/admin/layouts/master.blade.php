@@ -102,7 +102,7 @@
         @yield('javascript')
         <script>
             $(document).ready(function ($) {
-                $('.logout').on('click', function () {
+                $(document).on('click', '.logout', function () {
                     event.preventDefault();
                     $('form[name=logout]').submit();
                     console.log('working');

@@ -21,16 +21,26 @@
 
             <div class="collapse navbar-collapse" id="header-navbar-collapse">
                 <!-- Header search form -->
+<<<<<<< HEAD
                 <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="">
+=======
+                <!-- <form class="navbar-form navbar-left app-search-form" role="search">
+>>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
                     <div class="form-group">
                         <div class="input-group">
                             <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
                             <span class="input-group-btn">
+<<<<<<< HEAD
 				<button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
 			</span>
+=======
+                				<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
+                			</span>
+>>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
                         </div>
                     </div>
-                </form>
+                </form> -->
+                
                 <!-- .navbar-left -->
 
                 <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">

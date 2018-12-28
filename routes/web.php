@@ -64,12 +64,17 @@ Route::group([
     Route::get('orders/complete', 'OrderController@listComplete')->name('orders.complete');
     Route::get('orders/cancelled', 'OrderController@listCancelled')->name('orders.cancelled');
     Route::get('orders/{order}', 'OrderController@show')->name('orders.show');
-    Route::get('orders/{order}/edit', 'OrderController@edit')->name('orders.edit');
     Route::post('orders/{order}/{status}', 'OrderController@updateStatus')->name('orders.update.status');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
 
     //Comment
     Route::get('comments', 'CommentController@index')->name('comments.index');
+    Route::get('comments/order_by/newest', 'CommentController@index')->name('comments.order_by.newest');
+    Route::get('comments/filter/rating/five_stars', 'CommentController@filterRating5')->name('comments.filter.rating.5');
+    Route::get('comments/filter/rating/four_stars', 'CommentController@filterRating4')->name('comments.filter.rating.4');
+    Route::get('comments/filter/rating/three_stars', 'CommentController@filterRating3')->name('comments.filter.rating.3');
+    Route::get('comments/filter/rating/two_stars', 'CommentController@filterRating2')->name('comments.filter.rating.2');
+    Route::get('comments/filter/rating/one_stars', 'CommentController@filterRating1')->name('comments.filter.rating.1');
     Route::get('comments/{comment}', 'CommentController@show')->name('comments.show');
     Route::put('comments/{comment}', 'CommentController@update')->name('comments.update');
     Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.delete');
@@ -83,7 +88,14 @@ Route::group([
     Route::post('users/{id}','UserController@update')->name('user.update');
     Route::delete('users/{id}', 'UserController@destroy')->name('user.delete');
     Route::get('users/{user}/list_oder', 'UserController@listOrderById')->name('user.list_order');
+<<<<<<< HEAD
     Route::get('users/search','UserController@getSearch')->name('user.search');
+=======
+
+    //Search
+    Route::get('search/orders', 'SearchController@searchOrder')->name('search.orders');
+    
+>>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
 });
 
 Auth::routes();

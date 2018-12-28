@@ -165,21 +165,4 @@
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.stack.min.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.resize.min.js') }}"></script>
 
-<!-- Page JS Code -->
-<script src="{{ asset('admin/js/pages/index.js') }}"></script>
-<script>
-  $(function () {
-        // Init page helpers (Slick Slider plugin)
-        App.initHelpers('slick');
-      });
-
-  $(document).ready(function ($) {
-    $('.logout').on('click', function () {
-      event.preventDefault();
-      $('form[name=logout]').submit();
-      console.log('working');
-    });
-  });
-</script>
-
 @endsection
