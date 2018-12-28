@@ -33,7 +33,6 @@ Route::group([
     Route::delete('products/{id}', 'ProductController@destroy')->name('product.destroy');
     Route::get('products/{id}/edit', 'ProductController@edit')->name('product.edit');
     Route::post('products/{id}/update', 'ProductController@update')->name('product.update');
-    Route::get('products/search', 'ProductController@getSearch')->name('product.search');
     Route::get('products/{product}/detail', 'ProductController@detailProductId')->name('product.detail');
 
     //Manger Image
@@ -84,6 +83,7 @@ Route::group([
     //Search
     Route::get('search/orders', 'SearchController@searchOrder')->name('search.orders');
     Route::get('users/search', 'UserController@getSearch')->name('user.search');
+    Route::get('products/search','ProductController@getSearch')->name('product.search');
 
 });
 

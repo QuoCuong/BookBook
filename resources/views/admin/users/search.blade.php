@@ -53,11 +53,10 @@
                                                 <td class="text-center">
                                                     <span class="label label-success">{{$new->role->name}}</span>
                                                 </td>
-
-                                               
+                                              
                                               </tr>
                                            @endforeach 
-                                           
+                                          
                                         </tbody>
                                     </table>
 

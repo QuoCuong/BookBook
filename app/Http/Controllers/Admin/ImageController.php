@@ -46,7 +46,7 @@ class ImageController extends Controller
         $image = new Image ;
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            $name = $file->getClientOriginalName();
+            $name = $file->time().getClientOriginalName();
             $file->move(public_path() . '/public/storage/', $name);
             
 
@@ -61,8 +61,6 @@ class ImageController extends Controller
         }
             
         Session::flash('success','Tạo mới thành công!');
-  
-
         return redirect()->route('admin.image.index');
 
 }

@@ -119,7 +119,6 @@
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.stack.min.js') }}"></script>
 <script src="{{ asset('admin/js/plugins/flot/jquery.flot.resize.min.js') }}"></script>
 
-<<<<<<< HEAD
 <script>
   $(function () {
         // Init page helpers (Slick Slider plugin)
@@ -143,6 +142,4 @@
 
 </script>
 
-=======
->>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
 @endsection
