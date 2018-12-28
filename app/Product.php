@@ -39,4 +39,9 @@ class Product extends Model
         return $this->hasMany('Book\Image');
     }
 
+    public function getOrderDetailsCountAttribute()
+    {
+        return $this->orderDetails->count();
+    }
+
 }

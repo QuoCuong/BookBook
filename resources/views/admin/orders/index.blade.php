@@ -24,7 +24,7 @@
             </div>
             <div class="card-block">
             	<div class="col-sm-6 col-lg-3">
-                    <a class="card bg-orange bg-inverse" href="{{ route('admin.orders.pending') }}">
+                    <a class="card bg-orange bg-inverse" href="{{ route('admin.orders.status', 'pending') }}">
                         <div class="card-block clearfix">
                             <div class="pull-right">
                                 <p class="h6 text-muted m-t-0 m-b-xs">Đang chờ xử lý</p>
@@ -37,7 +37,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <a class="card bg-cyan bg-inverse" href="{{ route('admin.orders.approved') }}">
+                    <a class="card bg-cyan bg-inverse" href="{{ route('admin.orders.status', 'approved') }}">
                         <div class="card-block clearfix">
                             <div class="pull-right">
                                 <p class="h6 text-muted m-t-0 m-b-xs">Đã duyệt</p>
@@ -50,7 +50,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <a class="card bg-green bg-inverse" href="{{ route('admin.orders.complete') }}">
+                    <a class="card bg-green bg-inverse" href="{{ route('admin.orders.status', 'complete') }}">
                         <div class="card-block clearfix">
                             <div class="pull-right">
                                 <p class="h6 text-muted m-t-0 m-b-xs">Hoàn tất</p>
@@ -63,7 +63,7 @@
                     </a>
                 </div>
                 <div class="col-sm-6 col-lg-3">
-                    <a class="card bg-red bg-inverse" href="{{ route('admin.orders.cancelled') }}">
+                    <a class="card bg-red bg-inverse" href="{{ route('admin.orders.status', 'cancelled') }}">
                         <div class="card-block clearfix">
                             <div class="pull-right">
                                 <p class="h6 text-muted m-t-0 m-b-xs">Đã hủy</p>

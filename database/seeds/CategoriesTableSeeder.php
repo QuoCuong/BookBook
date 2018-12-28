@@ -128,7 +128,7 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 6,
         ]);
         Category::create([
-            'name'      => 'Manga - Comic',
+            'name'      => 'Manga-Comic',
             'parent_id' => 6,
         ]);
 
@@ -146,11 +146,11 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 7,
         ]);
         Category::create([
-            'name'      => 'English Language Teaching - ELT',
+            'name'      => 'English Language Teaching-ELT',
             'parent_id' => 7,
         ]);
         Category::create([
-            'name'      => 'Dictionary & Thesarus',
+            'name'      => 'Dictionary and Thesarus',
             'parent_id' => 7,
         ]);
         Category::create([
@@ -168,7 +168,7 @@ class CategoriesTableSeeder extends Seeder
 
         //Books by Category
         Category::create([
-            'name'      => 'Business, Finance & Law',
+            'name'      => 'Business, Finance and Law',
             'parent_id' => 8,
         ]);
         Category::create([
@@ -180,7 +180,7 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 8,
         ]);
         Category::create([
-            'name'      => 'Biographies & Memoirs',
+            'name'      => 'Biographies and Memoirs',
             'parent_id' => 8,
         ]);
         Category::create([
@@ -192,11 +192,11 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 8,
         ]);
         Category::create([
-            'name'      => 'Food & Drink',
+            'name'      => 'Food and Drink',
             'parent_id' => 8,
         ]);
         Category::create([
-            'name'      => 'Crafts & Hobbies',
+            'name'      => 'Crafts and Hobbies',
             'parent_id' => 8,
         ]);
         Category::create([
@@ -248,7 +248,7 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 10,
         ]);
         Category::create([
-            'name'      => 'Từ Điển Tiếng Pháp - Việt, Việt - Pháp',
+            'name'      => 'Từ Điển Tiếng Pháp-Việt, Việt-Pháp',
             'parent_id' => 10,
         ]);
         Category::create([

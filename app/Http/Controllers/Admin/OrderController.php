@@ -30,32 +30,14 @@ class OrderController extends Controller
         ]);
     }
 
-    public function listPending()
+    public function listOrderByStatus($status)
     {
-        $orders = Order::where('status', 'pending')->orderBy('created_at')->paginate(8);
+        $orders = Order::where('status', $status)->orderBy('created_at')->paginate(8);
 
-        return view('admin.orders.pending', ['orders' => $orders]);
-    }
-
-    public function listApproved()
-    {
-        $orders = Order::where('status', 'approved')->orderBy('created_at')->paginate(8);
-
-        return view('admin.orders.approved', ['orders' => $orders]);
-    }
-
-    public function listComplete()
-    {
-        $orders = Order::where('status', 'complete')->orderBy('created_at')->paginate(8);
-
-        return view('admin.orders.complete', ['orders' => $orders]);
-    }
-
-    public function listCancelled()
-    {
-        $orders = Order::where('status', 'cancelled')->orderBy('created_at')->paginate(8);
-
-        return view('admin.orders.cancelled', ['orders' => $orders]);
+        return view('admin.orders.status', [
+            'status' => $status,
+            'orders' => $orders,
+        ]);
     }
 
     /**

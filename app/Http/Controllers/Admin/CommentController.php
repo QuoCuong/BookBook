@@ -21,53 +21,13 @@ class CommentController extends Controller
         return view('admin.comments.index', ['comments' => $comments]);
     }
 
-    public function filterRating5()
+    public function filterRating($rating)
     {
-        $comments = Comment::where('rating_quality', 5)->orWhere('rating_price', 5)->orWhere('rating_value', 5)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
+        $comments = Comment::where('rating_quality', $rating)->orWhere('rating_price', $rating)->orWhere('rating_value', $rating)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
 
         return view('admin.comments.index', [
             'comments' => $comments,
-            'option'   => 'rating_5',
-        ]);
-    }
-
-    public function filterRating4()
-    {
-        $comments = Comment::where('rating_quality', 4)->orWhere('rating_price', 4)->orWhere('rating_value', 4)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
-
-        return view('admin.comments.index', [
-            'comments' => $comments,
-            'option'   => 'rating_4',
-        ]);
-    }
-
-    public function filterRating3()
-    {
-        $comments = Comment::where('rating_quality', 3)->orWhere('rating_price', 3)->orWhere('rating_value', 3)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
-
-        return view('admin.comments.index', [
-            'comments' => $comments,
-            'option'   => 'rating_3',
-        ]);
-    }
-
-    public function filterRating2()
-    {
-        $comments = Comment::where('rating_quality', 2)->orWhere('rating_price', 2)->orWhere('rating_value', 2)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
-
-        return view('admin.comments.index', [
-            'comments' => $comments,
-            'option'   => 'rating_2',
-        ]);
-    }
-
-    public function filterRating1()
-    {
-        $comments = Comment::where('rating_quality', 1)->orWhere('rating_price', 1)->orWhere('rating_value', 1)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
-
-        return view('admin.comments.index', [
-            'comments' => $comments,
-            'option'   => 'rating_1',
+            'option'   => $rating,
         ]);
     }
 
