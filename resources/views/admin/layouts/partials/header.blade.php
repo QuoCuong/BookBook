@@ -21,12 +21,12 @@
 
             <div class="collapse navbar-collapse" id="header-navbar-collapse">
                 <!-- Header search form -->
-                <form class="navbar-form navbar-left app-search-form" role="search">
+                <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="">
                     <div class="form-group">
                         <div class="input-group">
-                            <input class="form-control" type="search" id="search-input" placeholder="Tìm kiếm..." />
+                            <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
                             <span class="input-group-btn">
-				<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
+				<button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
 			</span>
                         </div>
                     </div>

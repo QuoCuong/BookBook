@@ -20,7 +20,7 @@
     <div class="container-fluid p-y-md">
     	<div class="card">
     		<div class="card-header">
-                <h4>Đơn hàng</h4>
+                <h4>Đơn hàng của khác hàng: {{$user->first_name}}</h4>
             </div>
             <div class="card-block">
             	<div class="table-responsive">
@@ -28,10 +28,10 @@
 			        	<thead>
 			        		<tr>
 			        			
-			        			<th>ID</th>
-			        			<th>Date</th>
-			        			<th>Total</th>
-			        			<th>Status</th>
+			        			<th class="text-center">ID</th>
+			        			<th class="text-center">Ngày đặt hàng</th>
+			        			<th class="text-center">Tổng tiền</th>
+			        			<th class="text-center">Trạng thái</th>
 			        		</tr>
 			        	</thead>
 			        	

@@ -49,7 +49,7 @@ class ProductObserver
             }
         }
 
-        return redirect()->back();
+        
     }
 
     /**

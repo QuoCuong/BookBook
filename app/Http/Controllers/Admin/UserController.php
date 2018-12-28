@@ -8,6 +8,7 @@ use Book\Role;
 use Book\User;
 use Book\Order;
 use Illuminate\Http\Request;
+use Session;
 
 class UserController extends Controller
 {
@@ -18,13 +19,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id', '!=', 2)->with('role')->paginate(10);
+        $users = User::where('role_id', '!=', 2)->with('role')->orderBy('created_at','desc')->paginate(10);
         return view('admin.users.index', ['users' => $users]);
     }
 
     public function indexUser()
     {
-        $users = User::where('role_id', '!=', 1)->with('role')->paginate(10);
+        $users = User::where('role_id', '!=', 1)->with('role')->orderBy('created_at','desc')->paginate(10);
         return view('admin.users.indexuser', ['users' => $users]);
     }
 
@@ -32,7 +33,7 @@ class UserController extends Controller
     {
         $orders = $user->orders;
 
-        return view('admin.users.list_Order', compact('orders'));
+        return view('admin.users.list_Order', compact('orders','user'));
     }
 
     /**
@@ -65,8 +66,10 @@ class UserController extends Controller
         $user->role_id    = $request->role_id;
 
         $user->save();
-        return redirect()->route('admin.user.index');
+        Session::flash('success','Tạo mới thành công!');
+        return redirect()->route('admin.user.indexuser');
     }
+
 
     /**
      * Display the specified resource.
@@ -104,13 +107,15 @@ class UserController extends Controller
         $user = User::find($id);
 
         $user->email      = $request->email;
-        $user->password   = $request->password;
+        $user->password   = bcrypt($request->password);
         $user->first_name = $request->first_name;
         $user->last_name  = $request->last_name;
         $user->birthday   = $request->birthday;
         $user->sex        = $request->sex;
         $user->role_id    = $request->role_id;
         $user->save();
+
+        Session::flash('success','Cập nhật thành công!');
 
         return redirect()->route('admin.user.index');
     }
@@ -125,7 +130,14 @@ class UserController extends Controller
     {
             $user = User::find($id);
             $user->delete();
-
+            Session::flash('success','Xóa thành công!');
         return redirect()->back();
+    }
+
+    public function getSearch(Request $req)
+    {
+        $user = User::where('last_name', 'like', '%'.$req->key.'%')->get();
+                            
+        return view('admin.users.search',compact('user'));
     }
 }

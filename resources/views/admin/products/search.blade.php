@@ -11,97 +11,62 @@
 @endsection
 
 @section('content')
+
 <main class="app-layout-content">
-  <div  class="container-fluid p-y-md">
-    <h2 class="section-title">Quản lý chi tiết sách</h2>
-        <div class="row">
-          <div class="col-md-12">
-          <!-- Card Tabs Default Style -->
-            <div class="card">
-              <ul class="nav nav-tabs" data-toggle="tabs">
-                <li class="active">
-                <a href="#btabs-static-home">Chi tiết sách</a>
-                </li>
-              </ul>
-              <div class="card-block tab-content">
+
+  <div class="container-fluid p-y-md">
+    <!-- Card Tabs -->
+    <div class="row">
+      <div class="col-md-12">
+      <!-- Card Tabs Default Style -->
+        <div class="card">
+          <ul class="nav nav-tabs" data-toggle="tabs">
+            <li class="active">
+              <a href="#btabs-static-home">Sách tìm kiếm được</a>
+            </li>
+          </ul>
+            <div class="card-block tab-content">
               <div class="tab-pane active" id="btabs-static-home">
-      <div class="card-body">
+               <div class="card-body">
         <table class="table table-header-bg">
           <thead>
             <th>
-              Author
+              Name
             </th>
 
             <th>
-              Publisher
+              Description
             </th>
             <th>
-              Publish_Year
+              Quantity
             </th>
             <th>
-              Weight
+              Price
             </th>
             <th>
-              Size
+              Category_ID
             </th>
-            <th>
-              Number_Of_Page
-            </th>
-            <th>
-              Cover
-            </th>
-            <th>
-              Product_id
-            </th>
-            <th style="width: 130px;">
-             Action
-           </th>
 
 
          </thead>
          <tbody>
-          @foreach($productDetails as $productDetail)
+          @foreach($product as $new)
           <tr>
-            <td style="text-align: center;">{{ $productDetail->author }}</td>
-            <td style="text-align:justify">{{ $productDetail->publisher }}</td>
-            <td style="text-align: center;">{{ $productDetail->publish_year }}</td>
-            <td style="text-align: center;">{{ $productDetail->weight }}</td>
-            <td style="text-align: center;">{{ $productDetail->size }}</td>
-            <td style="text-align: center;">{{ $productDetail->number_of_page }}</td>
-            <td style="text-align: center;">{{ $productDetail->cover }}</td>
-            <td style="text-align: center;">{{ $productDetail->product_id }}</td>
-            <td>
-              <a href="{{ route('admin.productdetail.edit', ['id' => $productdetail->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
-              </a>
-           
-              <form method="POST" action="{{ route('admin.productdetail.destroy', ['id' => $productdetail->id ])}}" style="display: inline;" >
-                @csrf
-                @method('DELETE')
-                <button class="btn btn-xs btn-default"><i class="ion-close"></i></button>
-              </form>
-            </td>
+            <td style="text-align: center;">{{ $new->name }}</td>
+            <td style="text-align:justify">{{ $new->description }}</td>
+            <td style="text-align: center;">{{ $new->quantity }}</td>
+            <td style="text-align: center;">{{ $new->price }}</td>
+            <td style="text-align: center;">{{ $new->category_id }}</td>
           </tr>
           @endforeach
         </tbody>
       </table>
     </div>
-
-
-
-
-
-  </div>
-  <div  class="container-fluid p-y-md">
-    <div style="padding-left: 400px;" class="col-lg-12">
-      {{$productdetails->links()}}
     </div>
+
   </div>
 </div>
-
 </main>
-
-
-
 
 @endsection
 

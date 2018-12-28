@@ -13,8 +13,20 @@
 @section('content')
 
 <main class="app-layout-content">
-  
+  <!-- Header search form -->
+  <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="{{route('admin.product.search')}}">
+      <div class="form-group">
+          <div class="input-group">
+              <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
+              <span class="input-group-btn">
+<button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+</span>
+          </div>
+      </div>
+  </form>
   <div class="container-fluid p-y-md">
+<br>
+<br>
     <!-- Card Tabs -->
     <h2 class="section-title">Quản lý sách || <a href="{{ route('admin.product.create')}}"> Tạo mới sách </a></h2>
     <div class="row">
@@ -56,7 +68,7 @@
          <tbody> 
           @foreach($products as $product)
           <tr>
-            <td style="text-align: center;">{{ $product->name }}</td>
+            <td style="text-align: center;"><a href="{{ route('admin.product.detail', $product['id']) }}">{{ $product->name }}</a></td>
             <td style="text-align:justify">{{ $product->description }}</td>
             <td style="text-align: center;">{{ $product->quantity }}</td>
             <td style="text-align: center;">{{ $product->price }}</td>

@@ -12,8 +12,21 @@
 @section('content')
 
 <main class="app-layout-content">
-  
-  <div class="container-fluid p-y-md">
+    <!-- Header search form -->
+    <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="{{route('admin.user.search')}}">
+        <div class="form-group">
+            <div class="input-group">
+                <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
+                <span class="input-group-btn">
+  <button class="btn" type="submit"><i class="ion-ios-search-strong"></i></button>
+  </span>
+            </div>
+        </div>
+    </form>
+    
+    <div class="container-fluid p-y-md">
+      <br>
+      <br>
     <!-- Card Tabs -->
     <h2 class="section-title">Quản lý người dùng || <a href="{{ route('admin.user.create')}}"> New Người dùng </a></h2>
     <div class="row">
@@ -59,11 +72,7 @@
                                                       
                                                         <a class="btn btn-xs btn-default" href="{{ route('admin.user.edit', ['id' => $user->id ]) }}" type="button" data-toggle="tooltip" title="Chỉnh sửa"><i class="ion-edit"></i></a>
                                                         
-                                                        <form method="POST" action="{{ route('admin.user.delete', ['id' => $user->id ])}}"" style="display: inline;">
-                                                          @csrf
-                                                          @method('DELETE')
-                                                          <button class="btn btn-xs btn-default"><i class="ion-close"></i></button>
-                                                        </form>
+                                                        
                                                     </div>
                                                 </td>
                                               </tr>
