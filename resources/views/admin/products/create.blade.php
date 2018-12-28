@@ -78,7 +78,7 @@
                            </fieldset>
                            <fieldset class="form-group">
                            <label for="image">Image</label>
-                           <input type="file" name="image" multiple class="form-control" style="height: 45px">
+                           <input type="file" name="images[]" multiple class="form-control" style="height: 45px">
                            <p class="meserr">{{ $errors->first('path')}}</p>
                            </fieldset>
                          </div>

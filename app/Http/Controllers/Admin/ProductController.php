@@ -32,18 +32,6 @@ class ProductController extends Controller
    
     }
     
-
-
-
-   /* public function listDetailById(Product $product)
-    {
-        $productDetails = $product->productDetails;
-        dd($productDetails);
-
-        return view('admin.products.show', compact('productDetails'));
-    }*/
-
-
     /**
      * Show the form for creating a new resource.
      *
@@ -65,17 +53,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
 
-        /*dd($request->all());*/
-        // dd($request->all());
-        /*$product = new Product;
-
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->quantity = $request->quantity;
-        $product->price = $request->price;
-        $product->subcategory_id = $request->subcategory_id;*/
-
-        $data_product = [
+         $data_product = [
             'name'        => $request->name_product,
             'description' => $request->description,
             'quantity'    => $request->quantity,
@@ -98,40 +76,26 @@ class ProductController extends Controller
 
         ProductDetail::create($data_product_detail);
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = $file->getClientOriginalName();
-            $file->move(public_path() . '/public/storage/', $name);
+        $images = $request->images;
 
-            $data_product_image = [
-            'name'       => $request->name_image,
-            'path'      => 'public/storage/' . $name,
-            'product_id' => $product_id,
-            ];
-          }  
-          Image::create($data_product_image);
+        
+           
+         if ($request->hasFile('images')) {
+            foreach ($images as $image) {
+                $name = time() . $image->getClientOriginalName();
+                $image->move(public_path() . '/storage/', $name);
 
-           /* $image->name       = $request->name;
-            $image->path       = 'public/storage\\' . $name;
-            $image->product_id = $request->product_id;
+                $data_product_image = [
+                'name'       => $request->name_image,
+                'path'      => 'storage/' . $name,
+                'product_id' => $product_id,
+                ];
+                Image::create($data_product_image); 
+            }
+          }
 
-            $image->save();*/
-
-        /*$product_image = $request->images;
-
-        $product_image_new_name = time() . $product_image->getClientOriginalName();
-        $product_image->move('public/storage\\', $product_image_new_name);
-
-        $data_product_image = [
-        'name'       => $request->name_image,
-        'image'      => 'public/storage\\' . $path_image_new_name,
-        'product_id' => $product_id,
-        ];
-
-        Image::create($data_product_image);
-         */
-        Session::flash('success','Tạo mới thành công!');
-        return redirect()->route('admin.products.index');
+         Session::flash('success','Tạo mới thành công!');
+         return redirect()->route('admin.products.index');
     }
 
     /**
@@ -157,10 +121,6 @@ class ProductController extends Controller
     {
         $categories = Category::where('parent_id', '!=', null)->pluck('name', 'id');
         $product    = Product::find($id);
-        /*$images = $product->images;
-        $productDetail = $product->productDetail;*/
-        /*$productdetail = ProductDetail::find($id);*/
-        /*dd($productDetail);*/
 
         return view('admin.products.edit', compact('categories', 'product'));
 
