@@ -88,14 +88,10 @@ Route::group([
     Route::post('users/{id}','UserController@update')->name('user.update');
     Route::delete('users/{id}', 'UserController@destroy')->name('user.delete');
     Route::get('users/{user}/list_oder', 'UserController@listOrderById')->name('user.list_order');
-<<<<<<< HEAD
-    Route::get('users/search','UserController@getSearch')->name('user.search');
-=======
 
-    //Search
-    Route::get('search/orders', 'SearchController@searchOrder')->name('search.orders');
-    
->>>>>>> 58788ea5734f554a5a39bbbe1f887a0297ee4734
+    Route::get('users/search','UserController@getSearch')->name('user.search');
+
+
 });
 
 Auth::routes();
