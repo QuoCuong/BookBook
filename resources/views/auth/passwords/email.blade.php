@@ -1,13 +1,28 @@
 @extends('layouts.app')
 
 @section('oth-page')
-oth-page 
+oth-page
 @endsection
 
 @section('content')
 
 <!-- Start Bradcaump area -->
-@include('layouts.partials.breadcrumbs')
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.account.forgot_password')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="index.html">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.account.forgot_password')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End Bradcaump area -->
 
 <!-- Start My Account Area -->

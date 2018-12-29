@@ -25,7 +25,7 @@
 
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick.min.css') }}" />
-        <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick-theme.min.cs') }}" />
+        <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick-theme.min.css') }}" />
         <link rel="stylesheet"  href="{{ asset('admin/css/toastr.min.css') }}" />
 
         <!-- AppUI CSS stylesheets -->
@@ -101,7 +101,7 @@
 
         @yield('javascript')
         <script>
-            $(document).ready(function ($) {
+            $(document).ready(function () {
                 $(document).on('click', '.logout', function () {
                     event.preventDefault();
                     $('form[name=logout]').submit();

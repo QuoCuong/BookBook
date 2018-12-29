@@ -42,7 +42,7 @@
 										<ul class="add_to_links">
 											<li><a class="cart" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
 											<li><a class="wishlist" href="#"><i class="bi bi-shopping-cart-full"></i></a></li>
-											<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
+											<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 										</ul>
 									</div>
 								</div>
@@ -128,7 +128,7 @@
 														<ul class="add_to_links">
 															<li><a class="cart" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
 															<li><a class="wishlist" href="#"><i class="bi bi-shopping-cart-full"></i></a></li>
-															<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
+															<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 														</ul>
 													</div>
 												</div>
@@ -182,7 +182,7 @@
 								<ul class="add_to_links">
 									<li><a class="cart" href=""><i class="bi bi-shopping-bag4"></i></a></li>
 									<li><a class="wishlist" href="#"><i class="bi bi-shopping-cart-full"></i></a></li>
-									<li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
+									<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 								</ul>
 							</div>
 						</div>
