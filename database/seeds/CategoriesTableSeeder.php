@@ -244,7 +244,7 @@ class CategoriesTableSeeder extends Seeder
             'parent_id' => 10,
         ]);
         Category::create([
-            'name'      => 'Từ Điển Tiếng Anh-Anh, Anh-Việt, Việt-Anh',
+            'name'      => 'Từ Điển Tiếng Anh-Việt, Việt-Anh',
             'parent_id' => 10,
         ]);
         Category::create([

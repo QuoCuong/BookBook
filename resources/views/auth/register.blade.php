@@ -7,7 +7,22 @@ oth-page
 @section('content')
 
 <!-- Start Bradcaump area -->
-@include('layouts.partials.breadcrumbs')
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.register')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="index.html">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.register')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End Bradcaump area -->
 
 <!-- Start My Account Area -->
@@ -66,7 +81,7 @@ oth-page
                                 @endif
                             </div>
                             <div class="input__box">
-                                <label>@lang('labels.account.confirm_password')<span>*</span></label>
+                                <label>@lang('labels.account.password_confirm')<span>*</span></label>
                                 <input type="password" name="password_confirmation">
                                 @if ($errors->has('password_confirm'))
                                 <div class="has-error">

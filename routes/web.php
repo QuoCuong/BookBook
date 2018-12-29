@@ -54,14 +54,14 @@ Route::group([
     Route::get('categories/create', 'CategoryController@create')->name('categories.create');
     Route::post('categories', 'CategoryController@store')->name('categories.store');
     Route::delete('categories/{category}', 'CategoryController@destroy')->name('categories.delete');
-	
+
 	//Order
     Route::get('orders', 'OrderController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrderController@show')->name('orders.show');
     Route::get('orders/status/{status}', 'OrderController@listOrderByStatus')->name('orders.status');
     Route::post('orders/{order}/{status}', 'OrderController@updateStatus')->name('orders.update.status');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
-	
+
 	//Comment
     Route::get('comments', 'CommentController@index')->name('comments.index');
     Route::get('comments/order_by/newest', 'CommentController@index')->name('comments.order_by.newest');
@@ -86,6 +86,10 @@ Route::group([
     Route::get('products/search','ProductController@getSearch')->name('product.search');
 
 });
+
+//Category
+Route::get('categories', 'CategoryController@index')->name('categories.index');
+Route::get('categories/{category}/products', 'CategoryController@listProductsById')->name('categories.list_products_by_id');
 
 //Product
 Route::get('products/{product}', 'ProductController@show')->name('products.show');

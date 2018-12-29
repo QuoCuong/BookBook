@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('oth-page')
-oth-page 
+oth-page
 @endsection
 
 @section('content')

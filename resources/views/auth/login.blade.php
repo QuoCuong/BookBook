@@ -7,7 +7,22 @@ oth-page
 @section('content')
 
 <!-- Start Bradcaump area -->
-@include('layouts.partials.breadcrumbs')
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.login')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="index.html">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.login')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End Bradcaump area -->
 
 <!-- Start My Account Area -->

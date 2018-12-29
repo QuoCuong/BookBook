@@ -23,7 +23,7 @@
 											<li class="title"><a href="">{{ $subcategory->name }}</a></li>
 											@foreach ($subcategory->child as $subsubcategory)
 												<li class="subsubcategory">
-													<a href="#">{{ $subsubcategory->name }}</a>
+													<a href="{{ route('categories.list_products_by_id', $subsubcategory->id) }}">{{ $subsubcategory->name }}</a>
 												</li>
 											@endforeach
 										</ul>
@@ -192,6 +192,6 @@
 		<!-- End Mobile Menu -->
         <div class="mobile-menu d-block d-lg-none">
         </div>
-        <!-- Mobile Menu -->	
-	</div>		
+        <!-- Mobile Menu -->
+	</div>
 </header>
