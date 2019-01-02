@@ -15,9 +15,11 @@ class CategoryController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->filter_price) {
-            $filter_price = $request->filter_price;
+        $filter_price = $request->filter_price;
+        $order_by     = $request->order_by ?? 'newest';
+        $page         = $request->page ?? 1;
 
+        if ($filter_price) {
             //remove spaces and character 'đ'
             $filter_price = strtr($filter_price, [' ' => '', 'đ' => '']);
             //split string when found character '-'
@@ -25,12 +27,13 @@ class CategoryController extends Controller
 
             $products = Product::where('price', '>=', $filter_prices[0])
                 ->where('price', '<=', $filter_prices[1])
-                ->withCount('images', 'comments');
+                ->withCount('images')
+                ->withCount('comments');
         } else {
-            $products = Product::withCount('images', 'comments');
+            $products = Product::with('images')->withCount('comments');
         }
 
-        switch ($request->order_by) {
+        switch ($order_by) {
             case 'newest':
                 $products = $products->orderBy('created_at', 'desc');
                 break;
@@ -51,16 +54,19 @@ class CategoryController extends Controller
         return view('shop', [
             'products'           => $products,
             'number_of_products' => $number_of_products,
-            'order_by'           => $request->order_by ?? 'newest',
-            'page'               => $request->page ?? 1,
+            'filter_prices'      => $filter_prices ?? null,
+            'order_by'           => $order_by,
+            'page'               => $page,
         ]);
     }
 
     public function listProductsById(Request $request, Category $category)
     {
-        if ($request->filter_price) {
-            $filter_price = $request->filter_price;
+        $filter_price = $request->filter_price;
+        $order_by     = $request->order_by ?? 'newest';
+        $page         = $request->page ?? 1;
 
+        if ($filter_price) {
             //remove spaces and character 'đ'
             $filter_price = strtr($filter_price, [' ' => '', 'đ' => '']);
             //split string when found character '-'
@@ -68,12 +74,13 @@ class CategoryController extends Controller
 
             $products = $category->products()->where('price', '>=', $filter_prices[0])
                 ->where('price', '<=', $filter_prices[1])
-                ->withCount('images', 'comments');
+                ->with('images')
+                ->withCount('comments');
         } else {
-            $products = $category->products()->withCount('images', 'comments');
+            $products = $category->products()->with('images')->withCount('comments');
         }
 
-        switch ($request->order_by) {
+        switch ($order_by) {
             case 'newest':
                 $products = $products->orderBy('created_at', 'desc');
                 break;
@@ -95,8 +102,9 @@ class CategoryController extends Controller
             'category'           => $category,
             'products'           => $products,
             'number_of_products' => $number_of_products,
-            'order_by'           => $request->order_by ?? 'newest',
-            'page'               => $request->page ?? 1,
+            'filter_prices'      => $filter_prices ?? null,
+            'order_by'           => $order_by,
+            'page'               => $page,
         ]);
     }
 

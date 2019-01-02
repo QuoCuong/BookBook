@@ -94,4 +94,7 @@ Route::get('categories/{category}/products', 'CategoryController@listProductsByI
 //Product
 Route::get('products/{product}', 'ProductController@show')->name('products.show');
 
+//Comment
+Route::post('comments', 'CommentController@store')->name('comments.store');
+
 Auth::routes();

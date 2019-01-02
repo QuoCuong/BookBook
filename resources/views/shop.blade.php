@@ -1,5 +1,5 @@
 @extends('layouts.app')
-{{-- {{ dump($page) }} --}}
+
 @section('oth-page')
     oth-page
 @endsection
@@ -54,7 +54,6 @@
                                                 </div>
                                                 <div class="price--filter">
                                                     <input type="hidden" name="order_by" value="{{ $order_by }}">
-                                                    <input type="hidden" name="page" value="{{ $page }}">
                                                     <button href="#">Lọc</button>
                                                 </div>
                                             </div>
@@ -84,10 +83,59 @@
                                 <div class="orderby__wrapper">
                                     <span>Sắp xếp theo</span>
                                     <select class="shot__byselect" onchange="window.location = this.value">
-                                        <option value="?order_by=newest&page={{ $page }}">Mới nhất</option>
-                                        <option value="?order_by=highlight&page={{ $page }}">Nổi bật</option>
-                                        <option value="?order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
-                                        <option value="?order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                        @if ($filter_prices)
+                                            @switch($order_by)
+                                                @case('highlight')
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight&page={{ $page }}" selected>Nổi bật</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                                    @break
+                                                @case('price_asc')
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc&page={{ $page }}" selected>Giá thấp nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                                    @break
+                                                @case('price_desc')
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc&page={{ $page }}" selected>Giá cao nhất</option>
+                                                    @break
+                                                @default
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                            @endswitch
+                                        @else
+                                            @switch($order_by)
+                                                @case('highlight')
+                                                    <option value="?order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?order_by=highlight&page={{ $page }}" selected>Nổi bật</option>
+                                                    <option value="?order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                                    @break
+                                                @case('price_asc')
+                                                    <option value="?order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?order_by=price_asc&page={{ $page }}" selected>Giá thấp nhất</option>
+                                                    <option value="?order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                                    @break
+                                                @case('price_desc')
+                                                    <option value="?order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?order_by=price_desc&page={{ $page }}" selected>Giá cao nhất</option>
+                                                    @break
+                                                @default
+                                                    <option value="?order_by=newest&page={{ $page }}">Mới nhất</option>
+                                                    <option value="?order_by=highlight&page={{ $page }}">Nổi bật</option>
+                                                    <option value="?order_by=price_asc&page={{ $page }}">Giá thấp nhất</option>
+                                                    <option value="?order_by=price_desc&page={{ $page }}">Giá cao nhất</option>
+                                            @endswitch
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -100,14 +148,14 @@
                                     <!-- Start Single Product -->
                                     <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
                                         <div class="product__thumb">
-                                            <a class="first__img" href="#"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
-                                            <a class="second__img animation1" href="#"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
+                                            <a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
+                                            <a class="second__img animation1" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
                                             {{-- <div class="hot__box">
                                                 <span class="hot-label">BEST SALLER</span>
                                             </div> --}}
                                         </div>
                                         <div class="product__content content--center">
-                                            <h4><a href="single-product.html">{{ $product->name }}</a></h4>
+                                            <h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
                                             <ul class="prize d-flex">
                                                 <li>{{ number_format($product->price) }}đ</li>
                                                 {{-- <li class="old_prize">$35.00</li> --}}
@@ -124,7 +172,7 @@
                                             <div class="product__hover--content">
                                                 <ul class="rating d-flex">
                                                     @php ($max_star = 5)
-                                                    @for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+                                                    @for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
                                                         <li class="on"><i class="fa fa-star-o"></i></li>
                                                         @php ($max_star -= 1)
                                                     @endfor
@@ -151,14 +199,14 @@
                                         <div class="list__view mt--40">
                                     @endif
                                         <div class="thumb">
-                                            <a class="first__img" href="single-product.html"><img src="{{ $product->images[0]->path }}" alt="product images"></a>
-                                            <a class="second__img animation1" href="single-product.html"><img src="{{ $product->images[1]->path }}" alt="product images"></a>
+                                            <a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product images"></a>
+                                            <a class="second__img animation1" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[1]->path }}" alt="product images"></a>
                                         </div>
                                         <div class="content">
-                                            <h2><a href="single-product.html">{{ $product->name }}</a></h2>
+                                            <h2><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h2>
                                             <ul class="rating d-flex">
                                                 @php ($max_star = 5)
-                                                @for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+                                                @for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
                                                     <li class="on"><i class="fa fa-star-o"></i></li>
                                                     @php ($max_star -= 1)
                                                 @endfor
@@ -213,7 +261,7 @@
                                 @if ($product->comments_count != 0)
                                     <ul class="rating">
                                         @php ($max_star = 5)
-                                        @for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+                                        @for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
                                             <li class="on"><i class="fa fa-star-o"></i></li>
                                             @php ($max_star -= 1)
                                         @endfor

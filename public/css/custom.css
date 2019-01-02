@@ -1,12 +1,31 @@
 /*********************************************************************************
 
-	Template Name: Boighor Bookshop Responsive Bootstrap4 Template  
+	Template Name: Boighor Bookshop Responsive Bootstrap4 Template
 	Description: Template description
 	Version: 1.0
 	Note: This is custom css. All custom styles (user styles) declare here.
 
 **********************************************************************************/
 
+
+
 .has-error {
 	color: red;
+}
+
+.border-red {
+    border-color: red !important;
+}
+
+.help-block {
+    color: red;
+    font-style: italic;
+}
+
+table.product-details tbody tr td:first-child {
+    text-align: right;
+}
+
+.review-field-rating > .rating > li {
+    cursor: pointer;
 }
