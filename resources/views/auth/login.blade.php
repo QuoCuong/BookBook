@@ -14,7 +14,7 @@ oth-page
                 <div class="bradcaump__inner text-center">
                     <h2 class="bradcaump-title">@lang('labels.login')</h2>
                     <nav class="bradcaump-content">
-                        <a class="breadcrumb_item" href="index.html">@lang('labels.home')</a>
+                        <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
                         <span class="brd-separetor">/</span>
                         <span class="breadcrumb_item active">@lang('labels.login')</span>
                     </nav>

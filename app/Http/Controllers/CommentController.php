@@ -35,7 +35,13 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Comment::create($request->all());
+
+        return view('message')->with([
+            'title'   => 'Cảm ơn bạn đã nhận xét sản phẩm của chúng tôi!',
+            'message' => '',
+            'url'     => route('products.show', $request->product_id),
+        ]);
     }
 
     /**

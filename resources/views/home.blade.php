@@ -21,10 +21,10 @@
 					<div class="product product__style--3">
 						<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 							<div class="product__thumb">
-								<a class="first__img" href="single-product.html">
+								<a class="first__img" href="{{ route('products.show', $product->id) }}">
 									<img src="{{ $product->images[0]->path }}" alt="product image">
 								</a>
-								<a class="second__img animation1" href="single-product.html">
+								<a class="second__img animation1" href="{{ route('products.show', $product->id) }}">
 									<img src="{{ $product->images[1]->path }}" alt="product image">
 								</a>
 								<!-- <div class="hot__box">
@@ -32,7 +32,7 @@
 								</div> -->
 							</div>
 							<div class="product__content content--center">
-								<h4><a href="single-product.html">{{ $product->name }}</a></h4>
+								<h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
 								<ul class="prize d-flex">
 									<li>{{ number_format($product->price) }}đ</li>
 									<!-- <li class="old_prize">$35.00</li> -->
@@ -49,7 +49,7 @@
 								<div class="product__hover--content">
 									<ul class="rating d-flex">
 										@php ($max_star = 5)
-										@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+										@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 											<li class="on"><i class="fa fa-star-o"></i></li>
 											@php ($max_star -= 1)
 										@endfor
@@ -74,7 +74,7 @@
 			<div class="row">
 				<div class="col-lg-7 offset-lg-5 col-md-12 col-12 ptb--150">
 					<div class="section__title text-center">
-						<h2>Ở lại với chúng tôi</h2>
+						<h2>Nhận bản tin từ chúng tôi</h2>
 					</div>
 					<div class="newsletter__block text-center">
 						<p>Theo dõi bản tin của chúng tôi ngay bây giờ và cập nhật các bộ sưu tập mới, tìm các cuốn sách mới nhất và các ưu đãi độc quyền.</p>
@@ -111,14 +111,14 @@
 									<div class="col-lg-3 col-md-4 col-sm-6 col-12">
 										<div class="product product__style--3">
 											<div class="product__thumb">
-												<a class="first__img" href="#"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
-												<a class="second__img animation1" href="#"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
+												<a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
+												<a class="second__img animation1" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
 												<!-- <div class="hot__box">
 													<span class="hot-label">BEST SALER</span>
 												</div> -->
 											</div>
 											<div class="product__content content--center content--center">
-												<h4><a href="single-product.html">{{ $product->name }}</a></h4>
+												<h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
 												<ul class="prize d-flex">
 													<li>{{ number_format($product->price) }}đ</li>
 													<!-- <li class="old_prize">$35.00</li> -->
@@ -135,7 +135,7 @@
 												<div class="product__hover--content">
 													<ul class="rating d-flex">
 														@php ($max_star = 5)
-														@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+														@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 															<li class="on"><i class="fa fa-star-o"></i></li>
 															@php ($max_star -= 1)
 														@endfor
@@ -189,7 +189,7 @@
 						<div class="product__hover--content">
 							<ul class="rating d-flex">
 								@php ($max_star = 5)
-								@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+								@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 									<li class="on"><i class="fa fa-star-o"></i></li>
 									@php ($max_star -= 1)
 								@endfor
@@ -225,14 +225,14 @@
 	                                    <img alt="big images" src="{{ $product->images[0]->path }}" style="width: 420px; height: 614px;">
 	                                </div>
 	                            </div>
-	                            <!-- end product images -->
+	                            <!-- End product images -->
 	                            <div class="product-info">
 	                                <h1>{{ $product->name }}</h1>
 	                                <div class="rating__and__review">
 	                                    @if ($product->comments_count != 0)
 		                                    <ul class="rating">
 												@php ($max_star = 5)
-												@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+												@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 													<li class="on"><i class="fa fa-star-o"></i></li>
 													@php ($max_star -= 1)
 												@endfor
@@ -286,7 +286,7 @@
 	                                    @if ($product->comments_count != 0)
 		                                    <ul class="rating">
 												@php ($max_star = 5)
-												@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+												@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 													<li class="on"><i class="fa fa-star-o"></i></li>
 													@php ($max_star -= 1)
 												@endfor
@@ -340,7 +340,7 @@
 	                                    @if ($product->comments_count != 0)
 		                                    <ul class="rating">
 												@php ($max_star = 5)
-												@for ($i = 0; $i < $product->comments->avg('rating_value'); $i++)
+												@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
 													<li class="on"><i class="fa fa-star-o"></i></li>
 													@php ($max_star -= 1)
 												@endfor

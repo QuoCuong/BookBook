@@ -38,28 +38,28 @@
 				<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 					<li class="shop_search"><a class="search__active" href="#"></a></li>
 					<li class="wishlist"><a href="#"></a></li>
-					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">@yield('number_of_cart_item', 0)</span></a>
 						<!-- Start Shopping Cart -->
 						<div class="block-minicart minicart__active">
 							<div class="minicart-content-wrapper">
 								<div class="micart__close">
-									<span>close</span>
+									<span>@lang('labels.close')</span>
 								</div>
 								<div class="items-total d-flex justify-content-between">
-									<span>3 items</span>
-									<span>Cart Subtotal</span>
+									<span>@yield('number_of_cart_item', 0) @lang('labels.item')</span>
+									<span>Tổng đơn hàng</span>
 								</div>
 								<div class="total_amount text-right">
-									<span>$66.00</span>
+									<span>@yield('cart_total_value', '0')đ</span>
 								</div>
 								<div class="mini_action checkout">
-									<a class="checkout__btn" href="cart.html">Go to Checkout</a>
+									<a class="checkout__btn" href="cart.html">@lang('labels.checkout')</a>
 								</div>
 								<div class="single__items">
 									<div class="miniproduct">
 										<div class="item01 d-flex">
 											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/1.jpg" alt="product images"></a>
+												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/1.jpg') }}" alt="product images"></a>
 											</div>
 											<div class="content">
 												<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
@@ -75,7 +75,7 @@
 										</div>
 										<div class="item01 d-flex mt--20">
 											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/3.jpg" alt="product images"></a>
+												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/3.jpg') }}" alt="product images"></a>
 											</div>
 											<div class="content">
 												<h6><a href="product-details.html">Impulse Duffle</a></h6>
@@ -91,7 +91,7 @@
 										</div>
 										<div class="item01 d-flex mt--20">
 											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/2.jpg" alt="product images"></a>
+												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/2.jpg') }}" alt="product images"></a>
 											</div>
 											<div class="content">
 												<h6><a href="product-details.html">Compete Track Tote</a></h6>
@@ -108,7 +108,7 @@
 									</div>
 								</div>
 								<div class="mini_action cart">
-									<a class="cart__btn" href="cart.html">View and edit cart</a>
+									<a class="cart__btn" href="cart.html">@lang('labels.view_and_edit_cart')</a>
 								</div>
 							</div>
 						</div>
