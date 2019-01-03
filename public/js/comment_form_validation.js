@@ -1,5 +1,5 @@
-$(document).ready(function ($) {
-    $('#comment_form').validate({
+jQuery().ready(function ($) {
+    jQuery('#comment_form').validate({
         errorClass: 'help-block',
         errorElement: 'div',
         highlight: function(e) {

@@ -38,7 +38,7 @@
 				<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 					<li class="shop_search"><a class="search__active" href="#"></a></li>
 					<li class="wishlist"><a href="#"></a></li>
-					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">@yield('number_of_cart_item', 0)</span></a>
+					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">0</span></a>
 						<!-- Start Shopping Cart -->
 						<div class="block-minicart minicart__active">
 							<div class="minicart-content-wrapper">
@@ -46,69 +46,20 @@
 									<span>@lang('labels.close')</span>
 								</div>
 								<div class="items-total d-flex justify-content-between">
-									<span>@yield('number_of_cart_item', 0) @lang('labels.item')</span>
+									<span>0 @lang('labels.item')</span>
 									<span>Tổng đơn hàng</span>
 								</div>
 								<div class="total_amount text-right">
-									<span>@yield('cart_total_value', '0')đ</span>
+									<span>0đ</span>
 								</div>
 								<div class="mini_action checkout">
-									<a class="checkout__btn" href="cart.html">@lang('labels.checkout')</a>
+									<a class="checkout__btn" href="{{ route('checkout') }}">@lang('labels.checkout')</a>
 								</div>
 								<div class="single__items">
-									<div class="miniproduct">
-										<div class="item01 d-flex">
-											<div class="thumb">
-												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/1.jpg') }}" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-												<span class="prize">$30.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 01</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="item01 d-flex mt--20">
-											<div class="thumb">
-												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/3.jpg') }}" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Impulse Duffle</a></h6>
-												<span class="prize">$40.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 03</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="item01 d-flex mt--20">
-											<div class="thumb">
-												<a href="product-details.html"><img src="{{ asset('images/product/sm-img/2.jpg') }}" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Compete Track Tote</a></h6>
-												<span class="prize">$40.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 03</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+									<div class="miniproduct" style="height: 300px;"></div>
 								</div>
 								<div class="mini_action cart">
-									<a class="cart__btn" href="cart.html">@lang('labels.view_and_edit_cart')</a>
+									<a class="cart__btn" href="{{ route('cart') }}">@lang('labels.view_and_edit_cart')</a>
 								</div>
 							</div>
 						</div>

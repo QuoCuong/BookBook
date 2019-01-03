@@ -6,7 +6,7 @@
 
 @section('content')
     <!-- Start Bradcaump area -->
-    <div class="ht__bradcaump__area bg-image--6">
+    <div class="ht__bradcaump__area bg-image--4">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -61,7 +61,7 @@
                                         <span>@lang('labels.quantity')</span>
                                         <input id="qty" class="input-text qty" name="qty" min="1" max="10" value="1" title="Qty" type="number">
                                         <div class="addtocart__actions">
-                                            <button class="tocart" type="submit" title="Add to Cart">@lang('labels.add_to_cart')</button>
+                                            <button class="tocart"  type="submit" title="Add to Cart">@lang('labels.add_to_cart')</button>
                                         </div>
                                     </div>
                                     <div class="product_meta">
@@ -276,9 +276,9 @@
                                             <div class="action">
                                                 <div class="actions_inner">
                                                     <ul class="add_to_links">
-                                                        <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                        <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                                        <li><a data-toggle="modal" title="Quick View" class="quickview modal-view detail-link" href="#productmodal"><i class="bi bi-search"></i></a></li>
+                                                        <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                        <li><a class="wishlist" title="Xem giỏ hàng" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
+                                                        <li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -345,6 +345,66 @@
         </div>
     </div>
     <!-- End main Content -->
+@endsection
+
+@section('quickview-product')
+	<div id="quickview-wrapper">
+        <!-- Modal -->
+        @foreach ($related_products as $product)
+	        <div class="modal fade" id="{{ strtolower(remove_special_characters($product->name)) }}" tabindex="-1" role="dialog">
+	            <div class="modal-dialog modal__container" role="document">
+	                <div class="modal-content">
+	                    <div class="modal-header modal__header">
+	                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	                    </div>
+	                    <div class="modal-body">
+	                        <div class="modal-product">
+	                            <!-- Start product images -->
+	                            <div class="product-images">
+	                                <div class="main-image images">
+	                                    <img alt="big images" src="{{ $product->images[0]->path }}" style="width: 420px; height: 614px;">
+	                                </div>
+	                            </div>
+	                            <!-- end product images -->
+	                            <div class="product-info">
+	                                <h1>{{ $product->name }}</h1>
+	                                <div class="rating__and__review">
+	                                    @if ($product->comments_count != 0)
+		                                    <ul class="rating">
+												@php ($max_star = 5)
+												@for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
+													<li class="on"><i class="fa fa-star-o"></i></li>
+													@php ($max_star -= 1)
+												@endfor
+												@for ($i = 0; $i < $max_star; $i++)
+													<li><i class="fa fa-star-o"></i></li>
+												@endfor
+											</ul>
+		                                    <div class="review">
+		                                        <a href="#">( {{ $product->comments_count }} đánh giá từ khách hàng )</a>
+		                                    </div>
+	                                    @endif
+	                                </div>
+	                                <div class="price-box-3">
+	                                    <div class="s-price-box">
+	                                        <span class="new-price">{{ number_format($product->price) }}đ</span>
+	                                        <!-- <span class="old-price">$45.00</span> -->
+	                                    </div>
+	                                </div>
+	                                <div class="quick-desc">
+	                                    {{ $product->description }}
+	                                </div>
+	                                <div class="addtocart-btn">
+	                                    <a class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#">@lang('labels.add_to_cart')</a>
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+        @endforeach
+    </div>
 @endsection
 
 @section('javascript')

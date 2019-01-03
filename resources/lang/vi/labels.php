@@ -39,6 +39,7 @@ return [
     'message'            => 'Thông báo',
     'close'              => 'Đóng',
     'item'               => 'sản phẩm',
+    'cart'               => 'Giỏ hàng',
     'account'            => [
         'login'                     => 'Đăng nhập',
         'register'                  => 'Đăng ký',
