@@ -97,4 +97,12 @@ Route::get('products/{product}', 'ProductController@show')->name('products.show'
 //Comment
 Route::post('comments', 'CommentController@store')->name('comments.store');
 
+Route::get('cart', function() {
+    return view('cart');
+})->name('cart');
+
+Route::get('checkout', function() {
+    return view('checkout');
+})->name('checkout');
+
 Auth::routes();

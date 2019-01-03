@@ -163,8 +163,8 @@
                                             <div class="action">
                                                 <div class="actions_inner">
                                                     <ul class="add_to_links">
-                                                        <li><a class="cart" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                        <li><a class="wishlist" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
+                                                        <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                        <li><a class="wishlist" title="Xem giỏ hàng" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
                                                         <li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -220,7 +220,7 @@
                                             </ul>
                                             <p>{{ $product->description }}</p>
                                             <ul class="cart__action d-flex">
-                                                <li class="cart"><a href="cart.html">@lang('labels.add_to_cart')</a></li>
+                                                <li class="cart"><a class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#">@lang('labels.add_to_cart')</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -284,7 +284,7 @@
                                 {{ $product->description }}
                             </div>
                             <div class="addtocart-btn">
-                                <a href="#">@lang('labels.add_to_cart')</a>
+                                <a class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#">@lang('labels.add_to_cart')</a>
                             </div>
                         </div>
                     </div>
