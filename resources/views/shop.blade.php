@@ -72,6 +72,13 @@
                     </div>
                 </div>
                 <div class="col-lg-9 col-12 order-1 order-lg-2">
+                    @if (!empty($current_category))
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h3 class="wedget__title">{{ $current_category->name }}</h3>
+                            </div>
+                        </div>
+                    @endif
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="shop__list__wrapper d-flex flex-wrap flex-md-nowrap justify-content-between">
@@ -229,7 +236,7 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        {{ $products->render('paginator.shop') }}
+                        {{ $products->appends(\Request::all())->render('paginator.shop') }}
                     </div>
                 </div>
             </div>

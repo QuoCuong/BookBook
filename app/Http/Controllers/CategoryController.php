@@ -99,7 +99,7 @@ class CategoryController extends Controller
         $products           = $products->paginate(12);
 
         return view('shop', [
-            'category'           => $category,
+            'current_category'   => $category,
             'products'           => $products,
             'number_of_products' => $number_of_products,
             'filter_prices'      => $filter_prices ?? null,

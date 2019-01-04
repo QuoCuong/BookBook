@@ -26,61 +26,62 @@
 
         <!-- Page Content -->
         <div class="container-fluid p-y-md">
-            <div class="input-group" style="margin-bottom: 20px;">
-                <select class="form-control" onchange="window.location = this.value;">
-                    @if (!empty($option))
-                        @switch($option)
-                            @case('5')
-                                <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                                <option value="{{ route('admin.comments.filter.rating', 5) }}" selected>Đánh giá 5 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 4) }}">Đánh giá 4 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 3) }}">Đánh giá 3 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 2) }}">Đánh giá 2 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 1) }}">Đánh giá 1 Sao</option>
-                                @break
-                            @case('4')
-                                <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                                <option value="{{ route('admin.comments.filter.rating', 5) }}">Đánh giá 5 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 4) }}" selected>Đánh giá 4 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 3) }}">Đánh giá 3 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 2) }}">Đánh giá 2 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 1) }}">Đánh giá 1 Sao</option>
-                                @break
-                            @case('3')
-                                <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                                <option value="{{ route('admin.comments.filter.rating', 5) }}">Đánh giá 5 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 4) }}">Đánh giá 4 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 3) }}" selected>Đánh giá 3 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 2) }}">Đánh giá 2 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 1) }}">Đánh giá 1 Sao</option>
-                                @break
-                            @case('2')
-                                <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                                <option value="{{ route('admin.comments.filter.rating', 5) }}">Đánh giá 5 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 4) }}">Đánh giá 4 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 3) }}">Đánh giá 3 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 2) }}" selected>Đánh giá 2 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 1) }}">Đánh giá 1 Sao</option>
-                                @break
-                            @case('1')
-                                <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                                <option value="{{ route('admin.comments.filter.rating', 5) }}">Đánh giá 5 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 4) }}">Đánh giá 4 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 3) }}">Đánh giá 3 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 2) }}">Đánh giá 2 Sao</option>
-                                <option value="{{ route('admin.comments.filter.rating', 1) }}" selected>Đánh giá 1 Sao</option>
-                                @break
-                        @endswitch
-                    @else
-                        <option value="{{ route('admin.comments.order_by.newest') }}">Mới nhất</option>
-                        <option value="{{ route('admin.comments.filter.rating', 5) }}">Đánh giá 5 Sao</option>
-                        <option value="{{ route('admin.comments.filter.rating', 4) }}">Đánh giá 4 Sao</option>
-                        <option value="{{ route('admin.comments.filter.rating', 3) }}">Đánh giá 3 Sao</option>
-                        <option value="{{ route('admin.comments.filter.rating', 2) }}">Đánh giá 2 Sao</option>
-                        <option value="{{ route('admin.comments.filter.rating', 1) }}">Đánh giá 1 Sao</option>
-                    @endif
+            <div class="input-group pull-left" style="margin-bottom: 20px;">
+                <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                    @switch($rating)
+                        @case('5')
+                            <option value="?rating=5" selected>Đánh giá 5 Sao</option>
+                            <option value="?rating=4">Đánh giá 4 Sao</option>
+                            <option value="?rating=3">Đánh giá 3 Sao</option>
+                            <option value="?rating=2">Đánh giá 2 Sao</option>
+                            <option value="?rating=1">Đánh giá 1 Sao</option>
+                            @break
+                        @case('4')
+                            <option value="?rating=5">Đánh giá 5 Sao</option>
+                            <option value="?rating=4" selected>Đánh giá 4 Sao</option>
+                            <option value="?rating=3">Đánh giá 3 Sao</option>
+                            <option value="?rating=2">Đánh giá 2 Sao</option>
+                            <option value="?rating=1">Đánh giá 1 Sao</option>
+                            @break
+                        @case('3')
+                            <option value="?rating=5">Đánh giá 5 Sao</option>
+                            <option value="?rating=4">Đánh giá 4 Sao</option>
+                            <option value="?rating=3" selected>Đánh giá 3 Sao</option>
+                            <option value="?rating=2">Đánh giá 2 Sao</option>
+                            <option value="?rating=1">Đánh giá 1 Sao</option>
+                            @break
+                        @case('2')
+                            <option value="?rating=5">Đánh giá 5 Sao</option>
+                            <option value="?rating=4">Đánh giá 4 Sao</option>
+                            <option value="?rating=3">Đánh giá 3 Sao</option>
+                            <option value="?rating=2" selected>Đánh giá 2 Sao</option>
+                            <option value="?rating=1">Đánh giá 1 Sao</option>
+                            @break
+                        @case('1')
+                            <option value="?rating=5">Đánh giá 5 Sao</option>
+                            <option value="?rating=4">Đánh giá 4 Sao</option>
+                            <option value="?rating=3">Đánh giá 3 Sao</option>
+                            <option value="?rating=2">Đánh giá 2 Sao</option>
+                            <option value="?rating=1" selected>Đánh giá 1 Sao</option>
+                            @break
+                    @endswitch
                 </select>
             </div>
+            <div class="input-group pull-left" style="margin-left: 5px; margin-bottom: 20px;">
+                <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                    @switch($order_by)
+                        @case('desc')
+                            <option value="?rating={{ $rating }}&order_by=desc" selected>Mới nhất</option>
+                            <option value="?rating={{ $rating }}&order_by=asc">Cũ nhất</option>
+                            @break
+                        @case('asc')
+                            <option value="?rating={{ $rating }}&order_by=desc">Mới nhất</option>
+                            <option value="?rating={{ $rating }}&order_by=asc" selected>Cũ nhất</option>
+                            @break
+                    @endswitch
+                </select>
+            </div>
+            <div class="clearfix"></div>
         	<div class="card">
         		<div class="card-header bg-purple bg-inverse">
                     <h4>Bình luận</h4>
@@ -125,7 +126,7 @@
                         </tbody>
                     </table>
                     <div class="text-center">
-                        {{ $comments->links() }}
+                        {{ $comments->appends(\Request::all())->links() }}
                     </div>
                 </div>
         	</div>

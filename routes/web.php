@@ -64,8 +64,6 @@ Route::group([
 
 	//Comment
     Route::get('comments', 'CommentController@index')->name('comments.index');
-    Route::get('comments/order_by/newest', 'CommentController@index')->name('comments.order_by.newest');
-    Route::get('comments/filter/rating/{rating}', 'CommentController@filterRating')->name('comments.filter.rating');
     Route::get('comments/{comment}', 'CommentController@show')->name('comments.show');
     Route::put('comments/{comment}', 'CommentController@update')->name('comments.update');
     Route::delete('comments/{comment}', 'CommentController@destroy')->name('comments.delete');
