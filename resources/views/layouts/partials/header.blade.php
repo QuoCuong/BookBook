@@ -96,7 +96,7 @@
 													@if (Auth::user()->role_id == 1)
 														<span><a href="{{ route('admin.dashboard') }}">Quản trị viên</a></span>
 													@endif
-													<span><a href="{{ route('home') }}">@lang('labels.my_account')</a></span>
+													<span><a href="{{ route('account.index') }}">@lang('labels.my_account')</a></span>
 													<span>
 														<form method="POST" action="{{ route('logout') }}">
 															@csrf

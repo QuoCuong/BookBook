@@ -97,6 +97,12 @@ Route::get('products/{product}', 'ProductController@show')->name('products.show'
 //Comment
 Route::post('comments', 'CommentController@store')->name('comments.store');
 
+//Account
+Route::get('account', 'UserController@contactById')->name('account.index');
+Route::get('account/addresses', 'UserController@addressById')->name('account.addresses');
+Route::get('addresses/{address}/edit', 'UserController@edit')->name('address.edit');
+Route::put('addresses/{address}', 'UserController@update')->name('address.update');
+
 Route::get('cart', function() {
     return view('cart');
 })->name('cart');

@@ -27,9 +27,12 @@
                 <div class="tab-pane active" id="btabs-static-home">
                     <div class="card-body">
                         <div class="row"  >
-                            <div class="col-sm-4" > <img style="width: 400px; height: 500px;" src="{{ asset('admin/img/avatars/16.jpg') }}"> 
+                            <div class="col-sm-4" style=" margin-top:50px;" >
+                                @include('layouts.imageproduct')
                             </div>
-                            <div class="col-sm-8"  ">
+                            {{-- <div class="col-sm-4" > <img style="width: 400px; height: 500px;" src="{{ asset('admin/img/avatars/16.jpg') }}"> 
+                            </div> --}}
+                            <div class="col-sm-8">
                               <div style="margin-left: 50px;">
                             <p><b>Tên sách:</b> {{$product->name}}</p><br>
                             <p><b>Tác giả :</b> {{$productDetail->author}}</p><br>

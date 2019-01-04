@@ -27,7 +27,9 @@ class ProductController extends Controller
     public function detailProductId(Product $product)
     {
         $productDetail = $product->productDetail;
+        // dd($productDetail);
         $images = $product->images;
+        // dd($images);
         return view('admin.products.detail',compact('productDetail','images','product'));
    
     }
