@@ -49,6 +49,9 @@ class CategoryObserver
                 $product->delete();
             }
         }
+
+        //delete all order details
+
     }
 
     /**

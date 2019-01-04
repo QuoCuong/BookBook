@@ -38,6 +38,11 @@ oth-page
                             <div class="input__box">
                                 <label>@lang('labels.account.email_address') <span>*</span></label>
                                 <input type="text" name="email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                    <div class="has-error">
+                                        <i>{{ $errors->first('email') }}</i>
+                                    </div>
+                                @endif
                             </div>
                             <div class="form__btn text-center">
                                 <button>@lang('labels.account.send_forgot_password_link')</button>

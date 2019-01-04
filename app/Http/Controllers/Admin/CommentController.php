@@ -14,20 +14,33 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
+        $rating   = $request->rating ?? 5;
+        $order_by = $request->order_by ?? 'desc';
 
-        return view('admin.comments.index', ['comments' => $comments]);
-    }
+        $comments = Comment::where('rating_quality', $rating)
+            ->orWhere('rating_price', $rating)
+            ->orWhere('rating_value', $rating);
 
-    public function filterRating($rating)
-    {
-        $comments = Comment::where('rating_quality', $rating)->orWhere('rating_price', $rating)->orWhere('rating_value', $rating)->orderBy('created_at', 'desc')->with('user', 'product')->paginate('10');
+        switch ($order_by) {
+            case 'desc':
+                $comments = $comments->orderBy('id', 'desc');
+                break;
+            case 'asc':
+                $comments = $comments->orderBy('id', 'asc');
+                break;
+            default:
+                # code...
+                break;
+        }
+
+        $comments = $comments->paginate(10);
 
         return view('admin.comments.index', [
             'comments' => $comments,
-            'option'   => $rating,
+            'rating'   => $rating,
+            'order_by' => $order_by,
         ]);
     }
 
