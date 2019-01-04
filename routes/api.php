@@ -26,5 +26,9 @@ Route::group([
 	//Category
     Route::get('categories/{category}/child', 'CategoryController@child')->name('categories.child');
     Route::put('categories/{category}', 'CategoryController@update')->name('categories.update');
+    
+    //District
+    Route::get('cities/{city}/districts','CityController@listDistrictsById')->name('cities.list_districts_by_id');
 
 });
+

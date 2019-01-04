@@ -1,15 +1,12 @@
 <?php
 
-namespace Book\Http\Controllers;
-
-use Book\ProductDetail;
-use Book\Product;
-use Book\Image;
-use Book\Comment;
-use Book\Category;
+namespace Book\Http\Controllers\Api;
+use Book\City;
+use Book\District;
 use Illuminate\Http\Request;
+use Book\Http\Controllers\Controller;
 
-class ProductDetailController extends Controller
+class CityController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,17 +17,10 @@ class ProductDetailController extends Controller
     {
         //
     }
-    public function singleProductId(Product $product, Category $category)
+    public function listDistrictsById(City $city)
     {
-   
-        $productDetail = $product->productDetail;
-        $images = $product->images;
-        $comments = $product->comments;
-        $category = $product->category;
-
-
-        return view('single_product', compact('product','category','productDetail','images','comments','categories'));
-        
+        $districts = $city->districts;
+        return response()->json($districts);
     }
 
     /**
@@ -57,10 +47,10 @@ class ProductDetailController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \Book\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ProductDetail $productDetail)
+    public function show($id)
     {
         //
     }
@@ -68,10 +58,10 @@ class ProductDetailController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \Book\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ProductDetail $productDetail)
+    public function edit($id)
     {
         //
     }
@@ -80,10 +70,10 @@ class ProductDetailController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Book\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ProductDetail $productDetail)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -91,10 +81,10 @@ class ProductDetailController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \Book\ProductDetail  $productDetail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ProductDetail $productDetail)
+    public function destroy($id)
     {
         //
     }
