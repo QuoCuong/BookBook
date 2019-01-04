@@ -49,6 +49,10 @@ jQuery().ready(function ($) {
         updateLocalStorageCart();
 
         updateMinicart();
+
+        if (!isMinicartVisible()) {
+            displayMinicart();
+        }
     });
 
     $(document).on('click', '.delete-item', function (event) {
@@ -168,5 +172,16 @@ jQuery().ready(function ($) {
                 cart.splice(i, 1);
             }
         }
+    }
+
+    function isMinicartVisible() {
+        if ($('.block-minicart').hasClass('is-visible')) {
+            return true;
+        }
+        return false;
+    }
+
+    function displayMinicart() {
+        $('.block-minicart').addClass('is-visible');
     }
 })
