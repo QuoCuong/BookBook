@@ -6,6 +6,7 @@ use Book\Mail\ApprovedOrderMail;
 use Book\Mail\CancelledOrderMail;
 use Book\Mail\CompleteOrderMail;
 use Book\Order;
+use Book\OrderDetail;
 use Mail;
 
 class OrderObserver
@@ -29,12 +30,15 @@ class OrderObserver
      */
     public function updated(Order $order)
     {
+        $order        = $order;
+        $orderDetails = OrderDetail::where('order_id', $order->id)->with('product')->get();
+
         switch ($order->status) {
             case 'approved':
-                Mail::to($order->user->email)->send(new ApprovedOrderMail($order));
+                Mail::to($order->user->email)->send(new ApprovedOrderMail($order, $orderDetails));
                 break;
             case 'complete':
-                Mail::to($order->user->email)->send(new CompleteOrderMail($order));
+                Mail::to($order->user->email)->send(new CompleteOrderMail($order, $orderDetails));
                 break;
             case 'cancelled':
                 //increase quantity of product

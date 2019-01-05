@@ -11,11 +11,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bradcaump__inner text-center">
-                        <h2 class="bradcaump-title">@lang('labels.shop')</h2>
+                        <h2 class="bradcaump-title">@lang('labels.search')</h2>
                         <nav class="bradcaump-content">
                             <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
                             <span class="brd-separetor">/</span>
-                            <span class="breadcrumb_item active">@lang('labels.shop')</span>
+                            <span class="breadcrumb_item active">@lang('labels.search')</span>
                         </nav>
                     </div>
                 </div>
@@ -54,6 +54,7 @@
                                                 </div>
                                                 <div class="price--filter">
                                                     <input type="hidden" name="order_by" value="{{ $order_by }}">
+                                                    <input type="hidden" name="q" value="{{ $q }}">
                                                     <button href="#">Lọc</button>
                                                 </div>
                                             </div>
@@ -92,61 +93,65 @@
                                     <a class="nav-item nav-link active" data-toggle="tab" href="#nav-grid" role="tab"><i class="fa fa-th"></i></a>
                                     <a class="nav-item nav-link" data-toggle="tab" href="#nav-list" role="tab"><i class="fa fa-list"></i></a>
                                 </div>
-                                <p>Hiển thị 1–12 trên {{ $number_of_products }} kết quả</p>
+                                @if ($number_of_products == 0)
+                                    <p>Không có sản phẩm nào phù hợp với từ khóa tìm kiếm</p>
+                                @else
+                                    <p>Hiển thị 1–12 trên {{ $number_of_products }} kết quả</p>
+                                @endif
                                 <div class="orderby__wrapper">
                                     <span>Sắp xếp theo</span>
                                     <select class="shot__byselect" onchange="window.location = this.value">
                                         @if ($filter_prices)
                                             @switch($order_by)
                                                 @case('highlight')
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight" selected>Nổi bật</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight" selected>Nổi bật</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
                                                     @break
                                                 @case('price_asc')
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc" selected>Giá thấp nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc" selected>Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
                                                     @break
                                                 @case('price_desc')
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc" selected>Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc" selected>Giá cao nhất</option>
                                                     @break
                                                 @default
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&filter_price={{ $filter_prices[0] . '-' . $filter_prices[1] }}&order_by=price_desc">Giá cao nhất</option>
                                             @endswitch
                                         @else
                                             @switch($order_by)
                                                 @case('highlight')
-                                                    <option value="?order_by=newest">Mới nhất</option>
-                                                    <option value="?order_by=highlight" selected>Nổi bật</option>
-                                                    <option value="?order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=highlight" selected>Nổi bật</option>
+                                                    <option value="?q={{ $q }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=price_desc">Giá cao nhất</option>
                                                     @break
                                                 @case('price_asc')
-                                                    <option value="?order_by=newest">Mới nhất</option>
-                                                    <option value="?order_by=highlight">Nổi bật</option>
-                                                    <option value="?order_by=price_asc" selected>Giá thấp nhất</option>
-                                                    <option value="?order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&order_by=price_asc" selected>Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=price_desc">Giá cao nhất</option>
                                                     @break
                                                 @case('price_desc')
-                                                    <option value="?order_by=newest">Mới nhất</option>
-                                                    <option value="?order_by=highlight">Nổi bật</option>
-                                                    <option value="?order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?order_by=price_desc" selected>Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=price_desc" selected>Giá cao nhất</option>
                                                     @break
                                                 @default
-                                                    <option value="?order_by=newest">Mới nhất</option>
-                                                    <option value="?order_by=highlight">Nổi bật</option>
-                                                    <option value="?order_by=price_asc">Giá thấp nhất</option>
-                                                    <option value="?order_by=price_desc">Giá cao nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=newest">Mới nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=highlight">Nổi bật</option>
+                                                    <option value="?q={{ $q }}&order_by=price_asc">Giá thấp nhất</option>
+                                                    <option value="?q={{ $q }}&order_by=price_desc">Giá cao nhất</option>
                                             @endswitch
                                         @endif
                                     </select>
@@ -157,47 +162,49 @@
                     <div class="tab__container">
                         <div class="shop-grid tab-pane fade show active" id="nav-grid" role="tabpanel">
                             <div class="row">
-                                @foreach ($products as $product)
-                                    <!-- Start Single Product -->
-                                    <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
-                                        <div class="product__thumb">
-                                            <a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
-                                            <a class="second__img animation1" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
-                                            {{-- <div class="hot__box">
-                                                <span class="hot-label">BEST SALLER</span>
-                                            </div> --}}
-                                        </div>
-                                        <div class="product__content content--center">
-                                            <h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
-                                            <ul class="prize d-flex">
-                                                <li>{{ number_format($product->price) }}đ</li>
-                                                {{-- <li class="old_prize">$35.00</li> --}}
-                                            </ul>
-                                            <div class="action">
-                                                <div class="actions_inner">
-                                                    <ul class="add_to_links">
-                                                        <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                        <li><a class="wishlist" title="Xem giỏ hàng" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
-                                                        <li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
+                                @if ($number_of_products != 0)
+                                    @foreach ($products as $product)
+                                        <!-- Start Single Product -->
+                                        <div class="product product__style--3 col-lg-4 col-md-4 col-sm-6 col-12">
+                                            <div class="product__thumb">
+                                                <a class="first__img" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[0]->path }}" alt="product image"></a>
+                                                <a class="second__img animation1" href="{{ route('products.show', $product->id) }}"><img src="{{ $product->images[1]->path }}" alt="product image"></a>
+                                                {{-- <div class="hot__box">
+                                                    <span class="hot-label">BEST SALLER</span>
+                                                </div> --}}
+                                            </div>
+                                            <div class="product__content content--center">
+                                                <h4><a href="{{ route('products.show', $product->id) }}">{{ $product->name }}</a></h4>
+                                                <ul class="prize d-flex">
+                                                    <li>{{ number_format($product->price) }}đ</li>
+                                                    {{-- <li class="old_prize">$35.00</li> --}}
+                                                </ul>
+                                                <div class="action">
+                                                    <div class="actions_inner">
+                                                        <ul class="add_to_links">
+                                                            <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                            <li><a class="wishlist" title="Xem giỏ hàng" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
+                                                            <li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <div class="product__hover--content">
+                                                    <ul class="rating d-flex">
+                                                        @php ($max_star = 5)
+                                                        @for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
+                                                            <li class="on"><i class="fa fa-star-o"></i></li>
+                                                            @php ($max_star -= 1)
+                                                        @endfor
+                                                        @for ($i = 0; $i < $max_star; $i++)
+                                                            <li><i class="fa fa-star-o"></i></li>
+                                                        @endfor
                                                     </ul>
                                                 </div>
                                             </div>
-                                            <div class="product__hover--content">
-                                                <ul class="rating d-flex">
-                                                    @php ($max_star = 5)
-                                                    @for ($i = 0; $i < $product->comments->avg('averageRating'); $i++)
-                                                        <li class="on"><i class="fa fa-star-o"></i></li>
-                                                        @php ($max_star -= 1)
-                                                    @endfor
-                                                    @for ($i = 0; $i < $max_star; $i++)
-                                                        <li><i class="fa fa-star-o"></i></li>
-                                                    @endfor
-                                                </ul>
-                                            </div>
                                         </div>
-                                    </div>
-                                    <!-- End Single Product -->
-                                @endforeach
+                                        <!-- End Single Product -->
+                                    @endforeach
+                                @endif
                             </div>
                         </div>
                         <div class="shop-grid tab-pane fade" id="nav-list" role="tabpanel">

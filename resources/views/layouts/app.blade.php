@@ -67,6 +67,15 @@
     <script src="{{ asset('js/plugins.js') }}"></script>
     <script src="{{ asset('js/active.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
+    <script>
+        jQuery(document).ready(function($) {
+            $('#btn-search').on('click', function(event) {
+                event.preventDefault();
+                
+                $('#search_mini_form').submit();
+            });
+        });
+    </script>
 
     @yield('javascript')
 
