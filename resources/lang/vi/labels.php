@@ -40,6 +40,8 @@ return [
     'close'              => 'Đóng',
     'item'               => 'sản phẩm',
     'cart'               => 'Giỏ hàng',
+    'shop'               => 'Cửa hàng',
+    'search'             => 'Tìm kiếm',
     'account'            => [
         'login'                     => 'Đăng nhập',
         'register'                  => 'Đăng ký',

@@ -101,6 +101,9 @@ Route::get('account/addresses', 'UserController@addressById')->name('account.add
 Route::get('addresses/{address}/edit', 'UserController@edit')->name('address.edit');
 Route::put('addresses/{address}', 'UserController@update')->name('address.update');
 
+//Search
+Route::get('search', 'SearchController@index')->name('search');
+
 Route::get('cart', function() {
     return view('cart');
 })->name('cart');

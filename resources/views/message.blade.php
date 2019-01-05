@@ -31,13 +31,13 @@
                 <div class="col-lg-12">
                     <div class="error__inner text-center">
                         <div class="error__content">
-                            @if ($title)
+                            @if (!empty($title))
                                 <h2>{{ $title }}</h2>
                             @endif
-                            @if ($message)
+                            @if (!empty($message))
                                 <p>{{ $message }}</p>
                             @endif
-                            @if ($url)
+                            @if (!empty($url))
                                 <p>Nhấn vào <a style="text-decoration: underline;" href="{{ $url }}">đây</a> để quay lại.</p>
                             @endif
                         </div>

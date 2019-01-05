@@ -52,24 +52,21 @@ class ForgotPasswordController extends Controller
 
         $token = str_random(60);
 
-        $record = DB::table('password_resets')->where('email', $request->email)->first();
-
-        if ($record) {
-            // $record->destroy();
+        if (DB::table('password_resets')->where('email', $request->email)->first()) {
             DB::table('password_resets')->where('email', $request->email)->delete();
-        } else {
-            DB::table('password_resets')->insert([
-                'email' => $request->email,
-                'token' => $token,
-            ]);
         }
+
+        DB::table('password_resets')->insert([
+            'email'      => $request->email,
+            'token'      => $token,
+            'created_at' => now(),
+        ]);
 
         Mail::to($request->email)->send(new ForgotPasswordMail($token));
 
         return view('message', [
             'title'   => 'Đã gửi!',
             'message' => 'Hãy kiểm tra email của bạn để đặt lại mật khẩu',
-            'url'     => null,
         ]);
 
     }

@@ -1,1 +1,1 @@
-<h4>Đơn hàng của bạn đã hủy</h4>
+<h2>Bạn đã hủy dơn hàng với mã {{ $order->id }}</h2>
