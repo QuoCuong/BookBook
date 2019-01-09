@@ -32,7 +32,7 @@ class OrderController extends Controller
 
     public function listOrderByStatus($status)
     {
-        $orders = Order::where('status', $status)->orderBy('created_at')->paginate(8);
+        $orders = Order::where('status', $status)->orderBy('id')->paginate(8);
 
         return view('admin.orders.status', [
             'status' => $status,

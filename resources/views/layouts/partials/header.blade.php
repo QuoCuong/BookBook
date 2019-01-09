@@ -53,13 +53,13 @@
 									<span>0đ</span>
 								</div>
 								<div class="mini_action checkout">
-									<a class="checkout__btn" href="{{ route('checkout') }}">@lang('labels.checkout')</a>
+									<a class="checkout__btn" href="{{ route('cart.show_checkout_form') }}">@lang('labels.checkout')</a>
 								</div>
 								<div class="single__items">
 									<div class="miniproduct" style="height: 300px;"></div>
 								</div>
 								<div class="mini_action cart">
-									<a class="cart__btn" href="{{ route('cart') }}">@lang('labels.view_and_edit_cart')</a>
+									<a class="cart__btn" href="{{ route('cart.index') }}">@lang('labels.view_and_edit_cart')</a>
 								</div>
 							</div>
 						</div>

@@ -45,7 +45,7 @@ oth-page
                                 @endif
                             </div>
                             <div class="input__box">
-                                <label>@lang('labels.account.last_name')</label>
+                                <label>@lang('labels.account.last_name') <span>*</span></label>
                                 <input type="text" name="last_name" value="{{ old('last_name') }}">
                                 @if ($errors->has('last_name'))
                                 <div class="has-error">
@@ -54,7 +54,7 @@ oth-page
                                 @endif
                             </div>
                             <div class="input__box">
-                                <label>@lang('labels.account.first_name')</label>
+                                <label>@lang('labels.account.first_name') <span>*</span></label>
                                 <input type="text" name="first_name" value="{{ old('first_name') }}">
                                 @if ($errors->has('first_name'))
                                 <div class="has-error">
@@ -63,8 +63,8 @@ oth-page
                                 @endif
                             </div>
                             <div class="input__box">
-                                <label>@lang('labels.account.birthday') <span>*</span></label>
-                                <input id="datepicker" type="text" name="birthday" value="{{ old('birthday') }}">
+                                <label>@lang('labels.account.birthday')</label>
+                                <input id="datepicker" type="text" name="birthday" value="{{ old('birthday') }}" autocomplete="off">
                                 @if ($errors->has('birthday'))
                                 <div class="has-error">
                                     <i>{{ $errors->first('birthday') }}</i>

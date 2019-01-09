@@ -55,10 +55,6 @@ oth-page
                             </div>
                             <div class="form__btn">
                                 <button>@lang('labels.account.login')</button>
-                                <label class="label-for-checkbox">
-                                    <input class="input-checkbox" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                                    <span>Remember me</span>
-                                </label>
                             </div>
                             <a class="forget_pass" href="{{ route('password.request') }}">@lang('labels.account.forgot_password')?</a>
                         </div>

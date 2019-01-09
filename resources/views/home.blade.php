@@ -41,7 +41,7 @@
 									<div class="actions_inner">
 										<ul class="add_to_links">
 											<li><a title="Thêm vào giỏ" class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
-											<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
+											<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart.index') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
 											<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 										</ul>
 									</div>
@@ -127,7 +127,7 @@
 													<div class="actions_inner">
 														<ul class="add_to_links">
 															<li><a title="Thêm vào giỏ" class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
-															<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
+															<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart.index') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
 															<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 														</ul>
 													</div>
@@ -181,7 +181,7 @@
 							<div class="actions_inner">
 								<ul class="add_to_links">
 									<li><a title="Thêm vào giỏ" class="cart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
-									<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
+									<li><a title="Xem giỏ hàng" class="wishlist" href="{{ route('cart.index') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
 									<li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
 								</ul>
 							</div>

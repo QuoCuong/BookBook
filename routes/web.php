@@ -104,12 +104,10 @@ Route::put('addresses/{address}', 'UserController@update')->name('address.update
 //Search
 Route::get('search', 'SearchController@index')->name('search');
 
-Route::get('cart', function() {
-    return view('cart');
-})->name('cart');
+//Cart
+Route::get('cart', 'CartController@index')->name('cart.index');
+Route::get('cart/checkout', 'CartController@showCheckoutForm')->name('cart.show_checkout_form');
+Route::post('cart/checkout', 'CartController@checkout')->name('cart.checkout');
 
-Route::get('checkout', function() {
-    return view('checkout');
-})->name('checkout');
 
 Auth::routes();

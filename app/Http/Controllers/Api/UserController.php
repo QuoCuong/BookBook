@@ -1,12 +1,12 @@
 <?php
 
 namespace Book\Http\Controllers\Api;
-use Book\City;
-use Book\District;
-use Illuminate\Http\Request;
-use Book\Http\Controllers\Controller;
 
-class CityController extends Controller
+use Book\Http\Controllers\Controller;
+use Book\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,15 @@ class CityController extends Controller
         //
     }
 
-    public function listDistrictsById(City $city)
+    public function isEmailExists(Request $request)
     {
-        $districts = $city->districts;
-        
-        return response()->json($districts);
+        $email = $request->email;
+
+        if (empty(User::where('email', $email)->first())) {
+            return 'not exists';
+        }
+
+        return 'exists';
     }
 
     /**

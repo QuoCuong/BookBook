@@ -1,5 +1,5 @@
 <div class="brown--color box-search-content search_active block-bg close__top">
-	<form method="GET" action="{{ route('search') }}" id="search_mini_form" class="minisearch">
+	<form method="GET" action="{{ route('search') }}" id="search_mini_form" class="minisearch" autocomplete="off">
 		<div class="field__search">
 			<input type="text" name="q" placeholder="Tìm kiếm sản phẩm mong muốn...">
 			<div class="action">
