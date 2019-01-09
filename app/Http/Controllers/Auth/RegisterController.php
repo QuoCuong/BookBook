@@ -48,8 +48,11 @@ class RegisterController extends Controller
      */
     public function register(RegisterRequest $request)
     {
-        $data             = $request->all();
-        $data['birthday'] = convert_to_default_date_format($data['birthday']);
+        $data = $request->all();
+        
+        if (!empty($data['birthday'])) {
+            $data['birthday'] = convert_to_default_date_format($data['birthday']);
+        }
         $data['password'] = bcrypt($data['password']);
         $data['role_id']  = 2;
 

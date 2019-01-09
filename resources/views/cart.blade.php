@@ -33,49 +33,25 @@
                             <table>
                                 <thead>
                                     <tr class="title-top">
-                                        <th class="product-thumbnail">Image</th>
-                                        <th class="product-name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product-quantity">Quantity</th>
-                                        <th class="product-subtotal">Total</th>
-                                        <th class="product-remove">Remove</th>
+                                        <th class="product-thumbnail">@lang('labels.image')</th>
+                                        <th class="product-name">@lang('labels.product')</th>
+                                        <th class="product-price">@lang('labels.price')</th>
+                                        <th class="product-quantity">@lang('labels.quantity')</th>
+                                        <th class="product-subtotal">@lang('labels.subtotal')</th>
+                                        <th class="product-remove">@lang('labels.remove')</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/1.jpg" alt="product img"></a></td>
-                                        <td class="product-name"><a href="#">Natoque penatibus</a></td>
-                                        <td class="product-price"><span class="amount">$165.00</span></td>
-                                        <td class="product-quantity"><input type="number" value="1"></td>
-                                        <td class="product-subtotal">$165.00</td>
-                                        <td class="product-remove"><a href="#">X</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/2.jpg" alt="product img"></a></td>
-                                        <td class="product-name"><a href="#">Quisque fringilla</a></td>
-                                        <td class="product-price"><span class="amount">$50.00</span></td>
-                                        <td class="product-quantity"><input type="number" value="1"></td>
-                                        <td class="product-subtotal">$50.00</td>
-                                        <td class="product-remove"><a href="#">X</a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="product-thumbnail"><a href="#"><img src="images/product/sm-3/3.jpg" alt="product img"></a></td>
-                                        <td class="product-name"><a href="#">Vestibulum suscipit</a></td>
-                                        <td class="product-price"><span class="amount">$50.00</span></td>
-                                        <td class="product-quantity"><input type="number" value="1"></td>
-                                        <td class="product-subtotal">$50.00</td>
-                                        <td class="product-remove"><a href="#">X</a></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
                     </form>
                     <div class="cartbox__btn">
                         <ul class="cart__btn__list d-flex flex-wrap flex-md-nowrap flex-lg-nowrap justify-content-between">
-                            <li><a href="#">Coupon Code</a></li>
-                            <li><a href="#">Apply Code</a></li>
-                            <li><a href="#">Update Cart</a></li>
-                            <li><a href="#">Check Out</a></li>
+                            <li><a href="{{ route('home') }}">@lang('labels.continue_shopping')</a></li>
+                            <li><a href="#" class="delete-cart">@lang('labels.remove_cart')</a></li>
+                            <!-- <li><a href="#">@lang('labels.update_cart')</a></li> -->
+                            <li><a href="{{ route('cart.show_checkout_form') }}">@lang('labels.checkout')</a></li>
                         </ul>
                     </div>
                 </div>
@@ -83,19 +59,10 @@
             <div class="row">
                 <div class="col-lg-6 offset-lg-6">
                     <div class="cartbox__total__area">
-                        <div class="cartbox-total d-flex justify-content-between">
-                            <ul class="cart__total__list">
-                                <li>Cart total</li>
-                                <li>Sub Total</li>
-                            </ul>
-                            <ul class="cart__total__tk">
-                                <li>$70</li>
-                                <li>$70</li>
-                            </ul>
-                        </div>
+                        
                         <div class="cart__total__amount">
-                            <span>Grand Total</span>
-                            <span>$140</span>
+                            <span>@lang('labels.cart_subtotal')</span>
+                            <span class="cart_total"></span>
                         </div>
                     </div>
                 </div>
@@ -103,4 +70,10 @@
         </div>
     </div>
     <!-- cart-main-area end -->
+@endsection
+
+@section('javascript')
+
+    <script src="{{ asset('js/cart.js') }}"></script>
+
 @endsection

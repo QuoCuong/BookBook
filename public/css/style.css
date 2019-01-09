@@ -6585,6 +6585,9 @@ h3.widget-title-modal {
     font-size: 14px;
     margin: 0 0 10px;
 }
+.wn__checkout__form .input__box {
+    margin: 0 0 15px;
+}
 .wn__checkout__form .input__box label {
     margin-bottom: 5px;
     line-height: 2;
@@ -6595,7 +6598,7 @@ h3.widget-title-modal {
 .wn__checkout__form .input__box input {
     border: 1px solid #e1e1e1;
     height: 40px;
-    margin: 0 0 14px;
+/*    margin: 0 0 14px;*/
     max-width: 100%;
     padding: 0 0 0 10px;
     width: 370px;

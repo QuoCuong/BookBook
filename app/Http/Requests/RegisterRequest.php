@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'email'      => 'required|string|email|max:255|unique:users',
             'last_name'  => 'string|min:2|max:10',
             'first_name' => 'string|min:2|max:10',
-            'birthday'   => 'required|before:tomorrow',
+            'birthday'   => 'date_format:d/m/Y|before:tomorrow|nullable',
             'password'   => 'required|string|min:6|confirmed',
         ];
     }
@@ -50,7 +50,6 @@ class RegisterRequest extends FormRequest
             'first_name.min'     => 'Tên phải có ít nhất 2 ký tự',
             'first_name.max'     => 'Tên không được quá 10 ký tự',
             'first_name.string'  => '',
-            'birthday.required'  => 'Vui lòng chọn ngày sinh',
             'birthday.before'    => 'Ngày sinh không hợp lệ',
             'password.required'  => 'Vui lòng nhập mật khẩu',
             'password.min'       => 'Mật khẩu phải có ít nhất 6 ký tự',

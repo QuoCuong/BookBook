@@ -15,7 +15,7 @@
                         <nav class="bradcaump-content">
                             <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
                             <span class="brd-separetor">/</span>
-                            <a class="breadcrumb_item" href="{{ route('cart') }}">@lang('labels.cart')</a>
+                            <a class="breadcrumb_item" href="{{ route('cart.index') }}">@lang('labels.cart')</a>
                             <span class="brd-separetor">/</span>
                             <span class="breadcrumb_item active">@lang('labels.checkout')</span>
                         </nav>
@@ -31,273 +31,330 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="wn_checkout_wrap">
-                        <div class="checkout_info">
-                            <span>Returning customer ?</span>
-                            <a class="showlogin" href="#">Click here to login</a>
-                        </div>
-                        <div class="checkout_login">
-                            <form class="wn__checkout__form" action="#">
-                                <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new customer please proceed to the Billing & Shipping section.</p>
-
-                                <div class="input__box">
-                                    <label>Username or email <span>*</span></label>
-                                    <input type="text">
-                                </div>
-
-                                <div class="input__box">
-                                    <label>password <span>*</span></label>
-                                    <input type="password">
-                                </div>
-                                <div class="form__btn">
-                                    <button>Login</button>
-                                    <label class="label-for-checkbox">
-                                        <input id="rememberme" name="rememberme" value="forever" type="checkbox">
-                                        <span>Remember me</span>
-                                    </label>
-                                    <a href="#">Lost your password?</a>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="checkout_info">
-                            <span>Have a coupon? </span>
-                            <a class="showcoupon" href="#">Click here to enter your code</a>
-                        </div>
-                        <div class="checkout_coupon">
-                            <form action="#">
-                                <div class="form__coupon">
-                                    <input type="text" placeholder="Coupon code">
-                                    <button>Apply coupon</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6 col-12">
-                    <div class="customer_details">
-                        <h3>Billing details</h3>
-                        <div class="customar__field">
-                            <div class="margin_between">
-                                <div class="input_box space_between">
-                                    <label>First name <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input_box space_between">
-                                    <label>last name <span>*</span></label>
-                                    <input type="text">
-                                </div>
+                        @guest
+                            <div class="checkout_info">
+                                <span>@lang('labels.already_a_member')?</span>
+                                <a class="showlogin" href="#">@lang('labels.click_here_to_login')</a>
                             </div>
-                            <div class="input_box">
-                                <label>Company name <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="input_box">
-                                <label>Country<span>*</span></label>
-                                <select class="select__option">
-                                    <option>Select a country…</option>
-                                    <option>Afghanistan</option>
-                                    <option>American Samoa</option>
-                                    <option>Anguilla</option>
-                                    <option>American Samoa</option>
-                                    <option>Antarctica</option>
-                                    <option>Antigua and Barbuda</option>
-                                </select>
-                            </div>
-                            <div class="input_box">
-                                <label>Address <span>*</span></label>
-                                <input type="text" placeholder="Street address">
-                            </div>
-                            <div class="input_box">
-                                <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-                            </div>
-                            <div class="input_box">
-                                <label>District<span>*</span></label>
-                                <select class="select__option">
-                                    <option>Select a country…</option>
-                                    <option>Afghanistan</option>
-                                    <option>American Samoa</option>
-                                    <option>Anguilla</option>
-                                    <option>American Samoa</option>
-                                    <option>Antarctica</option>
-                                    <option>Antigua and Barbuda</option>
-                                </select>
-                            </div>
-                            <div class="input_box">
-                                <label>Postcode / ZIP <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="margin_between">
-                                <div class="input_box space_between">
-                                    <label>Phone <span>*</span></label>
-                                    <input type="text">
-                                </div>
-
-                                <div class="input_box space_between">
-                                    <label>Email address <span>*</span></label>
-                                    <input type="email">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="create__account">
-                            <div class="wn__accountbox">
-                                <input class="input-checkbox" name="createaccount" value="1" type="checkbox">
-                                <span>Create an account ?</span>
-                            </div>
-                            <div class="account__field">
-                                <form action="#">
-                                    <label>Account password <span>*</span></label>
-                                    <input type="text" placeholder="password">
+                            <div class="checkout_login">
+                                <form class="wn__checkout__form" method="POST" action="{{ route('login') }}">
+                                    @csrf
+                                    <div class="input__box">
+                                        <label>@lang('labels.account.email_address') <span style="color: red;">*</span></label>
+                                        <input type="text" name="email" value="{{ old('email') }}">
+                                        @if ($errors->has('email'))
+                                        <div class="has-error">
+                                            <i>{{ $errors->first('email') }}</i>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <div class="input__box">
+                                        <label>@lang('labels.account.password')<span style="color: red;">*</span></label>
+                                        <input type="password" name="password">
+                                        @if ($errors->has('password'))
+                                        <div class="has-error">
+                                            <i>{{ $errors->first('password') }}</i>
+                                        </div>
+                                        @endif
+                                    </div>
+                                    <div class="form__btn">
+                                        <button>@lang('labels.account.login')</button>
+                                        <a class="forget_pass" href="{{ route('password.request') }}">@lang('labels.account.forgot_password')?</a>
+                                    </div>
                                 </form>
                             </div>
-                        </div>
+                        @endguest
                     </div>
-                    <div class="customer_details mt--20">
-                        <div class="differt__address">
-                            <input name="ship_to_different_address" value="1" type="checkbox">
-                            <span>Ship to a different address ?</span>
-                        </div>
-                        <div class="customar__field differt__form mt--40">
-                            <div class="margin_between">
-                                <div class="input_box space_between">
-                                    <label>First name <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input_box space_between">
-                                    <label>last name <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                            </div>
-                            <div class="input_box">
-                                <label>Company name <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="input_box">
-                                <label>Country<span>*</span></label>
-                                <select class="select__option">
-                                    <option>Select a country…</option>
-                                    <option>Afghanistan</option>
-                                    <option>American Samoa</option>
-                                    <option>Anguilla</option>
-                                    <option>American Samoa</option>
-                                    <option>Antarctica</option>
-                                    <option>Antigua and Barbuda</option>
-                                </select>
-                            </div>
-                            <div class="input_box">
-                                <label>Address <span>*</span></label>
-                                <input type="text" placeholder="Street address">
-                            </div>
-                            <div class="input_box">
-                                <input type="text" placeholder="Apartment, suite, unit etc. (optional)">
-                            </div>
-                            <div class="input_box">
-                                <label>District<span>*</span></label>
-                                <select class="select__option">
-                                    <option>Select a country…</option>
-                                    <option>Afghanistan</option>
-                                    <option>American Samoa</option>
-                                    <option>Anguilla</option>
-                                    <option>American Samoa</option>
-                                    <option>Antarctica</option>
-                                    <option>Antigua and Barbuda</option>
-                                </select>
-                            </div>
-                            <div class="input_box">
-                                <label>Postcode / ZIP <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="margin_between">
-                                <div class="input_box space_between">
-                                    <label>Phone <span>*</span></label>
-                                    <input type="text">
-                                </div>
-                                <div class="input_box space_between">
-                                    <label>Email address <span>*</span></label>
-                                    <input type="email">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
-                    <div class="wn__order__box">
-                        <h3 class="onder__title">Your order</h3>
-                        <ul class="order__total">
-                            <li>Product</li>
-                            <li>Total</li>
-                        </ul>
-                        <ul class="order_product">
-                            <li>Buscipit at magna × 1<span>$48.00</span></li>
-                            <li>Buscipit at magna × 1<span>$48.00</span></li>
-                            <li>Buscipit at magna × 1<span>$48.00</span></li>
-                            <li>Buscipit at magna × 1<span>$48.00</span></li>
-                        </ul>
-                        <ul class="shipping__method">
-                            <li>Cart Subtotal <span>$48.00</span></li>
-                            <li>Shipping
-                                <ul>
-                                    <li>
-                                        <input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
-                                        <label>Flat Rate: $48.00</label>
-                                    </li>
-                                    <li>
-                                        <input name="shipping_method[0]" data-index="0" value="legacy_flat_rate" checked="checked" type="radio">
-                                        <label>Flat Rate: $48.00</label>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <ul class="total__amount">
-                            <li>Order Total <span>$223.00</span></li>
-                        </ul>
-                    </div>
-                    <div id="accordion" class="checkout_accordion mt--30" role="tablist">
-                        <div class="payment">
-                            <div class="che__header" role="tab" id="headingOne">
-                                  <a class="checkout__title" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    <span>Direct Bank Transfer</span>
-                                  </a>
-                            </div>
-                            <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
-                                <div class="payment-body">Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</div>
-                            </div>
-                        </div>
-                        <div class="payment">
-                            <div class="che__header" role="tab" id="headingTwo">
-                                  <a class="collapsed checkout__title" data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    <span>Cheque Payment</span>
-                                  </a>
-                            </div>
-                            <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo" data-parent="#accordion">
-                                  <div class="payment-body">Please send your cheque to Store Name, Store Street, Store Town, Store State / County, Store Postcode.</div>
-                            </div>
-                        </div>
-                        <div class="payment">
-                            <div class="che__header" role="tab" id="headingThree">
-                                  <a class="collapsed checkout__title" data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                    <span>Cash on Delivery</span>
-                                  </a>
-                            </div>
-                            <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree" data-parent="#accordion">
-                                  <div class="payment-body">Pay with cash upon delivery.</div>
-                            </div>
-                        </div>
-                        <div class="payment">
-                            <div class="che__header" role="tab" id="headingFour">
-                                  <a class="collapsed checkout__title" data-toggle="collapse" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                    <span>PayPal <img src="images/icons/payment.png" alt="payment images"> </span>
-                                  </a>
-                            </div>
-                            <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour" data-parent="#accordion">
-                                  <div class="payment-body">Pay with cash upon delivery.</div>
-                            </div>
-                        </div>
-                    </div>
-
                 </div>
             </div>
+            <form method="POST" action="{{ route('cart.checkout') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-6 col-12">
+                        @guest
+                            <div class="customer_details">
+                                <h3>@lang('labels.details_infomation')</h3>
+                                <div class="customar__field">
+                                    <div class="margin_between">
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.account.last_name') <span>*</span></label>
+                                            <input type="text" name="last_name" value="{{ old('last_name') }}">
+                                            @if ($errors->has('last_name'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('last_name') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.account.first_name') <span>*</span></label>
+                                            <input type="text" name="first_name" value="{{ old('first_name') }}">
+                                            @if ($errors->has('first_name'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('first_name') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.account.email_address') <span>*</span></label>
+                                        <input class="input-email" type="text" name="email" value="{{ old('email') }}">
+                                        @if ($errors->has('email'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('email') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="margin_between">
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.city') <span>*</span></label>
+                                            <select class="select__option" name="city_id">
+                                                <option>Vui lòng chọn…</option>
+                                                @foreach($cities as $city)
+                                                    @if ($city->id == old('city_id'))
+                                                        <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                                                    @else
+                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('city_id'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('city_id') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.district') <span>*</span></label>
+                                            <select class="select__option" name="district_id">
+                                                <option>Vui lòng chọn…</option>
+                                            </select>
+                                            @if ($errors->has('district_id'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('district_id') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.address') <span>*</span></label>
+                                        <input type="text" name="address" value="{{ old('address') }}">
+                                        @if ($errors->has('address'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('address') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.phone') <span>*</span></label>
+                                        <input type="text" name="phone" value="{{ old('phone') }}">
+                                        @if ($errors->has('phone'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('phone') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.account.password') <span>*</span></label>
+                                        <input type="password" name="password">
+                                        @if ($errors->has('password'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('password') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class="customer_details">
+                                <h3>@lang('labels.details_infomation')</h3>
+                                <div class="customar__field">
+                                    <div class="customar__field">
+                                        <div class="input_box">
+                                            <label>@lang('labels.address') <span>*</span></label>
+                                            <select class="select__option" name="address_id">
+                                                @foreach($addresses as $address)
+                                                    @if ($address->id == old('address_id'))
+                                                        <option value="{{ $address->id }}" selected>{{ $address->last_name . ' ' . $address->first_name . ', ' . $address->address . ', ' . $address->district->name . ', ' . $address->city->name }}</option>
+                                                    @else
+                                                        <option value="{{ $address->id }}">{{ $address->last_name . ' ' . $address->first_name . ', ' . $address->address . ', ' . $address->district->name . ', ' . $address->city->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                                @if (old('address_id') === "0")
+                                                    <option value="0" selected>Địa chỉ mới</option>
+                                                @else
+                                                    <option value="0">Địa chỉ mới</option>
+                                                @endif
+                                            </select>
+                                            @if ($errors->has('address_id'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('address_id') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="customer_details mt--20">
+                                <div class="customar__field differt__form mt--40">
+                                    <h3>@lang('labels.new_address')</h3>
+                                    <div class="margin_between">
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.account.last_name') <span>*</span></label>
+                                            <input type="text" name="last_name" value="{{ old('last_name') }}">
+                                            @if ($errors->has('last_name'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('last_name') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.account.first_name') <span>*</span></label>
+                                            <input type="text" name="first_name" value="{{ old('first_name') }}">
+                                            @if ($errors->has('first_name'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('first_name') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="margin_between">
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.city') <span>*</span></label>
+                                            <select class="select__option" name="city_id">
+                                                <option>Vui lòng chọn…</option>
+                                                @foreach($cities as $city)
+                                                    @if ($city->id == old('city_id'))
+                                                        <option value="{{ $city->id }}" selected>{{ $city->name }}</option>
+                                                    @else
+                                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('city_id'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('city_id') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                        <div class="input_box space_between">
+                                            <label>@lang('labels.district') <span>*</span></label>
+                                            <select class="select__option" name="district_id">
+                                                <option>Vui lòng chọn…</option>
+                                            </select>
+                                            @if ($errors->has('district_id'))
+                                                <div class="has-error">
+                                                    <i>{{ $errors->first('district_id') }}</i>
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.address') <span>*</span></label>
+                                        <input type="text" name="address" value="{{ old('address') }}">
+                                        @if ($errors->has('address'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('address') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                    <div class="input_box">
+                                        <label>@lang('labels.phone') <span>*</span></label>
+                                        <input type="text" name="phone" value="{{ old('phone') }}">
+                                        @if ($errors->has('phone'))
+                                            <div class="has-error">
+                                                <i>{{ $errors->first('phone') }}</i>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endguest
+                    </div>
+                    <div class="col-lg-6 col-12 md-mt-40 sm-mt-40">
+                        <div class="wn__order__box">
+                            <h3 class="onder__title">@lang('labels.your_order')</h3>
+                            <ul class="order__total">
+                                <li>@lang('labels.product')</li>
+                                <li>@lang('labels.subtotal')</li>
+                            </ul>
+                            <ul class="order_product"></ul>
+                            <ul class="shipping__method">
+                                <li>@lang('labels.cart_subtotal') <span class="cart_subtotal"></span></li>
+                            </ul>
+                            <ul class="total__amount">
+                                <li>@lang('labels.order_total') <span class="cart_total"></span></li>
+                            </ul>
+                        </div>
+                        <div id="accordion" class="checkout_accordion mt--30" role="tablist">
+                            <button class="btn-checkout">@lang('labels.order_confirmation')</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
     <!-- End Checkout Area -->
+@endsection
+
+@section('javascript')
+
+    <script src="{{ asset('js/checkout.js') }}"></script>
+
+    <script>
+        jQuery(document).ready(function($) {
+            var city = $('select[name="city_id"]');
+            var address = $('select[name="address_id"]');
+
+            if ($.isNumeric(city.val())) {
+                districts = '<option>Vui lòng chọn...</option>';
+
+                $.ajax({
+                    url: '/api/v1/cities/' + city.val() + '/districts',
+                    type: 'GET',
+                    success: function(response) {
+                        $.each(response, function(index, value) {
+                            districts += '<option value="' + value['id'] + '">' + value['name'] + '</option>'
+                        });
+
+                        $('select[name="district_id"]').html(districts);
+                    }
+                });
+            }
+
+            if (address.val() == 0) {
+                $('.differt__form').slideToggle().remove('style');
+            }
+
+            city.on('change', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+
+                districts = '<option>Vui lòng chọn...</option>';
+
+                if ($.isNumeric($(this).val())) {
+                    $.ajax({
+                        url: '/api/v1/cities/' + $(this).val() + '/districts',
+                        type: 'GET',
+                        success: function(response) {
+                            $.each(response, function(index, value) {
+                                districts += '<option value="' + value['id'] + '">' + value['name'] + '</option>'
+                            });
+
+                            $('select[name="district_id"]').html(districts);
+                        }
+                    });
+                } else {
+                    $('select[name="district_id"]').html(districts);
+                }
+            });
+
+            address.on('change', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+
+                $('.differt__form').slideToggle().remove('style');
+            });
+        });
+    </script>
+
 @endsection

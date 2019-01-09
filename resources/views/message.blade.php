@@ -38,7 +38,16 @@
                                 <p>{{ $message }}</p>
                             @endif
                             @if (!empty($url))
-                                <p>Nhấn vào <a style="text-decoration: underline;" href="{{ $url }}">đây</a> để quay lại.</p>
+                                <p>Nhấn <a style="text-decoration: underline;" href="{{ $url }}">vào đây</a> để tiếp tục.</p>
+                            @endif
+                            @if (!empty($type))
+                                @if ($type == 'order success')
+                                    <script>
+                                        localStorage.cart = JSON.stringify([]);
+
+                                        updateMinicart();
+                                    </script>
+                                @endif
                             @endif
                         </div>
                     </div>

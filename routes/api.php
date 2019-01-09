@@ -30,5 +30,8 @@ Route::group([
     //District
     Route::get('cities/{city}/districts','CityController@listDistrictsById')->name('cities.list_districts_by_id');
 
+    //User
+    Route::post('user/is_email_exists', 'UserController@isEmailExists');
+
 });
 
