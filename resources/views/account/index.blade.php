@@ -85,8 +85,15 @@
                                                     @foreach ($orders as $order)
                                                     <tr>
                                                         <td class="text-center">{{ $order->date }}</td>
-                                                        <td class="text-center">{{ $order->total }}</td>
-                                                        <td class="text-center">{{ $order->status }}</td>
+                                                        <td class="text-center">{{ number_format($order->total) }} đ</td>
+                                                        @if($order->status == 'approved')
+                                                        <td class="text-center"><span class="text-success">{{ $order->status }} </span></td>
+                                                        @elseif($order->status == 'cancelled')
+                                                        <td class="text-center"><span class="text-danger">{{ $order->status }} </span></td>
+                                                        @else 
+                                                        <td class="text-center"><span class="text-info">{{ $order->status }}  <a href="{{ route('account.order.cannel',['id'=>$order->id])}}" class="btn btn-outline-danger">Hủy đơn hàng</a></span></td>
+                                                        
+		                                                @endif
                                                     
                                                     </tr>
                                                     @endforeach

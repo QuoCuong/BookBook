@@ -102,7 +102,7 @@ class UserController extends Controller
         $user->update($data);
         Session::flash('success','Cập nhật thành công!');
 
-        return redirect()->route('admin.user.index');
+        return redirect()->route('admin.user.indexuser');
     }
 
     /**
@@ -124,5 +124,6 @@ class UserController extends Controller
         $user = User::where('last_name', 'like', '%'.$req->key.'%')->get();
                             
         return view('admin.users.search',compact('user'));
+        
     }
 }

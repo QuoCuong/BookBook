@@ -73,7 +73,7 @@
 
                                                         <a class="btn btn-xs btn-default" href="{{ route('admin.user.edit', ['id' => $user->id ]) }}" type="button" data-toggle="tooltip" title="Chỉnh sửa"><i class="ion-edit"></i></a>
                                                         
-                                                        <form method="POST"  class="frdelete" action="{{ route('admin.user.delete', ['id' => $user->id ])}}"" style="display: inline;">
+                                                        <form method="POST"  class="frdelete" action="{{ route('admin.user.delete', ['id' => $user->id ])}}" style="display: inline;">
                                                           @csrf
                                                           @method('DELETE')
                                                           <button type="button" class="btn btn-xs btn-default btdelete"><i class="ion-close"></i></button>
@@ -134,7 +134,7 @@
 
     $('.btdelete').on('click', function(){
 
-      if(confirm('Ban co chac muon xoa')){
+      if(confirm('Bạn có chắc muốn xóa')){
         $(this).parent().submit();
       }
     });

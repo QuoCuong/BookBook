@@ -8,8 +8,7 @@ use Book\Order;
 use Book\Address;
 use Book\City;
 use Book\District;
-
-use Auth;
+use Illuminate\Support\Facades\Auth;
 
 
 class UserController extends Controller
@@ -47,6 +46,14 @@ class UserController extends Controller
         return view('account.index', compact('user' ,'orders','addresses'));
         
     }
+    
+    public function editOrderStatusById(Order $order){
+        // dd($orders);
+        $order->status = 'cancelled';
+        $order->save();
+        return redirect()->back();
+
+    }
     public function addressById(User $user , Address $addresses )
     {
         $user = Auth::user();
@@ -57,15 +64,29 @@ class UserController extends Controller
         return view('account.addresses', compact('user' ,'addresses'));
         
     }
+    // public function destroyAddressById($id)
+    // {
+    //         $address = Address::find($id);
+    //         $address->delete();
+    //     return redirect()->back();
+    // }
 
+    public function destroyAddressById(Address $address)
+    {
+        // dd($address);
+        $address->delete();
+        return redirect()->back();
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createNewAddress()
     {
-        //
+        $cities = City::pluck('name','id');  
+        $districts = District::pluck('name', 'id');
+        return view('account.create',compact('cities','districts'));
     }
 
     /**
@@ -76,7 +97,9 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::user();
+
+        $user->addresses()->create($request->all());
     }
 
     /**
@@ -118,6 +141,7 @@ class UserController extends Controller
 
         return redirect()->route('account.addresses');
     }
+
 
     /**
      * Remove the specified resource from storage.

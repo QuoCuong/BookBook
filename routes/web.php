@@ -100,6 +100,10 @@ Route::get('account', 'UserController@contactById')->name('account.index');
 Route::get('account/addresses', 'UserController@addressById')->name('account.addresses');
 Route::get('addresses/{address}/edit', 'UserController@edit')->name('address.edit');
 Route::put('addresses/{address}', 'UserController@update')->name('address.update');
+Route::get('account/orders/{order}/cancel', 'UserController@editOrderStatusById')->name('account.order.cannel');
+Route::get('account/address/create', 'UserController@createNewAddress')->name('account.address.create');
+Route::post('account/address','UserController@store')->name('account.address.store');
+Route::delete('account/addresses/{address}', 'UserController@destroyAddressById')->name('account.address.delete');
 
 //Search
 Route::get('search', 'SearchController@index')->name('search');

@@ -89,7 +89,7 @@ class ProductController extends Controller
 
                 $data_product_image = [
                 'name'       => $request->name_image,
-                'path'      => 'storage/' . $name,
+                'path'      => '/storage/' . $name,
                 'product_id' => $product_id,
                 ];
                 Image::create($data_product_image); 
