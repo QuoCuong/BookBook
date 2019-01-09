@@ -322,7 +322,7 @@
             }
 
             if (address.val() == 0) {
-                $('.differt__form').slideToggle().remove('style');
+                $('.differt__form').slideToggle();
             }
 
             city.on('change', function(event) {
@@ -352,7 +352,13 @@
                 event.preventDefault();
                 /* Act on the event */
 
-                $('.differt__form').slideToggle().remove('style');
+                if ($(this).val() == 0) {
+                    $('.differt__form').slideToggle();
+                } else {
+                    if ($('.differt__form').css('display') == 'block') {
+                        $('.differt__form').slideToggle();
+                    }
+                }
             });
         });
     </script>
