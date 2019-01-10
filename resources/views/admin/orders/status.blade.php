@@ -61,7 +61,7 @@
         				        </tbody>
         			        </table>
         			        <div class="text-center">
-        			        	{{ $orders->links() }}
+        			        	{{ $orders->appends(\Request::all())->links() }}
         			        </div>
                     	</div>
                     </div>
@@ -106,7 +106,7 @@
                                 </tbody>
                             </table>
                             <div class="text-center">
-                                {{ $orders->links() }}
+                                {{ $orders->appends(\Request::all())->links() }}
                             </div>
                         </div>
                     </div>
@@ -142,7 +142,7 @@
                                 </tbody>
                             </table>
                             <div class="text-center">
-                                {{ $orders->links() }}
+                                {{ $orders->appends(\Request::all())->links() }}
                             </div>
                         </div>
                     </div>
@@ -188,7 +188,7 @@
                                 </tbody>
                             </table>
                             <div class="text-center">
-                                {{ $orders->links() }}
+                                {{ $orders->appends(\Request::all())->links() }}
                             </div>
                         </div>
                     </div>

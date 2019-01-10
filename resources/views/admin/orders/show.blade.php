@@ -20,21 +20,21 @@
     <div class="container-fluid p-y-md">
     	<div style="margin-bottom: 20px;">
             @if ($order->status == 'pending')
-                <a href="{{ route('admin.orders.status', 'pending') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đang chờ xử lý</a>
+                <a href="{{ route('admin.orders.index') }}?status=pending" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đang chờ xử lý</a>
                 <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
                 </form>
                 <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'approved')
-                <a href="{{ route('admin.orders.status', 'approved') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã duyệt</a>
+                <a href="{{ route('admin.orders.index') }}?status=approved" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã duyệt</a>
                 <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
                 </form>
                 <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'complete')
-                <a href="{{ route('admin.orders.status', 'complete') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Hoàn tất</a>
+                <a href="{{ route('admin.orders.index') }}?status=complete" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Hoàn tất</a>
             @else
-                <a href="{{ route('admin.orders.status', 'cancelled') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã hủy</a>
+                <a href="{{ route('admin.orders.index') }}?status=cancelled" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã hủy</a>
             @endif
     	</div>
         <div class="progress active">
