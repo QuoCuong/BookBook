@@ -4,6 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Book\Product::class, function (Faker $faker) {
     return [
+        'code'        => $faker->isbn13,
         'name'        => $faker->name,
         'description' => $faker->paragraph(6),
         'quantity'    => $faker->numberBetween(20, 200),

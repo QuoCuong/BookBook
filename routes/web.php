@@ -58,8 +58,7 @@ Route::group([
 	//Order
     Route::get('orders', 'OrderController@index')->name('orders.index');
     Route::get('orders/{order}', 'OrderController@show')->name('orders.show');
-    Route::get('orders/status/{status}', 'OrderController@listOrderByStatus')->name('orders.status');
-    Route::post('orders/{order}/{status}', 'OrderController@updateStatus')->name('orders.update.status');
+    Route::put('orders/{order}/status', 'OrderController@updateStatus')->name('orders.update.status');
     Route::delete('orders/{order}', 'OrderController@destroy')->name('orders.delete');
 
 	//Comment

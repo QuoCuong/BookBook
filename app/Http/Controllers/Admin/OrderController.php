@@ -13,31 +13,34 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $numberOfOrders          = Order::count();
-        $numberOfPendingOrders   = Order::where('status', 'pending')->count();
-        $numberOfApprovedOrders  = Order::where('status', 'approved')->count();
-        $numberOfCompleteOrders  = Order::where('status', 'complete')->count();
-        $numberOfCancelledOrders = Order::where('status', 'cancelled')->count();
+        $status = $request->status;
 
-        return view('admin.orders.index', [
-            'numberOfOrders'          => $numberOfOrders,
-            'numberOfPendingOrders'   => $numberOfPendingOrders,
-            'numberOfApprovedOrders'  => $numberOfApprovedOrders,
-            'numberOfCompleteOrders'  => $numberOfCompleteOrders,
-            'numberOfCancelledOrders' => $numberOfCancelledOrders,
-        ]);
-    }
+        if ($status) {
 
-    public function listOrderByStatus($status)
-    {
-        $orders = Order::where('status', $status)->orderBy('id')->paginate(8);
+            $orders = Order::where('status', $status)->orderBy('id')->paginate(8);
 
-        return view('admin.orders.status', [
-            'status' => $status,
-            'orders' => $orders,
-        ]);
+            return view('admin.orders.status', [
+                'status' => $status,
+                'orders' => $orders,
+            ]);
+        } else {
+
+            $numberOfOrders          = Order::count();
+            $numberOfPendingOrders   = Order::where('status', 'pending')->count();
+            $numberOfApprovedOrders  = Order::where('status', 'approved')->count();
+            $numberOfCompleteOrders  = Order::where('status', 'complete')->count();
+            $numberOfCancelledOrders = Order::where('status', 'cancelled')->count();
+
+            return view('admin.orders.index', [
+                'numberOfOrders'          => $numberOfOrders,
+                'numberOfPendingOrders'   => $numberOfPendingOrders,
+                'numberOfApprovedOrders'  => $numberOfApprovedOrders,
+                'numberOfCompleteOrders'  => $numberOfCompleteOrders,
+                'numberOfCancelledOrders' => $numberOfCancelledOrders,
+            ]);
+        }
     }
 
     /**
@@ -99,9 +102,9 @@ class OrderController extends Controller
         //
     }
 
-    public function updateStatus(Order $order, $status)
+    public function updateStatus(Request $request, Order $order)
     {
-        $order->status = $status;
+        $order->status = $request->status;
         $order->save();
 
         return redirect()->back();
