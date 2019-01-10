@@ -111,7 +111,7 @@ function updateMinicart() {
                         '</div>' +
                         '<div class="content">' +
                             '<h6><a href="/products/' + item['id'] + '">' + item['name'] + '</a></h6>' +
-                            '<span class="prize">' + item['price'].format() + '</span>' +
+                            '<span class="prize">' + item['price'].format() + 'đ</span>' +
                             '<div class="product_prize d-flex justify-content-between">' +
                                 '<span class="qun">Số lượng: ' + item['quantity'] + '</span>' +
                                 '<ul class="d-flex justify-content-end">' +
