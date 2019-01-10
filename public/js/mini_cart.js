@@ -32,17 +32,24 @@ jQuery().ready(function ($) {
             image: image
         };
 
-        //add the first item to the cart if the cart is empty
         if (isEmptyCart()) {
-            addToCart(item);
+            if (isGreaterThan10(quantity) || isSmallerThan1(quantity)) {
+                alert('Số lượng tối thiểu có thể mua: 1\nSố lượng tối đa có thể mua: 10');
+            } else {
+                addToCart(item);
+            }
         } else {
             if (isItemExists(id)) {
-                if (!increaseItemQuantity(id)) {
-                    alert('Số lượng tối đa được phép mua: 10');
+                if (!increaseItemQuantity(id, quantity)) {
+                    alert('Số lượng tối thiểu có thể mua: 1\nSố lượng tối đa có thể mua: 10');
                 }
             }
             else {
-                addToCart(item);
+                if (isGreaterThan10(quantity) || isSmallerThan1(quantity)) {
+                    alert('Số lượng tối thiểu có thể mua: 1\nSố lượng tối đa có thể mua: 10');
+                } else {
+                    addToCart(item);
+                }
             }
         }
 
@@ -91,6 +98,7 @@ function updateMinicart() {
         shopcart.find('.single__items > .miniproduct').css({
             height: 0
         });
+        shopcart.find('.single__items > p').remove();
         shopcart.find('.single__items').append('<p>Chưa có sản phẩm nào trong giỏ hàng của bạn.</p>');
         shopcart.find('.checkout').hide();
         shopcart.find('.cart').hide();
@@ -147,10 +155,10 @@ function isItemExists(id) {
     return false;
 }
 
-function increaseItemQuantity(id) {
+function increaseItemQuantity(id, quantity) {
     for(i = 0; i < cart.length; i++) {
         if (cart[i]['id'] == id) {
-            update_quantity = cart[i]['quantity'] + 1;
+            update_quantity = cart[i]['quantity'] + parseInt(quantity);
             
             if (isGreaterThan10(update_quantity) || isSmallerThan1(update_quantity)) {
                 return false;

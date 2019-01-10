@@ -20,18 +20,6 @@
             </div>
 
             <div class="collapse navbar-collapse" id="header-navbar-collapse">
-                <!-- Header search form -->
-                <form class="navbar-form navbar-left app-search-form" role="search" method="get" action="">
-                    <div class="form-group">
-                        <div class="input-group">
-                            <input class="form-control" type="search" id="search-input" name="key" placeholder="Tìm kiếm..." />
-                            <span class="input-group-btn">
-                				<button class="btn" type="button"><i class="ion-ios-search-strong"></i></button>
-                			</span>
-                        </div>
-                    </div>
-                </form> 
-                
                 <!-- .navbar-left -->
 
                 <ul class="nav navbar-nav navbar-right navbar-toolbar hidden-sm hidden-xs">

@@ -27,7 +27,7 @@
         <!-- Page Content -->
         <div class="container-fluid p-y-md">
             <div style="margin-bottom: 20px;">
-                <a href="{{ route('admin.comments.index') }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Bình luận</a>
+                <a href="{{ url()->previous() }}" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Quay lại</a>
             </div>
             <div class="row">
                 <div class="col-md-4">

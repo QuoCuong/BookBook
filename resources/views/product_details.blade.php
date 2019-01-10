@@ -61,7 +61,7 @@
                                         <span>@lang('labels.quantity')</span>
                                         <input id="qty" class="input-text qty" name="qty" min="1" max="10" value="1" title="Qty" type="number">
                                         <div class="addtocart__actions">
-                                            <button class="tocart"  type="submit" title="Add to Cart">@lang('labels.add_to_cart')</button>
+                                            <button class="tocart add-to-cart" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" type="submit" title="Add to Cart">@lang('labels.add_to_cart')</button>
                                         </div>
                                     </div>
                                     <div class="product_meta">
@@ -87,7 +87,7 @@
                                         <tbody>
                                             <tr>
                                                 <td>Mã sản phẩm</td>
-                                                <td>{{ $product->id }}</td>
+                                                <td>{{ $product->code }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Tác giả</td>
@@ -276,8 +276,8 @@
                                             <div class="action">
                                                 <div class="actions_inner">
                                                     <ul class="add_to_links">
-                                                        <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="cart.html"><i class="bi bi-shopping-bag4"></i></a></li>
-                                                        <li><a class="wishlist" title="Xem giỏ hàng" href="wishlist.html"><i class="bi bi-shopping-cart-full"></i></a></li>
+                                                        <li><a class="cart add-to-cart" title="Thêm vào giỏ" data-id="{{ $product->id }}" data-name="{{ $product->name }}" data-quantity="1" data-price="{{ $product->price }}" data-image="{{ $product->images[0]->path }}" href="#"><i class="bi bi-shopping-bag4"></i></a></li>
+                                                        <li><a class="wishlist" title="Xem giỏ hàng" href="{{ route('cart.index') }}"><i class="bi bi-shopping-cart-full"></i></a></li>
                                                         <li><a data-toggle="modal" title="Xem nhanh" class="quickview modal-view detail-link" href="#{{ strtolower(remove_special_characters($product->name)) }}"><i class="bi bi-search"></i></a></li>
                                                     </ul>
                                                 </div>
@@ -426,6 +426,13 @@
                 $(this).parent().children().last().attr({
                     value: number_of_stars
                 });
+            });
+
+            $('input.qty').on('change', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+
+                $(this).parent().find('.add-to-cart').attr('data-quantity', $(this).val());
             });
         });
     </script>

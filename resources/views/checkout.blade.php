@@ -166,7 +166,7 @@
                             </div>
                         @else
                             <div class="customer_details">
-                                <h3>@lang('labels.details_infomation')</h3>
+                                <h3>@lang('labels.select_address_or_enter_new_address')</h3>
                                 <div class="customar__field">
                                     <div class="customar__field">
                                         <div class="input_box">
@@ -194,7 +194,40 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="customer_details mt--20">
+                            <div class="customer_details mt--20 address-wrapper">
+                                @foreach ($addresses as $address)
+                                    <div class="customar__field address-{{ $address->id }} mt--40" style="display: none;">
+                                        <h3>@lang('labels.address')</h3>
+                                        <div class="margin_between">
+                                            <div class="input_box space_between">
+                                                <label>@lang('labels.account.last_name')</label>
+                                                <input type="text" value="{{ $address->last_name }}" disabled>
+                                            </div>
+                                            <div class="input_box space_between">
+                                                <label>@lang('labels.account.first_name')</label>
+                                                <input type="text" value="{{ $address->first_name }}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="margin_between">
+                                            <div class="input_box space_between">
+                                                <label>@lang('labels.city')</label>
+                                                <input type="text" value="{{ $address->city->name }}" disabled>
+                                            </div>
+                                            <div class="input_box space_between">
+                                                <label>@lang('labels.district')</label>
+                                                <input type="text" value="{{ $address->district->name }}" disabled>
+                                            </div>
+                                        </div>
+                                        <div class="input_box">
+                                            <label>@lang('labels.address')</label>
+                                            <input type="text" value="{{ $address->address }}" disabled>
+                                        </div>
+                                        <div class="input_box">
+                                            <label>@lang('labels.phone')</label>
+                                            <input type="text" value="{{ $address->phone }}" disabled>
+                                        </div>
+                                    </div>
+                                @endforeach
                                 <div class="customar__field differt__form mt--40">
                                     <h3>@lang('labels.new_address')</h3>
                                     <div class="margin_between">
@@ -321,10 +354,6 @@
                 });
             }
 
-            if (address.val() == 0) {
-                $('.differt__form').slideToggle();
-            }
-
             city.on('change', function(event) {
                 event.preventDefault();
                 /* Act on the event */
@@ -348,16 +377,22 @@
                 }
             });
 
+            if (address.val() == 0) {
+                $('.differt__form').slideToggle(200);
+            } else {
+                $('.address-' + address.val()).slideToggle(200);
+            }
+
             address.on('change', function(event) {
                 event.preventDefault();
                 /* Act on the event */
 
                 if ($(this).val() == 0) {
-                    $('.differt__form').slideToggle();
+                    $('.address-wrapper').children().slideUp(200);
+                    $('.differt__form').delay(200).slideDown(200);
                 } else {
-                    if ($('.differt__form').css('display') == 'block') {
-                        $('.differt__form').slideToggle();
-                    }
+                    $('.address-wrapper').children().slideUp(200);
+                    $('.address-' + $(this).val()).delay(200).slideDown(200);
                 }
             });
         });

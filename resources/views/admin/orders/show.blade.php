@@ -21,14 +21,18 @@
     	<div style="margin-bottom: 20px;">
             @if ($order->status == 'pending')
                 <a href="{{ route('admin.orders.index') }}?status=pending" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đang chờ xử lý</a>
-                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
+                <form method="POST" action="{{ route('admin.orders.update.status', $order->id) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" name="status" value="cancelled">
                 </form>
                 <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'approved')
                 <a href="{{ route('admin.orders.index') }}?status=approved" class="btn btn-app-light"><i class="ion-ios-arrow-back"></i> Đã duyệt</a>
-                <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
+                <form method="POST" action="{{ route('admin.orders.update.status', $order->id) }}" id="order-cancelled-form" style="display: inline;">
                     @csrf
+                    @method('PUT')
+                    <input type="hidden" name="status" value="cancelled">
                 </form>
                 <button class="btn btn-app-red pull-right" id="btn-delete">Hủy đơn</button>
             @elseif ($order->status == 'complete')

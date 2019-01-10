@@ -102,9 +102,9 @@ class OrderController extends Controller
         //
     }
 
-    public function updateStatus(Order $order, $status)
+    public function updateStatus(Request $request, Order $order)
     {
-        $order->status = $status;
+        $order->status = $request->status;
         $order->save();
 
         return redirect()->back();

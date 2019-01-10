@@ -50,8 +50,10 @@
         				        			<td class="text-right">{{ number_format($order->total) }}đ</td>
         				        			<td class="text-center">
                                                 <div class="btn-group">
-                                                    <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
+                                                    <form method="POST" action="{{ route('admin.orders.update.status', $order->id) }}" id="order-cancelled-form" style="display: inline;">
                                                     	@csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="cancelled">
                                                     </form>
                                                     <button class="btn btn-xs btn-default" id="btn-delete" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
                                                 </div>
@@ -95,8 +97,10 @@
                                             <td class="text-right">{{ number_format($order->total) }}đ</td>
                                             <td class="text-center">
                                                 <div class="btn-group">
-                                                    <form method="POST" action="{{ route('admin.orders.update.status', [$order->id, 'cancelled']) }}" id="order-cancelled-form" style="display: inline;">
+                                                    <form method="POST" action="{{ route('admin.orders.update.status', $order->id) }}" id="order-cancelled-form" style="display: inline;">
                                                         @csrf
+                                                        @method('PUT')
+                                                        <input type="hidden" name="status" value="cancelled">
                                                     </form>
                                                     <button class="btn btn-xs btn-default" id="btn-delete" data-toggle="tooltip" title="" data-original-title="Hủy đơn hàng"><i class="ion-close"></i></button>
                                                 </div>
