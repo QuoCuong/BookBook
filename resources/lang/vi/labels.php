@@ -49,6 +49,7 @@ return [
     'order_total'                         => 'Tổng đơn hàng',
     'already_a_member'                    => 'Bạn đã là thành viên',
     'click_here_to_login'                 => 'Nhấn vào đây để đăng nhập',
+    'details_infomation'                  => 'Thông tin chi tiết',
     'select_address_or_enter_new_address' => 'Chọn địa chỉ từ Sổ địa chỉ hoặc nhập địa chỉ mới',
     'city'                                => 'Thành phố',
     'district'                            => 'Quận/Huyện',

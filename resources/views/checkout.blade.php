@@ -170,7 +170,6 @@
                                 <div class="customar__field">
                                     <div class="customar__field">
                                         <div class="input_box">
-                                            <label>@lang('labels.address') <span>*</span></label>
                                             <select class="select__option" name="address_id">
                                                 @foreach($addresses as $address)
                                                     @if ($address->id == old('address_id'))

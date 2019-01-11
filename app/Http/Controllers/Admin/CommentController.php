@@ -16,12 +16,24 @@ class CommentController extends Controller
      */
     public function index(Request $request)
     {
+        $q        = $request->q;
         $rating   = $request->rating ?? 5;
         $order_by = $request->order_by ?? 'desc';
 
-        $comments = Comment::where('rating_quality', $rating)
-            ->orWhere('rating_price', $rating)
-            ->orWhere('rating_value', $rating);
+        if ($q) {
+            $comments = Comment::with('product')->whereHas('product', function ($query) use ($q) {
+                $query->where('name', 'like', '%' . $q . '%')
+                    ->orWhere('id', $q);
+            })->where(function ($query) use ($rating) {
+                $query->where('rating_quality', $rating)
+                    ->orWhere('rating_price', $rating)
+                    ->orWhere('rating_value', $rating);
+            });
+        } else {
+            $comments = Comment::where('rating_quality', $rating)
+                ->orWhere('rating_price', $rating)
+                ->orWhere('rating_value', $rating);
+        }
 
         switch ($order_by) {
             case 'desc':
@@ -39,6 +51,7 @@ class CommentController extends Controller
 
         return view('admin.comments.index', [
             'comments' => $comments,
+            'q'        => $q,
             'rating'   => $rating,
             'order_by' => $order_by,
         ]);
