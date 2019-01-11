@@ -26,61 +26,134 @@
 
         <!-- Page Content -->
         <div class="container-fluid p-y-md">
-            <div class="input-group pull-left" style="margin-bottom: 20px;">
-                <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
-                    @switch($rating)
-                        @case('5')
-                            <option value="?rating=5" selected>Đánh giá 5 Sao</option>
-                            <option value="?rating=4">Đánh giá 4 Sao</option>
-                            <option value="?rating=3">Đánh giá 3 Sao</option>
-                            <option value="?rating=2">Đánh giá 2 Sao</option>
-                            <option value="?rating=1">Đánh giá 1 Sao</option>
-                            @break
-                        @case('4')
-                            <option value="?rating=5">Đánh giá 5 Sao</option>
-                            <option value="?rating=4" selected>Đánh giá 4 Sao</option>
-                            <option value="?rating=3">Đánh giá 3 Sao</option>
-                            <option value="?rating=2">Đánh giá 2 Sao</option>
-                            <option value="?rating=1">Đánh giá 1 Sao</option>
-                            @break
-                        @case('3')
-                            <option value="?rating=5">Đánh giá 5 Sao</option>
-                            <option value="?rating=4">Đánh giá 4 Sao</option>
-                            <option value="?rating=3" selected>Đánh giá 3 Sao</option>
-                            <option value="?rating=2">Đánh giá 2 Sao</option>
-                            <option value="?rating=1">Đánh giá 1 Sao</option>
-                            @break
-                        @case('2')
-                            <option value="?rating=5">Đánh giá 5 Sao</option>
-                            <option value="?rating=4">Đánh giá 4 Sao</option>
-                            <option value="?rating=3">Đánh giá 3 Sao</option>
-                            <option value="?rating=2" selected>Đánh giá 2 Sao</option>
-                            <option value="?rating=1">Đánh giá 1 Sao</option>
-                            @break
-                        @case('1')
-                            <option value="?rating=5">Đánh giá 5 Sao</option>
-                            <option value="?rating=4">Đánh giá 4 Sao</option>
-                            <option value="?rating=3">Đánh giá 3 Sao</option>
-                            <option value="?rating=2">Đánh giá 2 Sao</option>
-                            <option value="?rating=1" selected>Đánh giá 1 Sao</option>
-                            @break
-                    @endswitch
-                </select>
-            </div>
-            <div class="input-group pull-left" style="margin-left: 5px; margin-bottom: 20px;">
-                <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
-                    @switch($order_by)
-                        @case('desc')
-                            <option value="?rating={{ $rating }}&order_by=desc" selected>Mới nhất</option>
-                            <option value="?rating={{ $rating }}&order_by=asc">Cũ nhất</option>
-                            @break
-                        @case('asc')
-                            <option value="?rating={{ $rating }}&order_by=desc">Mới nhất</option>
-                            <option value="?rating={{ $rating }}&order_by=asc" selected>Cũ nhất</option>
-                            @break
-                    @endswitch
-                </select>
-            </div>
+            @if (!empty($q))
+                <div class="input-group pull-left" style="margin-bottom: 20px;">
+                    <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                        @switch($rating)
+                            @case('5')
+                                <option value="?rating=5&q={{ $q }}" selected>Đánh giá 5 Sao</option>
+                                <option value="?rating=4&q={{ $q }}">Đánh giá 4 Sao</option>
+                                <option value="?rating=3&q={{ $q }}">Đánh giá 3 Sao</option>
+                                <option value="?rating=2&q={{ $q }}">Đánh giá 2 Sao</option>
+                                <option value="?rating=1&q={{ $q }}">Đánh giá 1 Sao</option>
+                                @break
+                            @case('4')
+                                <option value="?rating=5&q={{ $q }}">Đánh giá 5 Sao</option>
+                                <option value="?rating=4&q={{ $q }}" selected>Đánh giá 4 Sao</option>
+                                <option value="?rating=3&q={{ $q }}">Đánh giá 3 Sao</option>
+                                <option value="?rating=2&q={{ $q }}">Đánh giá 2 Sao</option>
+                                <option value="?rating=1&q={{ $q }}">Đánh giá 1 Sao</option>
+                                @break
+                            @case('3')
+                                <option value="?rating=5&q={{ $q }}">Đánh giá 5 Sao</option>
+                                <option value="?rating=4&q={{ $q }}">Đánh giá 4 Sao</option>
+                                <option value="?rating=3&q={{ $q }}" selected>Đánh giá 3 Sao</option>
+                                <option value="?rating=2&q={{ $q }}">Đánh giá 2 Sao</option>
+                                <option value="?rating=1&q={{ $q }}">Đánh giá 1 Sao</option>
+                                @break
+                            @case('2')
+                                <option value="?rating=5&q={{ $q }}">Đánh giá 5 Sao</option>
+                                <option value="?rating=4&q={{ $q }}">Đánh giá 4 Sao</option>
+                                <option value="?rating=3&q={{ $q }}">Đánh giá 3 Sao</option>
+                                <option value="?rating=2&q={{ $q }}" selected>Đánh giá 2 Sao</option>
+                                <option value="?rating=1&q={{ $q }}">Đánh giá 1 Sao</option>
+                                @break
+                            @case('1')
+                                <option value="?rating=5&q={{ $q }}">Đánh giá 5 Sao</option>
+                                <option value="?rating=4&q={{ $q }}">Đánh giá 4 Sao</option>
+                                <option value="?rating=3&q={{ $q }}">Đánh giá 3 Sao</option>
+                                <option value="?rating=2&q={{ $q }}">Đánh giá 2 Sao</option>
+                                <option value="?rating=1&q={{ $q }}" selected>Đánh giá 1 Sao</option>
+                                @break
+                        @endswitch
+                    </select>
+                </div>
+                <div class="input-group pull-left" style="margin-left: 5px; margin-bottom: 20px;">
+                    <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                        @switch($order_by)
+                            @case('desc')
+                                <option value="?rating={{ $rating }}&order_by=desc&q={{ $q }}" selected>Mới nhất</option>
+                                <option value="?rating={{ $rating }}&order_by=asc&q={{ $q }}">Cũ nhất</option>
+                                @break
+                            @case('asc')
+                                <option value="?rating={{ $rating }}&order_by=desc&q={{ $q }}">Mới nhất</option>
+                                <option value="?rating={{ $rating }}&order_by=asc&q={{ $q }}" selected>Cũ nhất</option>
+                                @break
+                        @endswitch
+                    </select>
+                </div>
+            @else
+                <div class="input-group pull-left" style="margin-bottom: 20px;">
+                    <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                        @switch($rating)
+                            @case('5')
+                                <option value="?rating=5" selected>Đánh giá 5 Sao</option>
+                                <option value="?rating=4">Đánh giá 4 Sao</option>
+                                <option value="?rating=3">Đánh giá 3 Sao</option>
+                                <option value="?rating=2">Đánh giá 2 Sao</option>
+                                <option value="?rating=1">Đánh giá 1 Sao</option>
+                                @break
+                            @case('4')
+                                <option value="?rating=5">Đánh giá 5 Sao</option>
+                                <option value="?rating=4" selected>Đánh giá 4 Sao</option>
+                                <option value="?rating=3">Đánh giá 3 Sao</option>
+                                <option value="?rating=2">Đánh giá 2 Sao</option>
+                                <option value="?rating=1">Đánh giá 1 Sao</option>
+                                @break
+                            @case('3')
+                                <option value="?rating=5">Đánh giá 5 Sao</option>
+                                <option value="?rating=4">Đánh giá 4 Sao</option>
+                                <option value="?rating=3" selected>Đánh giá 3 Sao</option>
+                                <option value="?rating=2">Đánh giá 2 Sao</option>
+                                <option value="?rating=1">Đánh giá 1 Sao</option>
+                                @break
+                            @case('2')
+                                <option value="?rating=5">Đánh giá 5 Sao</option>
+                                <option value="?rating=4">Đánh giá 4 Sao</option>
+                                <option value="?rating=3">Đánh giá 3 Sao</option>
+                                <option value="?rating=2" selected>Đánh giá 2 Sao</option>
+                                <option value="?rating=1">Đánh giá 1 Sao</option>
+                                @break
+                            @case('1')
+                                <option value="?rating=5">Đánh giá 5 Sao</option>
+                                <option value="?rating=4">Đánh giá 4 Sao</option>
+                                <option value="?rating=3">Đánh giá 3 Sao</option>
+                                <option value="?rating=2">Đánh giá 2 Sao</option>
+                                <option value="?rating=1" selected>Đánh giá 1 Sao</option>
+                                @break
+                        @endswitch
+                    </select>
+                </div>
+                <div class="input-group pull-left" style="margin-left: 5px; margin-bottom: 20px;">
+                    <select class="form-control" style="display: inline;" onchange="window.location = this.value;">
+                        @switch($order_by)
+                            @case('desc')
+                                <option value="?rating={{ $rating }}&order_by=desc" selected>Mới nhất</option>
+                                <option value="?rating={{ $rating }}&order_by=asc">Cũ nhất</option>
+                                @break
+                            @case('asc')
+                                <option value="?rating={{ $rating }}&order_by=desc">Mới nhất</option>
+                                <option value="?rating={{ $rating }}&order_by=asc" selected>Cũ nhất</option>
+                                @break
+                        @endswitch
+                    </select>
+                </div>
+            @endif
+            <form method="GET" action="">
+                <div class="input-group pull-right" style="margin-left: 5px; margin-bottom: 20px;">
+                    <input class="form-control" type="submit" value="Lọc">
+                </div>
+                <div class="input-group pull-right" style="margin-left: 5px; margin-bottom: 20px;">
+                    @if (!empty($q))
+                        <input class="form-control" name="q" value="{{ $q }}" style="display: inline;">
+                    @else
+                        <input class="form-control" name="q" style="display: inline;">
+                    @endif
+                </div>
+                <div class="input-group pull-right" style="margin-top: 10px; margin-bottom: 20px;">
+                    <label for="">Sản phẩm</label>
+                </div>
+            </form>
             <div class="clearfix"></div>
         	<div class="card">
         		<div class="card-header bg-purple bg-inverse">
@@ -94,7 +167,7 @@
                                 <th class="w-15">Người bình luận</th>
                                 <th class="w-10">Biệt danh</th>
                                 <th>Sản phẩm</th>
-                                <th class="w-15">Đánh giá</th>
+                                <th class="w-15">Chất lượng</th>
                                 <th class="w-15">Giá</th>
                                 <th class="w-15">Giá trị</th>
                             </tr>
