@@ -29,5 +29,13 @@ class ImageFormRequest extends FormRequest
 
         ];
     }
+    public function messages()
+    {
+        return[
+            'name.required' => 'Tên hình ảnh không được để trống!',
+            'image.required'    => 'File hình ảnh không được để trống!',
+            'image.image'   => 'Không phải định dạng hình ảnh!'
+        ];
+    }
 }
 

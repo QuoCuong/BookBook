@@ -31,8 +31,8 @@ Route::group([
     Route::get('products/create', 'ProductController@create')->name('product.create');
     Route::post('products', 'ProductController@store')->name('product.store');
     Route::delete('products/{id}', 'ProductController@destroy')->name('product.destroy');
-    Route::get('products/{id}/edit', 'ProductController@edit')->name('product.edit');
-    Route::post('products/{id}/update', 'ProductController@update')->name('product.update');
+    Route::get('products/{product}/edit', 'ProductController@edit')->name('products.edit');
+    Route::put('products/{product}', 'ProductController@update')->name('products.update');
     Route::get('products/{product}/detail', 'ProductController@detailProductId')->name('product.detail');
 
     //Manger Image
