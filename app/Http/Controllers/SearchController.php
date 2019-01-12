@@ -22,7 +22,7 @@ class SearchController extends Controller
 
         $keyword = $request->q;
 
-        $products = Product::where('name', 'like', '%' . $keyword . '%')->orWhere('id', $keyword);
+        $products = Product::where('name', 'like', '%' . $keyword . '%')->orWhere('code', $keyword);
 
         if ($filter_price) {
             //remove spaces and character 'đ'
