@@ -15,8 +15,9 @@
       <div class="card">
         <div class="card-header">Chỉnh sửa sách</div>
           <div class="card-body">
-            <form action="{{ route('admin.product.update', ['id' => $product->id ]) }}" method="post">
+            <form action="{{ route('admin.products.update', $product->id)}}" method="POST">
              @csrf
+             @method('PUT')
               <div class="container mt-3">
                 <fieldset class="form-group">
                    <label>Name</label>
@@ -49,7 +50,7 @@
               </div>
 
               <div class="form-group">
-                <button class="form-control btn btn-success">Save Product</button>
+                <button class="form-control btn btn-success" type="submit">Save Product</button>
               </div>
           </form>
         </div>

@@ -74,7 +74,7 @@
             <td style="text-align: center;">{{ $product->price }}</td>
             <td style="text-align: center;">{{ $product->category_id }}</td>
             <td>
-              <a href="{{ route('admin.product.edit', ['id' => $product->id ]) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
+              <a href="{{ route('admin.products.edit',  $product->id ) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
               </a>
            
               <form method="POST" action="{{ route('admin.product.destroy', ['id' => $product->id ])}}" style="display: inline;" >

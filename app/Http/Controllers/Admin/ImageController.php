@@ -96,26 +96,21 @@ class ImageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-
-        ]);
 
         $image = Image::find($id);
 
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = $file->getClientOriginalName();
-            $file->move(public_path() . '/public/storage/', $name);
-            
+            $imageName = $request->image;
+            $imageName_new_name =  time().$imageName->getClientOriginalName();
+            $imageName->move('/storage/',$imageName_new_name);
+            $imageName = '/storage/'.$imageName_new_name;
 
-            $image->name       = $request->name;
-            $image->path       = 'public/storage/' . $name;
-            $image->product_id = $request->product_id;
-
-            $image->save();
-
+            $image->path = $imageName;
         }
+
+        $image->name = $request->name;
+        $image->product_id = $request->product_id;
+        $image->save();
         Session::flash('success','cập nhật thành công thành công!');
 
         return redirect()->route('admin.image.index');

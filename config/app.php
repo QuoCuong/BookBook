@@ -225,6 +225,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Input' => Illuminate\Support\Facades\Input::class,
 
+
     ],
 
 ];

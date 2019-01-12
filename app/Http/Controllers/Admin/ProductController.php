@@ -10,6 +10,7 @@ use Book\ProductDetail;
 use Book\Image;
 use Illuminate\Http\Request;
 use Session;
+use Faker\Generator as Faker;
 
 class ProductController extends Controller
 {
@@ -39,11 +40,11 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create( Faker $code)
     {
-
+        $faker       = $code->isbn13;
         $categories = Category::where('parent_id', '!=', null)->pluck('name', 'id');
-        return view('admin.products.create', compact('categories'));
+        return view('admin.products.create', compact('categories','faker'));
     }
 
     /**
@@ -54,15 +55,17 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        $faker = \Faker\Factory::create();
 
-         $data_product = [
+        $data_product = [
+            'code'        => $faker->isbn13,
             'name'        => $request->name_product,
             'description' => $request->description,
             'quantity'    => $request->quantity,
             'price'       => $request->price,
             'category_id' => $request->category_id,
         ];
-        /*dd($data_product);*/
+        // dd($data_product);
         $product_id = Product::create($data_product)->id;
 
         $data_product_detail = [
@@ -135,17 +138,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Product $product)
     {
-        $product = Product::find($id);
-
-        $product->name        = $request->name;
-        $product->description = $request->description;
-        $product->quantity    = $request->quantity;
-        $product->price       = $request->price;
-        $product->category_id = $request->category_id;
-        $product->save();
-
+        $data = $request->all();
+        $product->update($data);
         Session::flash('success','Cập nhật thành công!');
 
         return redirect()->route('admin.products.index');

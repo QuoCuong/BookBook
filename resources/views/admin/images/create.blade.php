@@ -24,18 +24,18 @@
     <div class="container">
 
       <div class="card">
-        <div class="card-header">tạo mới hình sách</div>
+        <div class="card-header">Tạo mới hình sách</div>
         <div class="card-body">
           <form action="{{route('admin.image.store')}}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="container mt-3">
               <fieldset class="form-group">
-                <label>Name</label>
+                <label>Tên hình ảnh <span class="text-red">*</span></label>
                 <input type="text" class="form-control" id="name" placeholder="Mời bạn nhập tên" name="name">
                 <p class="meserr">{{ $errors->first('name')}}</p>
               </fieldset>
               <fieldset class="form-group">
-                <label for="image">Image</label>
+                <label for="image">File hình ảnh <span class="text-red">*</span></label>
                 <input type="file" name="image" class="form-control" multiple>
                 <p class="meserr">{{ $errors->first('image')}}</p>
               </fieldset>

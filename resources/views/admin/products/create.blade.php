@@ -31,27 +31,27 @@
                         <div class="card-block">
                           <div class="container mt-3">
                             <fieldset class="form-group">
-                              <label>Name <span class="text-blue">*</span></label>
-                                <input type="text" class="form-control" id="name_product" placeholder="Mời bạn nhập tên" name="name_product">
+                              <label>Tên Sách <span class="text-red">*</span></label>
+                                <input type="text" class="form-control" id="name_product" placeholder="Mời bạn nhập tên sách" name="name_product">
                                 <p class="meserr">{{ $errors->first('name_product') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Description <span class="text-blue">*</span></label>
+                              <label>Mô tả <span class="text-red">*</span></label>
                               <textarea class="form-control" rows="5" id="description" name="description"></textarea>
                               <p class="meserr">{{ $errors->first('description') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Quantity <span class="text-blue">*</span></label>
+                              <label>Số lượng <span class="text-red">*</span></label>
                               <input type="number" name="quantity" class="form-control">
                               <p class="meserr">{{ $errors->first('quantity') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Price <span class="text-blue">*</span></label>
+                              <label>Giá  <span class="text-red">*</span></label>
                               <input type="number" name="price" class="form-control">
                               <p class="meserr">{{ $errors->first('price') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label for="formGroupExampleInput">Category_id</label>
+                              <label for="formGroupExampleInput">Thuộc loại</label>
                               <select class="form-control" name="category_id">
                               @foreach ($categories as $key => $value)
                               <option value="{{ $key }}">{{ $value }}</option>
@@ -67,19 +67,19 @@
                      <!--  Inline Form -->
                       <div class="card">
                        <div class="card-header">
-                         <h4>Image Product</h4>
+                         <h4>Tạo hình ảnh </h4>
                        </div>
                        <div class="card-block card-block-full">
                          <div class="container mt-3">
                            <fieldset class="form-group">
-                           <label>Name</label>
-                           <input type="text" class="form-control" id="name_image" placeholder="Mời bạn nhập tên" name="name_image">
+                           <label>Tên hình ảnh <span class="text-red">*</span></label>
+                           <input type="text" class="form-control" id="name_image" placeholder="Mời bạn nhập tên hình" name="name_image">
                            <p class="meserr">{{ $errors->first('name_image')}}</p>
                            </fieldset>
                            <fieldset class="form-group">
-                           <label for="image">Image</label>
+                           <label for="image">Hình ảnh sách</label>
                            <input type="file" name="images[]" multiple class="form-control" style="height: 45px">
-                           <p class="meserr">{{ $errors->first('path')}}</p>
+                           <p class="meserr">{{ $errors->first('images')}}</p>
                            </fieldset>
                          </div>
                        </div>
@@ -92,42 +92,42 @@
                       <!-- Normal Form -->
                       <div class="card">
                         <div class="card-header">
-                          <h4>Product Detail</h4>
+                          <h4>Chi tiết sách</h4>
                         </div>
                         <div class="card-block">
                         <div class="container mt-3">
                             <fieldset class="form-group">
-                              <label>Author<span class="text-blue">*</span></label>
+                              <label>Tác giả <span class="text-red">*</span></label>
                               <input type="text" class="form-control" id="author" placeholder="Mời bạn nhập tên tác giả" name="author">
                               <p class="meserr">{{ $errors->first('author') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Publisher <span class="text-blue">*</span></label>
+                              <label>Nhà xuất bản <span class="text-red">*</span></label>
                               <input type="text" class="form-control" id="publisher" placeholder="Mời bạn nhập Nhà xuất bản" name="publisher">
                               <p class="meserr">{{ $errors->first('publisher') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Publish-Year <span class="text-blue">*</span></label>
+                              <label>Năm xuất bản <span class="text-red">*</span></label>
                               <input type="year" name="publish_year" class="form-control">
                               <p class="meserr">{{ $errors->first('publish_year') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Weight<span class="text-blue">*</span></label>
+                              <label>Trọng lượng<span class="text-red">*</span></label>
                               <input type="number" name="weight" class="form-control">
                               <p class="meserr">{{ $errors->first('weight') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Size<span class="text-blue">*</span></label>
-                              <input type="text" name="size" class="form-control">
+                              <label>Khổ giấy<span class="text-red">*</span></label>
+                              <input type="text" name="size" class="form-control" placeholder="VD: 850x45">
                               <p class="meserr">{{ $errors->first('size') }}</p>
                             </fieldset>
                             <fieldset class="form-group">           
-                              <label>Number_Of_Page<span class="text-blue">*</span></label>
+                              <label>Số trang<span class="text-red">*</span></label>
                               <input type="number" name="number_of_page" class="form-control">
                               <p class="meserr">{{ $errors->first('number_of_page') }}</p>
                             </fieldset>
                             <fieldset class="form-group">
-                              <label>Cover<span class="text-blue">*</span></label>
+                              <label>Chất liệu<span class="text-red">*</span></label>
                               <input type="text" name="cover" class="form-control">
                               <p class="meserr">{{ $errors->first('cover') }}</p>
                             </fieldset>
