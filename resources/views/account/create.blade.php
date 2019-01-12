@@ -48,9 +48,9 @@
                     <div class="detailAccount bg_w">
                         
                         <div class="accountNewoder">
-                            <form action="{{route('account.address.store')}}" method="post">
+                            <form action="{{route('account.address.storeNewAddress')}}" method="post">
                                 @csrf
-                               
+                                
                                  <div class="container mt-3">
                                      <div class="row">
                                         <div class="col-sm-6">
@@ -94,7 +94,7 @@
                                  </div>
                    
                                  <div class="form-group">
-                                   <button class="form-control btn btn-success">Them moi</button>
+                                   <button class="form-control btn btn-success">Thêm mới</button>
                                  </div>
                              </form>
                         </div>

@@ -95,11 +95,13 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function storeNewAddress(Request $request)
     {
         $user = Auth::user();
-
         $user->addresses()->create($request->all());
+
+        return redirect()->route('account.addresses');
+        
     }
 
     /**
