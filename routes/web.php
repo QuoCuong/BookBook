@@ -72,10 +72,11 @@ Route::group([
     Route::get('users/user', 'UserController@indexUser')->name('user.indexuser');
     Route::get('user/create', 'UserController@create')->name('user.create');
     Route::post('users', 'UserController@store')->name('user.store');
-    Route::get('users/{id}/edit', 'UserController@edit')->name('user.edit');
-    Route::post('users/{id}', 'UserController@update')->name('user.update');
+    Route::get('users/{user}/edit', 'UserController@edit')->name('user.edit');
+    Route::post('users/{user}', 'UserController@update')->name('user.update');
     Route::delete('users/{id}', 'UserController@destroy')->name('user.delete');
     Route::get('users/{user}/list_oder', 'UserController@listOrderById')->name('user.list_order');
+
 
     //Search
     Route::get('search/orders', 'SearchController@searchOrder')->name('search.orders');
@@ -101,8 +102,9 @@ Route::get('addresses/{address}/edit', 'UserController@edit')->name('address.edi
 Route::put('addresses/{address}', 'UserController@update')->name('address.update');
 Route::get('account/orders/{order}/cancel', 'UserController@editOrderStatusById')->name('account.order.cannel');
 Route::get('account/address/create', 'UserController@createNewAddress')->name('account.address.create');
-Route::post('account/address','UserController@store')->name('account.address.store');
+Route::post('account/addresses','UserController@storeNewAddress')->name('account.address.storeNewAddress');
 Route::delete('account/addresses/{address}', 'UserController@destroyAddressById')->name('account.address.delete');
+
 
 //Search
 Route::get('search', 'SearchController@index')->name('search');
