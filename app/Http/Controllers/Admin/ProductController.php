@@ -40,9 +40,8 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create( Faker $code)
+    public function create()
     {
-        $faker       = $code->isbn13;
         $categories = Category::where('parent_id', '!=', null)->pluck('name', 'id');
         return view('admin.products.create', compact('categories','faker'));
     }

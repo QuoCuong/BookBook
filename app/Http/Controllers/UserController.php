@@ -9,6 +9,7 @@ use Book\Address;
 use Book\City;
 use Book\District;
 use Illuminate\Support\Facades\Auth;
+use Book\Http\Requests\ProfileRequest;
 
 
 class UserController extends Controller
@@ -95,7 +96,7 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeNewAddress(Request $request)
+    public function storeNewAddress(ProfileRequest $request)
     {
         $user = Auth::user();
         $user->addresses()->create($request->all());
