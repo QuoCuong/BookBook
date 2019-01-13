@@ -29,8 +29,8 @@ class Address extends Model
         return $this->belongsTo('Book\District');
     }
 
-    public function order()
+    public function orders()
     {
-        return $this->hasOne('Book\Order');
+        return $this->hasMany('Book\Order');
     }
 }
