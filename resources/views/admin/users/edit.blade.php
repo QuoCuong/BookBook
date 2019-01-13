@@ -35,7 +35,7 @@
                         <input type="text" class="form-control" id="email" name="email" value="{{$user->email}}" />
                       </div>
                       <div class="col-xs-6">
-                        <input type="hidden" hidden class="form-control" id="password" name="password" value="{{$user->password}}" />
+                        {{-- <input type="hidden" hidden class="form-control" id="password" name="password" value="{{$user->password}}" /> --}}
                       </div>
                     </div>
                     <div class="form-group row">
