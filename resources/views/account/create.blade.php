@@ -57,22 +57,26 @@
                                                 <fieldset class="form-group">
                                                     <label>First Name</label>
                                                     <input type="text" class="form-control" name="first_name" id="first_name" value="" name="first_name">
+                                                    <p class="has-error">{{ $errors->first('first_name') }}</p>
                                                 </fieldset>
                                         </div>
                                         <div class="col-sm-6">
                                                 <fieldset class="form-group">
                                                     <label>Last Name</label>
                                                     <input type="text" class="form-control" name="last_name" id="last_name" value="" name="last_name">
+                                                    <p class="has-error" >{{ $errors->first('last_name') }}</p>
                                                 </fieldset>
                                         </div>
                                     </div>
                                    <fieldset class="form-group">            
                                      <label>Số điện thoại:</label>
-                                    <input type="number" value="" name="phone" class="form-control">   
+                                    <input type="number" value="" name="phone" class="form-control"> 
+                                    <p class="has-error">{{ $errors->first('phone') }}</p>  
                                    </fieldset>
                                    <fieldset class="form-group">
                                      <label>Địa chỉ cụ thể: </label>
-                                    <input type="text" name="address" value="" class="form-control">                    
+                                    <input type="text" name="address" value="" class="form-control">  
+                                    <p class="has-error">{{ $errors->first('address') }}</p>                  
                                    </fieldset>
                                         <input type="number" value="" name="user_id" class="form-control" hidden>   
                                    <fieldset class="form-group">
