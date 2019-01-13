@@ -44,7 +44,7 @@
         				        	@foreach ($orders as $order)
         				        		<tr class="pointer order" href="{{ route('admin.orders.show', $order->id) }}">
         				        			<td class="text-center">{{ $order->id }}</td>
-        				        			<td>{{ date_format($order->created_at, 'd/m/Y H:i:s') }}</td>
+        				        			<td>{{ date('d/m/Y H:i:s', strtotime($order->date)) }}</td>
         				        			<td>{{ $order->user->last_name . ' ' . $order->user->first_name }}</td>
         				        			<td>{{ $order->address->address }}</td>
         				        			<td class="text-right">{{ number_format($order->total) }}đ</td>

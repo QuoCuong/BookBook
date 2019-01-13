@@ -26,7 +26,8 @@
         <!-- Page JS Plugins CSS -->
         <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('admin/js/plugins/slick/slick-theme.min.css') }}" />
-        <link rel="stylesheet"  href="{{ asset('admin/css/toastr.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('admin/js/plugins/bootstrap-datepicker/jquery.datetimepicker.css') }}" />
+        <link rel="stylesheet" href="{{ asset('admin/css/toastr.min.css') }}" />
 
         <!-- AppUI CSS stylesheets -->
         <link rel="stylesheet" id="css-font-awesome" href="{{ asset('admin/css/font-awesome.css') }}" />

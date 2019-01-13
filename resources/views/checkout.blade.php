@@ -154,7 +154,7 @@
                                         @endif
                                     </div>
                                     <div class="input_box">
-                                        <label>@lang('labels.account.password') <span>*</span></label>
+                                        <label>@lang('labels.account.password') <span>*</span> (để tạo tài khoản và giúp việc thanh toán trở nên dễ dàng hơn)</label>
                                         <input type="password" name="password">
                                         @if ($errors->has('password'))
                                             <div class="has-error">

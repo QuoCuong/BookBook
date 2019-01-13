@@ -21,7 +21,7 @@
         <div style="margin-bottom: 20px;">
             <form method="GET" action="/admin/search/orders">
                 <div class="input-group input-group-lg col-md-2 pull-left">
-                    <select class="form-control" id="example-select" name="search_by">
+                    <select class="form-control" id="order_by" name="search_by">
                         @if (!empty($search_by))
                             @switch($search_by)
                                 @case('id')
@@ -49,7 +49,11 @@
                 </div>
                 <div class="input-group input-group-lg col-md-10 pull-left">
                     @if (!empty($keyword))
-                        <input class="form-control" type="text" name="q" placeholder="Tìm kiếm..." value="{{ $keyword }}">
+                        @if ($search_by == 'date')
+                            <input class="form-control" type="text" name="q" placeholder="Tìm kiếm..." value="{{ date('d/m/Y', strtotime($keyword)) }}">
+                        @else
+                            <input class="form-control" type="text" name="q" placeholder="Tìm kiếm..." value="{{ $keyword }}">
+                        @endif
                     @else
                         <input class="form-control" type="text" name="q" placeholder="Tìm kiếm...">
                     @endif
@@ -77,7 +81,7 @@
                         @foreach ($orders as $order)
                             <tr class="pointer order" href="{{ route('admin.orders.show', $order->id) }}">
                                 <td class="text-center">{{ $order->id }}</td>
-                                <td>{{ date_format($order->created_at, 'd/m/Y H:i:s') }}</td>
+                                <td>{{ date('d/m/Y H:i:s', strtotime($order->date)) }}</td>
                                 <td>{{ $order->user->last_name . ' ' . $order->user->first_name }}</td>
                                 <td>{{ $order->address->address }}</td>
                                 @switch($order->status)
@@ -114,6 +118,7 @@
     <script src="{{ asset('admin/js/core/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/jquery.scrollLock.min.js') }}"></script>
     <script src="{{ asset('admin/js/core/jquery.placeholder.min.js') }}"></script>
+    <script src="{{ asset('admin/js/plugins/bootstrap-datepicker/jquery.datetimepicker.full.min.js') }}"></script>
     <script src="{{ asset('admin/js/app.js') }}"></script>
     <script src="{{ asset('admin/js/app-custom.js') }}"></script>
 
@@ -121,11 +126,50 @@
     <script>
 
         $(document).ready(function () {
+            if ($('#order_by').val() == 'date') {
+                $('input[name="q"]').attr({
+                    autocomplete: 'off'
+                });
+
+                $('input[name="q"]').datetimepicker({
+                    timepicker: false,
+                    format: 'd/m/Y',
+                    minDate: '1970/01/02',
+                    maxDate: '0',
+                    mask: true
+                });
+            }
+
             $(document).on('click', 'tr.order', function(event) {
                 event.preventDefault();
                 
                 href = $(this).attr('href');
                 window.location.replace(href);
+            });
+
+            $(document).on('change', '#order_by', function(event) {
+                event.preventDefault();
+                /* Act on the event */
+
+                if ($(this).val() == 'date') {
+                    $('input[name="q"]').attr({
+                        autocomplete: 'off'
+                    });
+
+                    $('input[name="q"]').datetimepicker({
+                        timepicker: false,
+                        format: 'd/m/Y',
+                        minDate: '1970/01/02',
+                        maxDate: '0',
+                        mask: true
+                    });
+                } else {
+                    $('input[name="q"]').attr({
+                        autocomplete: 'on'
+                    });
+
+                    $('input[name="q"]').datetimepicker('destroy');
+                }
             });
         });
         

@@ -4,6 +4,7 @@ namespace Book\Http\Controllers\Admin;
 
 use Book\Http\Controllers\Controller;
 use Book\Order;
+use DateTime;
 use Illuminate\Http\Request;
 
 class SearchController extends Controller
@@ -29,10 +30,28 @@ class SearchController extends Controller
             return view('admin.orders.search');
         }
 
-        $search_by = $request->search_by;
-        $keyword   = $request->q;
+        $search_by = $request->search_by ?? 'id';
+        $keyword   = $request->q ?? '';
 
-        $orders = Order::where($search_by, $keyword)->get();
+        switch ($search_by) {
+            case 'id':
+                $orders = Order::where($search_by, $keyword)->get();
+                break;
+            case 'date':
+                if (!empty($keyword)) {
+                    $date    = DateTime::createFromFormat('d/m/Y', $keyword);
+                    $keyword = $date->format('Y-m-d');
+                }
+
+                $orders = Order::where($search_by, 'like', '%' . $keyword . '%')->get();
+                break;
+            case 'user_id':
+                $orders = Order::where($search_by, $keyword)->get();
+                break;
+            default:
+                # code...
+                break;
+        }
 
         return view('admin.orders.search', [
             'orders'    => $orders,
