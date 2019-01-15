@@ -90,10 +90,8 @@
                                     <fieldset class="form-group">
                                             <label for="formGroupExampleInput">Quận/Huyện</label>
                                             <select class="form-control" name="district_id">
-                                              @foreach ($districts as $key => $value)
-                                              <option value="{{$key}}">{{$value}}</option>
-                                              @endforeach
-                                              </select>
+
+                                            </select>
                                            </fieldset>
                                  </div>
                    
@@ -112,3 +110,28 @@
 
     <!-- End Bradcaump area -->
     <!-- Start Shop Page -->
+
+@section('javascript')
+    <script>
+        jQuery().ready(function ($) {
+            $('select[name="city_id"]').on('change', function (event) {
+                event.preventDefault();
+
+                $city_id = $(this).val();
+                var districts = '';
+                
+                $.ajax({
+                    url: '/api/v1/cities/' + $city_id + '/districts',
+                    type: 'GET',
+                    success: function(response) {
+                        $.each(response, function(index, value) {
+                            districts += '<option value="' + value['id'] + '">' + value['name'] + '</option>'
+                        });
+
+                        $('select[name="district_id"]').html(districts);
+                    }
+                });
+            });
+        })
+    </script>
+@endsection
