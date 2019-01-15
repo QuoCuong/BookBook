@@ -50,7 +50,7 @@
                             <h3> Sổ địa chỉ nhận hàng: 
                                 <a href="{{route('account.address.create')}}"  title="Thêm địa chỉ mới" class="logout open_add">
                                     <i class="fa fa-book" aria-hidden="true"></i>
-                                     Thêm địa chỉ mới
+                                    Thêm địa chỉ mới
                                 </a>
                             </h3>
                             <div class="address row">
@@ -89,6 +89,5 @@
 
         </div>
     </section>
-
     <!-- End Bradcaump area -->
     <!-- Start Shop Page -->
