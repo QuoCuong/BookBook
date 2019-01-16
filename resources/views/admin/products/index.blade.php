@@ -53,7 +53,7 @@
             <th>
               Quantity
             </th>
-            <th>
+            <th style="text-align: center;">
               Price
             </th>
             <th>
@@ -71,7 +71,7 @@
             <td style="text-align: center;"><a href="{{ route('admin.product.detail', $product['id']) }}">{{ $product->name }}</a></td>
             <td style="text-align:justify">{{ $product->description }}</td>
             <td style="text-align: center;">{{ $product->quantity }}</td>
-            <td style="text-align: center;">{{ $product->price }}</td>
+            <td  style="width: 200px;text-align: center;" >{{number_format($product->price) }} đ</td>
             <td style="text-align: center;">{{ $product->category_id }}</td>
             <td>
               <a href="{{ route('admin.products.edit',  $product->id ) }}" class="btn btn-xs btn-default"><i class="ion-edit"></i>
