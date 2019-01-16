@@ -91,7 +91,7 @@
                                                         @elseif($order->status == 'cancelled')
                                                         <td class="text-center"><span class="text-danger">{{ $order->status }} </span></td>
                                                         @else 
-                                                        <td class="text-center"><span class="text-info">{{ $order->status }}  <a href="{{ route('account.order.cannel',['id'=>$order->id])}}" class="btn btn-outline-danger">Hủy đơn hàng</a></span></td>
+                                                        <td class="text-center"><span class="text-info">{{ $order->status }}  <a href="{{ route('account.order.cannel',['id'=>$order->id])}}" class="btn btn-outline-danger btn-sm">Hủy</a></span></td>
                                                         
 		                                                @endif
                                                     
