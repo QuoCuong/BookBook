@@ -36,7 +36,7 @@
               <th>
                 Path
               </th>
-              <th>
+              <th style="text-align: center;">
                 Product_id
               </th>
               <th style="width: 140px;">
@@ -48,7 +48,7 @@
             @foreach($images as $image)
             <tr>
               <td>{{ $image->name }}</td>
-              <td style="text-align:justify">{{ $image->path }}</td>
+              <td style="text-align:justify"><img style="height:50px" src="{{ $image->path }}" alt=""></td>
               <td style="text-align: center;">{{ $image->product_id }}</td>
               
               <td>
