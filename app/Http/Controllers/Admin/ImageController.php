@@ -45,19 +45,15 @@ class ImageController extends Controller
     {
         $image = new Image ;
         if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $name = $file->time().getClientOriginalName();
-            $file->move(public_path() . '/public/storage/', $name);
-            
+            $product_image = $request->image;
+            $product_image_new_name =  time().$product_image->getClientOriginalName();
+            $product_image->move('storage/',$product_image_new_name);
 
             $image->name       = $request->name;
-            $image->path       = 'public/storage/' . $name;
+            $image->path       = '/storage/' . $product_image_new_name;
             $image->product_id = $request->product_id;
 
             $image->save();
-
-           
-
         }
             
         Session::flash('success','Tạo mới thành công!');
@@ -102,7 +98,7 @@ class ImageController extends Controller
         if ($request->hasFile('image')) {
             $imageName = $request->image;
             $imageName_new_name =  time().$imageName->getClientOriginalName();
-            $imageName->move('/storage/',$imageName_new_name);
+            $imageName->move('storage/',$imageName_new_name);
             $imageName = '/storage/'.$imageName_new_name;
 
             $image->path = $imageName;
