@@ -43,8 +43,7 @@ jQuery().ready(function ($) {
                 if (!increaseItemQuantity(id, quantity)) {
                     alert('Số lượng tối thiểu có thể mua: 1\nSố lượng tối đa có thể mua: 10');
                 }
-            }
-            else {
+            } else {
                 if (isGreaterThan10(quantity) || isSmallerThan1(quantity)) {
                     alert('Số lượng tối thiểu có thể mua: 1\nSố lượng tối đa có thể mua: 10');
                 } else {

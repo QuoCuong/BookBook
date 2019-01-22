@@ -76,7 +76,12 @@ class OrderController extends Controller
         $address      = $order->address;
         $orderDetails = $order->orderDetails;
 
-        return view('admin.orders.show', ['order' => $order, 'user' => $user, 'address' => $address, 'orderDetails' => $orderDetails]);
+        return view('admin.orders.show', [
+            'order'        => $order,
+            'user'         => $user,
+            'address'      => $address,
+            'orderDetails' => $orderDetails,
+        ]);
     }
 
     /**

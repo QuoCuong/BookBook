@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="bradcaump__inner text-center">
-                        <h2 class="bradcaump-title">Cửa hàng</h2>
+                        <h2 class="bradcaump-title">Thông tin</h2>
                         <nav class="bradcaump-content">
                             <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
                             <span class="brd-separetor">/</span>

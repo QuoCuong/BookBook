@@ -42,7 +42,7 @@
                             <p><b>Size :</b> {{$productDetail->size}}</p><br>
                             <p><b>Số trang :</b> {{$productDetail->number_of_page}}</p><br>
                             <p><b>Chất liệu: </b>{{$productDetail->cover}}</p><br>
-                            <p><b>Giá thành: </b>{{$product->price}}</p><br>
+                            <p><b>Giá thành: </b>{{number_format($product->price)}}đ</p><br>
                               </div>
                             </div>
                       </div>

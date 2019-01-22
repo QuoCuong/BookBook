@@ -96,7 +96,7 @@
 			<div class="row">
 				<div class="col-lg-12">
 					<div class="section__title text-center">
-						<h2 class="title__be--2">Sách <span class="color--theme">Nổi bật</span></h2>
+						<h2 class="title__be--2">Tất cả <span class="color--theme">sách</span></h2>
 					</div>
 				</div>
 			</div>
