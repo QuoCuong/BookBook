@@ -1,62 +1,62 @@
 @extends('layouts.app')
 
+@section('oth-page')
+oth-page
+@endsection
+
 @section('content')
 
 <!-- Start Bradcaump area -->
-@include('layouts.partials.breadcrumbs')
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.login')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.login')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End Bradcaump area -->
 
 <!-- Start My Account Area -->
 <section class="my_account_area pt--80 pb--55 bg--white">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 col-12">
+            <div class="col-md-6 offset-md-3">
                 <div class="my__account__wrapper">
-                    <h3 class="account__title">Login</h3>
+                    <h3 class="account__title text-center">@lang('labels.account.login')</h3>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="account__form">
                             <div class="input__box">
-                                <label>Email address <span>*</span></label>
+                                <label>@lang('labels.account.email_address') <span>*</span></label>
                                 <input type="text" name="email" value="{{ old('email') }}">
+                                @if ($errors->has('email'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('email') }}</i>
+                                </div>
+                                @endif
                             </div>
                             <div class="input__box">
-                                <label>Password<span>*</span></label>
+                                <label>@lang('labels.account.password')<span>*</span></label>
                                 <input type="password" name="password">
+                                @if ($errors->has('password'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('password') }}</i>
+                                </div>
+                                @endif
                             </div>
                             <div class="form__btn">
-                                <button>Login</button>
-                                <label class="label-for-checkbox">
-                                    <input id="rememberme" class="input-checkbox" name="rememberme" value="forever" type="checkbox">
-                                    <span>Remember me</span>
-                                </label>
+                                <button>@lang('labels.account.login')</button>
                             </div>
-                            <a class="forget_pass" href="#">Lost your password?</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-lg-6 col-12">
-                <div class="my__account__wrapper">
-                    <h3 class="account__title">Register</h3>
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                        <div class="account__form">
-                            <div class="input__box">
-                                <label>Email address <span>*</span></label>
-                                <input type="email" name="email" value="{{ old('email') }}">
-                            </div>
-                            <div class="input__box">
-                                <label>Password<span>*</span></label>
-                                <input type="password">
-                            </div>
-                            <div class="input__box">
-                                <label>Confirm password<span>*</span></label>
-                                <input type="password" name="password_confirm">
-                            </div>
-                            <div class="form__btn">
-                                <button>Register</button>
-                            </div>
+                            <a class="forget_pass" href="{{ route('password.request') }}">@lang('labels.account.forgot_password')?</a>
                         </div>
                     </form>
                 </div>

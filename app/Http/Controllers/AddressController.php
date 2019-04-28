@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class AddressController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -80,6 +81,8 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        $address->delete();
+
+        return redirect()->back();
     }
 }

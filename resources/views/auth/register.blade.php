@@ -1,71 +1,96 @@
 @extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+@section('oth-page')
+oth-page
+@endsection
 
-                <div class="card-body">
+@section('content')
+
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.register')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.register')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
+
+<!-- Start My Account Area -->
+<section class="my_account_area pt--80 pb--55 bg--white">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="my__account__wrapper">
+                    <h3 class="account__title text-center">@lang('labels.account.register')</h3>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                        <div class="account__form">
+                            <div class="input__box">
+                                <label>@lang('labels.account.email_address') <span>*</span></label>
+                                <input type="email" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                <div class="has-error">
+                                    <i>{{ $errors->first('email') }}</i>
+                                </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
+                            <div class="input__box">
+                                <label>@lang('labels.account.last_name')</label>
+                                <input type="text" name="last_name" value="{{ old('last_name') }}">
+                                @if ($errors->has('last_name'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('last_name') }}</i>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="input__box">
+                                <label>@lang('labels.account.first_name')</label>
+                                <input type="text" name="first_name" value="{{ old('first_name') }}">
+                                @if ($errors->has('first_name'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('first_name') }}</i>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="input__box">
+                                <label>@lang('labels.account.birthday')</label>
+                                <input id="datepicker" type="text" name="birthday" value="{{ old('birthday') }}" autocomplete="off">
+                                @if ($errors->has('birthday'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('birthday') }}</i>
+                                </div>
+                                @endif
+                            </div>
+                            <div class="input__box">
+                                <label>@lang('labels.account.password')<span>*</span></label>
+                                <input type="password" name="password">
                                 @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                <div class="has-error">
+                                    <i>{{ $errors->first('password') }}</i>
+                                </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            <div class="input__box">
+                                <label>@lang('labels.account.password_confirm')<span>*</span></label>
+                                <input type="password" name="password_confirmation">
+                                @if ($errors->has('password_confirm'))
+                                <div class="has-error">
+                                    <i>{{ $errors->first('password_confirm') }}</i>
+                                </div>
+                                @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                            <div class="form__btn">
+                                <button>@lang('labels.account.register')</button>
                             </div>
                         </div>
                     </form>
@@ -73,5 +98,20 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- End My Account Area -->
+
+@endsection
+
+@section('javascript')
+<script type="text/javascript" src="{{ asset('js/vendor/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/vendor/jquery.datetimepicker.full.min.js') }}"></script>
+<script>
+    jQuery('#datepicker').datetimepicker({
+        timepicker: false,
+        format: 'd/m/Y',
+        minDate: '1970/01/02',
+        maxDate: '0'
+    });
+</script>
 @endsection

@@ -2,7 +2,6 @@
 
 namespace Book\Http\Controllers;
 
-use Book\ProductDetail;
 use Illuminate\Http\Request;
 
 class ProductDetailController extends Controller

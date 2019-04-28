@@ -130,7 +130,7 @@ Author: rustheme
 }
 
 /* Drawer nav-item with subnav */
-.nav-item-has-subnav > a:after {
+/*.nav-item-has-subnav > a:after {
 	position: absolute;
 	top: 50%;
 	right: 24px;
@@ -139,7 +139,7 @@ Author: rustheme
 	content: '\f489';
 	-webkit-transform: translate(50%, -50%);
 	        transform: translate(50%, -50%);
-}
+}*/
 
 .nav-item-has-subnav.open > a:after {
 	content: '\f462';

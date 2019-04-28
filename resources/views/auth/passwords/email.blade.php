@@ -1,41 +1,51 @@
 @extends('layouts.app')
 
+@section('oth-page')
+oth-page
+@endsection
+
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<!-- Start Bradcaump area -->
+<div class="ht__bradcaump__area bg-image--5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="bradcaump__inner text-center">
+                    <h2 class="bradcaump-title">@lang('labels.account.forgot_password')</h2>
+                    <nav class="bradcaump-content">
+                        <a class="breadcrumb_item" href="{{ route('home') }}">@lang('labels.home')</a>
+                        <span class="brd-separetor">/</span>
+                        <span class="breadcrumb_item active">@lang('labels.account.forgot_password')</span>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Bradcaump area -->
 
+<!-- Start My Account Area -->
+<section class="my_account_area pt--80 pb--55 bg--white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="my__account__wrapper">
+                    <h3 class="account__title">@lang('labels.account.reset_password')</h3>
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
+                        <div class="account__form">
+                            <div class="input__box">
+                                <label>@lang('labels.account.email_address') <span>*</span></label>
+                                <input type="text" name="email" value="{{ old('email') }}">
                                 @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
+                                    <div class="has-error">
+                                        <i>{{ $errors->first('email') }}</i>
+                                    </div>
                                 @endif
                             </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Send Password Reset Link') }}
-                                </button>
+                            <div class="form__btn text-center">
+                                <button>@lang('labels.account.send_forgot_password_link')</button>
                             </div>
                         </div>
                     </form>
@@ -43,5 +53,6 @@
             </div>
         </div>
     </div>
-</div>
+</section>
+<!-- End My Account Area -->
 @endsection

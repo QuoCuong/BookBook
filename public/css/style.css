@@ -1,6 +1,6 @@
 ﻿/*********************************************************************************
 
-    Template Name: Boighor Responsive Bootstrap4 Template  
+    Template Name: Boighor Responsive Bootstrap4 Template
     Version: 1.0
     Note: This is style css.
 
@@ -1186,7 +1186,7 @@ Elements Styles
 ********************/
 
 /*------------------------------
-  Button Styles 
+  Button Styles
 ------------------------------*/
 
 .shopbtn {
@@ -1278,7 +1278,7 @@ Elements Styles
     }
 }
 /*------------------------------
-  Slide Activation Styles 
+  Slide Activation Styles
 ------------------------------*/
 
 .arrows_style {
@@ -1438,7 +1438,7 @@ Elements Styles
     color: #3cc8df;
 }
 /*------------------------------
-  Social Icon Styles 
+  Social Icon Styles
 ------------------------------*/
 
 .social__net li {
@@ -1796,7 +1796,7 @@ Elements Styles
     }
 }
 /*------------------------------
-  Cart Box Styles 
+  Cart Box Styles
 ------------------------------*/
 
 .cartbox_active {
@@ -1997,7 +1997,7 @@ Elements Styles
     }
 }
 /*------------------------------
-  Setting Styles 
+  Setting Styles
 ------------------------------*/
 
 .setting__active {
@@ -2705,7 +2705,7 @@ nav.menu ul li a {
     text-transform: uppercase;
 }
 /*------------------------------
-  Testimonial Styles 
+  Testimonial Styles
 ------------------------------*/
 
 .testimonial__container .tes__img__slide {
@@ -2828,7 +2828,7 @@ nav.menu ul li a {
     }
 }
 /*------------------------------
-  Product Styles 
+  Product Styles
 ------------------------------*/
 
 .product {
@@ -6585,6 +6585,9 @@ h3.widget-title-modal {
     font-size: 14px;
     margin: 0 0 10px;
 }
+.wn__checkout__form .input__box {
+    margin: 0 0 15px;
+}
 .wn__checkout__form .input__box label {
     margin-bottom: 5px;
     line-height: 2;
@@ -6595,7 +6598,7 @@ h3.widget-title-modal {
 .wn__checkout__form .input__box input {
     border: 1px solid #e1e1e1;
     height: 40px;
-    margin: 0 0 14px;
+/*    margin: 0 0 14px;*/
     max-width: 100%;
     padding: 0 0 0 10px;
     width: 370px;
@@ -7028,6 +7031,18 @@ a.checkout__title {
     line-height: 30px;
     padding: 0 15px;
     text-transform: uppercase;
+}
+.price--filter button {
+    background: #222 none repeat scroll 0 0;
+    border-radius: 3px;
+    color: #fff;
+    display: block;
+    font-size: 12px;
+    height: 30px;
+    line-height: 30px;
+    padding: 0 15px;
+    text-transform: uppercase;
+    border: 0;
 }
 .ui-widget-content {
     background: #ededed none repeat scroll 0 0;

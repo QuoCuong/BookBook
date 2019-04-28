@@ -13,8 +13,7 @@ class OrdersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Order::class, 50)->create()->each(function ($order) {
-            $order->orderDetails()->save(factory(OrderDetail::class)->make());
+        factory(Order::class, 20)->create()->each(function ($order) {
             $order->orderDetails()->save(factory(OrderDetail::class)->make());
             $order->orderDetails()->save(factory(OrderDetail::class)->make());
         });

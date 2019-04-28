@@ -2,11 +2,11 @@
 
 namespace Book\Http\Controllers\Auth;
 
-use Book\User;
 use Book\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
+use Book\Http\Requests\RegisterRequest;
+use Book\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -19,7 +19,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -41,32 +41,26 @@ class RegisterController extends Controller
     }
 
     /**
-     * Get a validator for an incoming registration request.
+     * Handle a registration request for the application.
      *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    protected function validator(array $data)
+    public function register(RegisterRequest $request)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
-    }
+        $data = $request->all();
+        
+        if (!empty($data['birthday'])) {
+            $data['birthday'] = convert_to_default_date_format($data['birthday']);
+        }
+        $data['password'] = bcrypt($data['password']);
+        $data['role_id']  = 2;
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \Book\User
-     */
-    protected function create(array $data)
-    {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = User::create($data);
+
+        Auth::guard()->login($user);
+
+        return $this->registered($request, $user)
+        ?: redirect($this->redirectPath());
     }
 }

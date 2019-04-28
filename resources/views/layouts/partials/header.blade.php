@@ -23,7 +23,7 @@
 											<li class="title"><a href="">{{ $subcategory->name }}</a></li>
 											@foreach ($subcategory->child as $subsubcategory)
 												<li class="subsubcategory">
-													<a href="#">{{ $subsubcategory->name }}</a>
+													<a href="{{ route('categories.list_products_by_id', $subsubcategory->id) }}">{{ $subsubcategory->name }}</a>
 												</li>
 											@endforeach
 										</ul>
@@ -38,77 +38,28 @@
 				<ul class="header__sidebar__right d-flex justify-content-end align-items-center">
 					<li class="shop_search"><a class="search__active" href="#"></a></li>
 					<li class="wishlist"><a href="#"></a></li>
-					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">3</span></a>
+					<li class="shopcart"><a class="cartbox_active" href="#"><span class="product_qun">0</span></a>
 						<!-- Start Shopping Cart -->
 						<div class="block-minicart minicart__active">
 							<div class="minicart-content-wrapper">
 								<div class="micart__close">
-									<span>close</span>
+									<span>@lang('labels.close')</span>
 								</div>
 								<div class="items-total d-flex justify-content-between">
-									<span>3 items</span>
-									<span>Cart Subtotal</span>
+									<span>0 @lang('labels.item')</span>
+									<span>Tổng đơn hàng</span>
 								</div>
 								<div class="total_amount text-right">
-									<span>$66.00</span>
+									<span>0đ</span>
 								</div>
 								<div class="mini_action checkout">
-									<a class="checkout__btn" href="cart.html">Go to Checkout</a>
+									<a class="checkout__btn" href="{{ route('cart.show_checkout_form') }}">@lang('labels.checkout')</a>
 								</div>
 								<div class="single__items">
-									<div class="miniproduct">
-										<div class="item01 d-flex">
-											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/1.jpg" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Voyage Yoga Bag</a></h6>
-												<span class="prize">$30.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 01</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="item01 d-flex mt--20">
-											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/3.jpg" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Impulse Duffle</a></h6>
-												<span class="prize">$40.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 03</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-										<div class="item01 d-flex mt--20">
-											<div class="thumb">
-												<a href="product-details.html"><img src="images/product/sm-img/2.jpg" alt="product images"></a>
-											</div>
-											<div class="content">
-												<h6><a href="product-details.html">Compete Track Tote</a></h6>
-												<span class="prize">$40.00</span>
-												<div class="product_prize d-flex justify-content-between">
-													<span class="qun">Qty: 03</span>
-													<ul class="d-flex justify-content-end">
-														<li><a href="#"><i class="zmdi zmdi-settings"></i></a></li>
-														<li><a href="#"><i class="zmdi zmdi-delete"></i></a></li>
-													</ul>
-												</div>
-											</div>
-										</div>
-									</div>
+									<div class="miniproduct" style="height: 300px;"></div>
 								</div>
 								<div class="mini_action cart">
-									<a class="cart__btn" href="cart.html">View and edit cart</a>
+									<a class="cart__btn" href="{{ route('cart.index') }}">@lang('labels.view_and_edit_cart')</a>
 								</div>
 							</div>
 						</div>
@@ -116,7 +67,22 @@
 					</li>
 					@guest
 						<li class="setting__bar__icon">
-							<a class="setting__active__guest" href="{{ route('login') }}"></a>
+							<a class="setting__active" href="#"></a>
+							<div class="searchbar__content setting__block">
+								<div class="content-inner">
+									<div class="switcher-currency">
+										<div class="switcher-options">
+											<div class="switcher-currency-trigger">
+												<div class="setting__menu">
+													<span><a href="{{ route('login') }}">@lang('labels.login')</a></span>
+													<span><a href="{{ route('register') }}">@lang('labels.register')</a></span>
+													<span><a href="{{ route('password.request') }}">@lang('labels.forgot_password')</a></span>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
 						</li>
 					@else
 						<li class="setting__bar__icon">
@@ -130,7 +96,7 @@
 													@if (Auth::user()->role_id == 1)
 														<span><a href="{{ route('admin.dashboard') }}">Quản trị viên</a></span>
 													@endif
-													<span><a href="{{ route('home') }}">@lang('labels.my_account')</a></span>
+													<span><a href="{{ route('account.index') }}">@lang('labels.my_account')</a></span>
 													<span>
 														<form method="POST" action="{{ route('logout') }}">
 															@csrf
@@ -177,6 +143,6 @@
 		<!-- End Mobile Menu -->
         <div class="mobile-menu d-block d-lg-none">
         </div>
-        <!-- Mobile Menu -->	
-	</div>		
+        <!-- Mobile Menu -->
+	</div>
 </header>

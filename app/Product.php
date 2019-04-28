@@ -11,7 +11,7 @@ class Product extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name', 'description', 'quantity', 'price', 'category_id',
+        'code', 'name', 'description', 'quantity', 'price', 'category_id',
     ];
 
     public function productDetail()
@@ -37,6 +37,11 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany('Book\Image');
+    }
+
+    public function getOrderDetailsCountAttribute()
+    {
+        return $this->orderDetails->count();
     }
 
 }

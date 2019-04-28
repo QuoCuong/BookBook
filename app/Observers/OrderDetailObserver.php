@@ -13,25 +13,35 @@ class OrderDetailObserver
      * @param  \Book\OrderDetail  $orderDetail
      * @return void
      */
-    public function created(OrderDetail $orderDetail)
+    public function creating(OrderDetail $orderDetail)
     {
         $order   = $orderDetail->order;
         $product = $orderDetail->product;
 
         //update total of order
-        $current_total         = $order->total;
-        $total_of_order_detail = $product->price * $orderDetail->quantity;
+        $current_order_total = $order->total;
+        $order_detail_amount = $product->price * $orderDetail->quantity;
 
-        $data = [
-            'total' => $current_total + $total_of_order_detail,
-        ];
-        $order->update($data);
+        $order->total = $current_order_total + $order_detail_amount;
+        $order->save();
 
-        //update quantity of product
-        $data = [
-            'quantity' => $product->quantity - $orderDetail->quantity,
-        ];
-        $product->update($data);
+        //update product quantity
+        $current_product_quantity = $product->quantity;
+        $order_detail_quantity    = $orderDetail->quantity;
+
+        $product->quantity = $current_product_quantity - $order_detail_quantity;
+        $product->save();
+    }
+
+    /**
+     * Handle the order detail "created" event.
+     *
+     * @param  \Book\OrderDetail  $orderDetail
+     * @return void
+     */
+    public function created(OrderDetail $orderDetail)
+    {
+        //
     }
 
     /**
